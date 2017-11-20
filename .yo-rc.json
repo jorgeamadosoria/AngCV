@@ -1,0 +1,18 @@
+{
+  "generator-ng-fullstack": {
+    "appName": "AngCV",
+    "username": "jorgeamadosoria",
+    "userEmail": "darksoul.uci@gmail.com",
+    "stack": "fullstack",
+    "repoHostUrl": "github.com",
+    "userNameSpace": "jorgeamadosoria",
+    "client": "ng2",
+    "stylePreprocessor": "none",
+    "server": "node",
+    "nodeWebFrameworkServer": "express",
+    "transpilerServer": "typescript",
+    "secure": false,
+    "testsSeparated": true,
+    "differentStaticServer": false
+  }
+}
