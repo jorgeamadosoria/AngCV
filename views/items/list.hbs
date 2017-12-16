@@ -1,0 +1,410 @@
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            <select class="form-control" name="query" id="query">
+                    <option selected value="">Custom</option>
+                    {{#each queries}}
+                        <option value="{{this.query}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            <select class="form-control" name="field" id="field">
+                    <option selected value="all">All records</option>
+                    {{#each searchObjs}}
+                        <option value="{{this.search}}">{{this.path}}</option>
+                    {{/each}}
+                </select>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5">
+            <div id="date-search" class="hide search-box">
+                <div class="col-lg-4 col-sm-4">
+                    <input class="form-control" type="date" name="from" id="from" />
+                </div>
+                <div class="col-lg-1 col-sm-1">
+                    <label class="control-label">-</label>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <input class="form-control" type="date" name="to" id="to" />
+                </div>
+                <div class="col-lg-offset-1 col-lg-2 col-sm-offset-1 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="number-search" class="hide search-box">
+                <div class="col-lg-4 col-sm-4">
+                    <input class="form-control" type="number" min="0" name="from" id="from" />
+                </div>
+                <div class="col-lg-1 col-sm-1">
+                    <label class="control-label">-</label>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <input class="form-control" type="number" min="0" name="to" id="to" />
+                </div>
+                <div class="col-lg-offset-1 col-lg-2 col-sm-offset-1 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="currency-search" class="hide search-box">
+                <div class="col-lg-4 col-sm-4">
+                    <input class="form-control" step=".01" min="0" type="number" name="from" id="from" />
+                </div>
+                <div class="col-lg-1 col-sm-1">
+                    <label class="control-label">-</label>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <input class="form-control" step=".01" min="0" type="number" name="to" id="to" />
+                </div>
+                <div class="col-lg-offset-1 col-lg-2 col-sm-offset-1 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="string-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <input class="form-control" id="value" />
+                </div>
+                <div class="col-lg-1 col-sm-1">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="weight-search" class="hide search-box">
+                <div class="col-lg-3 col-sm-3">
+                    <input class="form-control" step=".001" min="0" type="number" name="from" id="from" />
+                </div>
+                <div class="col-lg-1 col-sm-1">
+                    <label class="control-label">-</label>
+                </div>
+                <div class="col-lg-3 col-sm-3">
+                    <input class="form-control" step=".001" min="0" type="number" name="to" id="to" />
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <select id="value" class="form-control">
+                            <option value=""></option>
+                            {{#lists.units}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/lists.units}}
+                        </select>
+                </div>
+                <div class="col-lg-offset-1 col-lg-2 col-sm-offset-1 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="reasons-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" data-live-search="true" class="selectpicker" multiple>
+                            {{#lists.reasons}}
+                                <option value= "{{this}}" >{{this}}</option>
+                            {{/lists.reasons}}
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="currencies-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" multiple data-live-search="true" class="selectpicker">
+                            {{#lists.currencies}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/lists.currencies}}
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="addresses-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" data-live-search="true" class="selectpicker" multiple>
+                            {{#addresses}}
+                                <option value="{{this._id}}">{{this.fullAddress}}</option>
+                            {{/addresses}}
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="brands-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" data-live-search="true" class="selectpicker" multiple>
+                            {{#brands}}
+                                <option value="{{this._id}}">{{this.name}}</option>
+                            {{/brands}}
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="monthly-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" data-live-search="true" class="selectpicker" multiple>
+                            {{#lists.monthly}}
+                                <option>{{this}}</option>
+                            {{/lists.monthly}}
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="types-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" data-live-search="true" class="selectpicker" multiple>
+                            {{#lists.types}}
+                                <option value= "{{this}}" >{{this}}</option>
+                            {{/lists.types}}
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="categories-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="select" data-live-search="true" class="selectpicker" multiple>
+                        {{#lists.categories}}
+                            <option value= "{{this}}" >{{this}}</option>
+                        {{/lists.categories}}
+                    </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+            <div id="boolean-search" class="hide search-box">
+                <div class="col-lg-10 col-sm-10">
+                    <select id="value" class="selectpicker">
+                            <option value="true" >Is</option>
+                            <option value="false">Is not</option>
+                        </select>
+                </div>
+                <div class="col-lg-2 col-sm-2">
+                    <button class="add-button btn btn-default">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <span class="pull-right ">
+            {{#in user.role 'user,admin'}}
+                <button id="save" class="btn btn-default" type="submit">Save...</button>
+            {{/in}}
+            &nbsp;&nbsp;&nbsp;
+            <button id="clear" class="btn btn-default">Clear</button>
+            &nbsp;&nbsp;&nbsp;
+            <button id="search" class="btn btn-default btn-dark">Search</button>
+            </span>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 ">
+            <p class="hide btn btn-dark criterion">
+                <span id="text"></span>&nbsp;&nbsp;<span class="badge">&times;</span>
+            </p>
+            <div class="panel panel-black criteria">
+            </div>
+        </div>
+    </div>
+</form>
+
+<div id="searchResults">
+</div>
+{{#in user.role 'user,admin'}}
+<div id="queryModal" class="modal fade" role="dialog">
+    <form class="form-horizontal" enctype="application/x-www-form-urlencoded" action="/queries/form" method="post">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="bg-dark modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Item upsert</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name" class="col-xs-2 control-label">Name</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" placeholder="name" name="name" id="name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-xs-2 control-label">Description</label>
+                        <div class="col-xs-10">
+                            <textarea class="form-control col-10" placeholder="description" name="description" id="description" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label for="query" class="col-xs-2 control-label">Query</label>
+                        <div class="col-xs-10">
+                            <textarea class="form-control col-10" placeholder="query" name="query" id="query" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id = "upsert" class="pull-right btn btn-default" type="submit" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{{/in}}
+<script>
+
+    function triggerSearch(page) {
+                //    alert(page);
+        var query = $(".criteria").data();
+        query.page = page;
+        $.ajax({
+            headers: {
+                "Content-Type": "application/json"
+            },
+            url: "/items/search",
+            data: JSON.stringify(query),
+            method: "POST",
+            success: function (data) {
+                $("#searchResults").html(data);
+                $(".pagination .page-item a.page-link").on("click", function (e) {
+                    e.preventDefault();
+                     $(".pagination .page-item").removeClass("active active-dark");
+                    $(e.target).parent().addClass("active active-dark");
+                    triggerSearch($(e.target).text());
+                });
+                initItemListCallbacks();
+            }
+        });
+    };
+
+    function doRemoveCriterion(criterion) {
+        var criterionName = criterion.attr("id");
+        delete $(".criteria").data()[criterionName];
+        criterion.remove();
+    }
+
+    $("button#clear").click(function (e) {
+        e.preventDefault();
+        $(".criteria .criterion").each((i,e) => doRemoveCriterion($(e)));
+    });
+
+    $("button#save").click(function (e) {
+        e.preventDefault();
+        var query = $(".criteria").data();
+        $("#queryModal").find("#query").val(JSON.stringify(query));
+        $("#queryModal").modal({keyboard: true});
+    });
+
+    $("#queryModal button#upsert").click(function (e) {
+        $("#queryModal form").submit();
+    });
+
+    $("button#search").click(function (e) {
+        e.preventDefault();
+        triggerSearch(1);
+    });
+
+    $("#field").on("change", function (event) {
+        $(".search-box").addClass("hide");
+        $("#" + $(event.target).val()).removeClass("hide");
+    });
+
+    $("#query").on("change", function (event) {
+        $(".criteria").text("");
+        $(".criteria").removeData();
+        $("#field").removeClass("hide");
+        if ($("#query").val())
+        {
+            $(".search-box").addClass("hide");
+            $("#field").addClass("hide");
+            $(".criteria").data(JSON.parse($("#query").val()));
+        }
+        else
+            $("#field").val("all");
+    });
+
+    function createCriterion() {
+        var criterion = {};
+        criterion.name = $("#field option:selected").text();
+        criterion.fields = [];
+        var searchBox = $(".search-box:not(.hide)");
+        var str = $(searchBox).find("#value").val();
+        if (str) {
+            criterion.fields.push({ key: "value", value: str });
+        }
+
+        str = $(searchBox).find("#from").val();
+        if (str) {
+            criterion.fields.push({ key: "from", value: str });
+        }
+
+        str = $(searchBox).find("#to").val();
+        if (str) {
+            criterion.fields.push({ key: "to", value: str });
+        }
+
+        str = $(searchBox).find("#select").val();
+        if (str) {
+            $.each(str, function (idx, value) {
+                var val = {};
+                if ($(searchBox).find("#select").length) {
+                    val.key = value;
+                    //quotes required to allow for whitespace on the value
+                    val.value = $(searchBox).find("#select option[value='" + value + "']").text();
+                }
+                criterion.fields.push(val);
+            });
+        }
+        return criterion;
+    };
+
+    function updateCriteria(criterion) {
+        var criteria = $(".criteria").data();
+        if (!criteria) criteria = {};
+        criteria[criterion.name] = criterion;
+        $(".criteria").data(criteria);
+        return $(".criteria").data();
+    }
+
+    function removeCriterion(e) {
+        var criterion = $(e.target).parent();
+        doRemoveCriterion(criterion);
+    }
+
+    function updateVisualCriteria(criterion) {
+        var button = $(".criteria").find("p#" + criterion.name);
+        if (button) {
+            $(".criteria p#" + criterion.name).remove();
+        }
+        $(".criteria").parent().find("p.hide").clone().attr("id", criterion.name).find("#text").text(criterionText(criterion)).end().removeClass("hide").find("span.badge").click(removeCriterion).end().appendTo(".criteria");
+    }
+
+    function criterionText(criterion) {
+        var text = criterion.name + ":";
+        var list = [];
+        var lastString = "";
+        $.each(criterion.fields, function (idx, value) {
+            if (_.contains(['from', 'to', 'select'], value.key))
+                text += " " + value.key + " " + value.value;
+            else if ('value' == value.key)
+                lastString = value.value;
+            else
+                list.push(value.value);
+        });
+
+        if (lastString)
+            text += " " + lastString;
+
+        if (list.length) {
+            text += (list.length != 1) ? "(" : "";
+            text += list.join(",");
+            text += (list.length != 1) ? ")" : "";
+        }
+        return text;
+    }
+
+    $(".add-button").click(function (event) {
+        event.preventDefault();
+        var criterion = createCriterion();
+        updateCriteria(criterion);
+        updateVisualCriteria(criterion);
+    });
+
+</script>
