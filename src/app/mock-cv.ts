@@ -73,16 +73,16 @@ export const mockCV: CV = {
     name: 'Globant',
     summary: 'I tested things',
     website: 'web.com',
-    startDate: '2013-12-01',
-    endDate: '2014-12-01',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
     tag: ['performance', 'Automation']
    },
    {
     name: 'destapador de frascos',
     summary: 'abrir botellas y frascos muy apretados?',
     website: 'web.com',
-    startDate: '2013-12-01',
-    endDate: '2014-12-01',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
     tag: ['Cooking']
    }
   ],
@@ -90,8 +90,8 @@ export const mockCV: CV = {
     company: 'Globant',
     position: 'CPresident',
     website: 'globamt.com',
-    startDate: '2013-12-01',
-    endDate: '2014-12-01',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
     summary: 'I tested things',
     logo: 'link a una imaggen',
     tag: ['Performance']
@@ -100,8 +100,8 @@ export const mockCV: CV = {
     company: 'Moovit',
     position: 'Developer',
     website: 'webmoovit.com',
-    startDate: '2013-12-01',
-    endDate: '2014-12-01',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
     summary: 'I developed things',
     logo: 'link a una imaggen',
     tag: ['Development']
@@ -110,8 +110,8 @@ export const mockCV: CV = {
   education: [{
    institution: 'University of Montevideo',
    carrier: 'Engineer',
-   startDate: '2010-06-01',
-   endDate: '2014-01-01',
+   startDate: new Date(2010, 6, 1),
+   endDate: new Date(2014, 1, 1),
    logo: 'link a una imaggen',
    summary: 'I engineered things'
   }],
@@ -119,14 +119,14 @@ export const mockCV: CV = {
    organization: 'Organization',
    position: 'Maestro',
    website: 'weblink.com',
-   startDate: '2015-01-01',
-   endDate: '2016-01-01',
+   startDate: new Date(2015, 1, 1),
+   endDate: new Date(2016, 1, 1),
    summary: 'Maestro Roshi por 1 año',
    tag: []
   }],
   certification: [{
    name: 'Matrix Theorist',
-   date: '2013-11-01',
+   date: new Date(2013, 11, 1),
    link: 'Taca.com',
    summary: 'There is no spoon',
    tag: []
@@ -134,7 +134,7 @@ export const mockCV: CV = {
   publications: [{
    name: 'How to create json',
    publisher: 'FCC',
-   date: '2014-10-01',
+   date: new Date(2014, 10, 1),
    website: '',
    summary: 'sumary',
    tag: ['Development']
@@ -142,7 +142,7 @@ export const mockCV: CV = {
   awards: [{
    title: 'Best json ever',
    from: 'FCC',
-   date: '2014-10-01',
+   date: new Date(2014, 10, 1),
    website: '',
    summary: 'summary here',
    tag: ['Development']
@@ -150,8 +150,8 @@ export const mockCV: CV = {
   events: [{
    name: 'Conferencia de How to create json',
    publisher: 'Conferences for all',
-   startDate: '2014-10-01',
-   endDate: '2014-10-01',
+   startDate: new Date(2014, 10, 1),
+   endDate: new Date(2014, 10, 1),
    website: '',
    summary: 'summary',
    tag: ['Development']

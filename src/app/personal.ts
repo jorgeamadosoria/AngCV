@@ -1,4 +1,5 @@
 import { Social } from './social';
+import { Location } from './location';
 
 export class Personal {
     name: String;
