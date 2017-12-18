@@ -1,36 +1,99 @@
 <div id="form">
-<form [formGroup]="form" novalidate (ngSubmit)="save(form)">
-  <input formControlName="cv.personal.name" name="personal.name" placeholder="name">
-  
-  <div formArrayName="languages">
-      <div *ngFor="let languages of form.controls.languages.controls; let i=index" class="panel panel-default">
-        <div class="panel-heading">
-          <span>Languages</span>
+    <form [formGroup]="form" novalidate (ngSubmit)="save(form)">
+        <div formGroupName="personal" class="well well-lg">
+            <input formControlName="name" name="name" placeholder="name">
         </div>
-        <div class="panel-body" [formGroupName]="i">
-          <div class="form-group col-xs-6">
-            <label>Language</label>
-            <input type="text" class="form-control" formControlName="language">
-            <small [hidden]="form.controls.languages.controls[i].controls.language.valid" class="text-danger">
-                Language is required
-            </small>
-          </div>
-          <div class="form-group col-xs-6">
-            <label>Level</label>
-            <input type="text" class="form-control" formControlName="level">
-          </div>
+        <div formArrayName="events">
+            <div *ngFor="let languages of form.controls.events.controls; let i=index" class="panel panel-default">
+                <div class="panel-heading">
+                    <span>Events</span>
+                </div>
+                <div class="panel-body" [formGroupName]="i">
+                    <div class="form-group col-xs-6">
+                        <label>Name</label>
+                        <input type="text" class="form-control" formControlName="name">
+                        <small [hidden]="form.controls.events.controls[i].controls.name.valid" class="text-danger">
+                          Name is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Publisher</label>
+                        <input type="text" class="form-control" formControlName="publisher">
+                        <small [hidden]="form.controls.events.controls[i].controls.publisher.valid" class="text-danger">
+                          Publisher is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Start Date</label>
+                        <input type="date" class="form-control" formControlName="startDate">
+                        <small [hidden]="form.controls.events.controls[i].controls.startDate.valid" class="text-danger">
+                          Start Date is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>End Date</label>
+                        <input type="date" class="form-control" formControlName="endDate">
+                        <small [hidden]="form.controls.events.controls[i].controls.endDate.valid" class="text-danger">
+                          End Date is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Website</label>
+                        <input type="text" class="form-control" formControlName="website">
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Summary</label>
+                        <textarea class="form-control" formControlName="summary"></textarea>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Tags</label>
+                        <input type="text" class="form-control" formControlName="tag">
+                    </div>
+                </div>
+                <a (click)="removeEvent(i)" style="cursor: default">
+                  Remove event
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-      <a (click)="addLanguage()" style="cursor: default">
-        Add another address +
-      </a>
-  </form>
+        <a (click)="addEvent()" style="cursor: default">
+        Add event +
+        </a>
+        <div formArrayName="languages">
+            <div *ngFor="let languages of form.controls.languages.controls; let i=index" class="panel panel-default">
+                <div class="panel-heading">
+                    <span>Languages</span>
+                </div>
+                <div class="panel-body" [formGroupName]="i">
+                    <div class="form-group col-xs-6">
+                        <label>Language</label>
+                        <input type="text" class="form-control" formControlName="language">
+                        <small [hidden]="form.controls.languages.controls[i].controls.language.valid" class="text-danger">
+                          Language is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Level</label>
+                        <input type="text" class="form-control" formControlName="level">
+                        <small [hidden]="form.controls.languages.controls[i].controls.level.valid" class="text-danger">
+                          Level is required
+                        </small>
+                    </div>
+                </div>
+                <a (click)="removeLanguage(i)" style="cursor: default">
+                  Remove language
+                </a>
+            </div>
+        </div>
+        <a (click)="addLanguage()" style="cursor: default">
+        Add language +
+        </a>
+    </form>
 </div>
 <div id="preview">
-  {{cv.personal.name}}
-  
-  <!--
+
+    <p>Form value: {{ form.value | json }}</p>
+    <p>Personal.name: {{ form.value.personal.name }}</p>
+    <!--
   personal: {
      name: 'Javier Alsina',
      label: 'Creador de Jsons para Jorge',
@@ -179,30 +242,24 @@
      tag: ['Development']
     }],
   -->
-    <div id ="events">
-      <ul>
-        <li *ngFor="let event of cv.events">
-          {{event.name}}
-          {{event.publisher}}
-          {{event.startDate}}
-          {{event.endDate}}
-          {{event.website}}
-          {{event.summary}}
-          <ul>
-              <li *ngFor="let tag of event.tags">
-                {{tag}}
-                </li>
-                </ul>
-        </li>
-      </ul>
-    </div>
-    <div id ="languages">
+    <div id="events">
         <ul>
-          <li *ngFor="let language of cv.languages">
-            {{language.language}}
-            {{language.level}}
-          </li>
+            <li *ngFor="let event of form.value.events">
+                {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}}
+                <ul>
+                    <li *ngFor="let tag of event.tag">
+                        {{tag}}
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </div>
+    </div>
+    <div id="languages">
+        <ul>
+            <li *ngFor="let language of form.value.languages">
+                {{language.language}} {{language.level}}
+            </li>
+        </ul>
+    </div>
 </div>
 <div id="filter"></div>
