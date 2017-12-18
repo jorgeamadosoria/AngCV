@@ -1,7 +1,208 @@
-<div style="text-align:center">
-  <router-outlet></router-outlet>
-  <app-form></app-form>
-  <app-preview></app-preview>
-  <app-filter></app-filter>
+<div id="form">
+<form [formGroup]="form" novalidate (ngSubmit)="save(form)">
+  <input formControlName="cv.personal.name" name="personal.name" placeholder="name">
+  
+  <div formArrayName="languages">
+      <div *ngFor="let languages of form.controls.languages.controls; let i=index" class="panel panel-default">
+        <div class="panel-heading">
+          <span>Languages</span>
+        </div>
+        <div class="panel-body" [formGroupName]="i">
+          <div class="form-group col-xs-6">
+            <label>Language</label>
+            <input type="text" class="form-control" formControlName="language">
+            <small [hidden]="form.controls.languages.controls[i].controls.language.valid" class="text-danger">
+                Language is required
+            </small>
+          </div>
+          <div class="form-group col-xs-6">
+            <label>Level</label>
+            <input type="text" class="form-control" formControlName="level">
+          </div>
+        </div>
+      </div>
+    </div>
+      <a (click)="addLanguage()" style="cursor: default">
+        Add another address +
+      </a>
+  </form>
 </div>
-
+<div id="preview">
+  {{cv.personal.name}}
+  
+  <!--
+  personal: {
+     name: 'Javier Alsina',
+     label: 'Creador de Jsons para Jorge',
+     picture: 'https://imgur.com/gallery/yg5vl',
+     email: 'mail@mail.com',
+     phone: ['12345678', '12345678'],
+     summary: 'Alta experiencia en creacion de jsons',
+     location: {
+      address: 'Miranda 2415',
+      postalCode: 'CP 11300',
+      city: 'Montevideo',
+      countryCode: 'UY',
+      region: 'Montevideo'
+     },
+     social: [{
+       network: 'Twitter',
+       username: 'TwitName',
+       url: 'www.twitter.com'
+      },
+      {
+       network: 'Facebook',
+       username: 'faceName',
+       url: 'www.facebook.com'
+      },
+      {
+       network: 'Instagram',
+       username: 'instaName',
+       url: 'www.instagran.com'
+      }
+     ]
+    },
+    skills: [{
+      name: 'Automation Testing',
+      level: 'Senior',
+      summary: '',
+      tag: ['performance', 'Automation']
+     },
+     {
+      name: 'Web Performance Development',
+      level: 'Senior',
+      summary: '',
+      tag: ['performance', 'Development']
+     },
+     {
+      name: 'Java',
+      level: 'Semi-Senior',
+      summary: 'ESB, JSP, Java development version 7',
+      tag: ['Development']
+     },
+     {
+      name: 'Javascript',
+      level: 'Newbie',
+      summary: 'Angular 2, JQuery and ReactJS',
+      tag: ['Development']
+     }
+    ],
+    references: [{
+      name: 'Englander',
+      position: 'Boss',
+      mail: 'mailref@mail.com',
+      phone: '12345'
+     },
+     {
+      name: 'ref2',
+      position: 'Boss2',
+      mail: 'mailref2@mail.com',
+      phone: '123453'
+     }
+    ],
+    experience: [{
+      name: 'Globant',
+      summary: 'I tested things',
+      website: 'web.com',
+      startDate: new Date(2013, 12, 1),
+      endDate: new Date(2014, 12, 1),
+      tag: ['performance', 'Automation']
+     },
+     {
+      name: 'destapador de frascos',
+      summary: 'abrir botellas y frascos muy apretados?',
+      website: 'web.com',
+      startDate: new Date(2013, 12, 1),
+      endDate: new Date(2014, 12, 1),
+      tag: ['Cooking']
+     }
+    ],
+    work: [{
+      company: 'Globant',
+      position: 'CPresident',
+      website: 'globamt.com',
+      startDate: new Date(2013, 12, 1),
+      endDate: new Date(2014, 12, 1),
+      summary: 'I tested things',
+      logo: 'link a una imaggen',
+      tag: ['Performance']
+     },
+     {
+      company: 'Moovit',
+      position: 'Developer',
+      website: 'webmoovit.com',
+      startDate: new Date(2013, 12, 1),
+      endDate: new Date(2014, 12, 1),
+      summary: 'I developed things',
+      logo: 'link a una imaggen',
+      tag: ['Development']
+     }
+    ],
+    education: [{
+     institution: 'University of Montevideo',
+     carrier: 'Engineer',
+     startDate: new Date(2010, 6, 1),
+     endDate: new Date(2014, 1, 1),
+     logo: 'link a una imaggen',
+     summary: 'I engineered things'
+    }],
+    volunteer: [{
+     organization: 'Organization',
+     position: 'Maestro',
+     website: 'weblink.com',
+     startDate: new Date(2015, 1, 1),
+     endDate: new Date(2016, 1, 1),
+     summary: 'Maestro Roshi por 1 año',
+     tag: []
+    }],
+    certification: [{
+     name: 'Matrix Theorist',
+     date: new Date(2013, 11, 1),
+     link: 'Taca.com',
+     summary: 'There is no spoon',
+     tag: []
+    }],
+    publications: [{
+     name: 'How to create json',
+     publisher: 'FCC',
+     date: new Date(2014, 10, 1),
+     website: '',
+     summary: 'sumary',
+     tag: ['Development']
+    }],
+    awards: [{
+     title: 'Best json ever',
+     from: 'FCC',
+     date: new Date(2014, 10, 1),
+     website: '',
+     summary: 'summary here',
+     tag: ['Development']
+    }],
+  -->
+    <div id ="events">
+      <ul>
+        <li *ngFor="let event of cv.events">
+          {{event.name}}
+          {{event.publisher}}
+          {{event.startDate}}
+          {{event.endDate}}
+          {{event.website}}
+          {{event.summary}}
+          <ul>
+              <li *ngFor="let tag of event.tags">
+                {{tag}}
+                </li>
+                </ul>
+        </li>
+      </ul>
+    </div>
+    <div id ="languages">
+        <ul>
+          <li *ngFor="let language of cv.languages">
+            {{language.language}}
+            {{language.level}}
+          </li>
+        </ul>
+      </div>
+</div>
+<div id="filter"></div>
