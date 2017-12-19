@@ -5,5 +5,5 @@ export class Event {
     endDate: Date;
     website: String;
     summary: String;
-    tag: String[];
+    tag: String;
 }

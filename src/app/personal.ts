@@ -6,7 +6,7 @@ export class Personal {
     label: String;
     picture: String;
     email: String;
-    phone: String[];
+    phones: String[];
     summary: String;
     location: Location;
     social: Social[];

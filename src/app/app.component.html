@@ -2,7 +2,76 @@
     <form [formGroup]="form" novalidate (ngSubmit)="save(form)">
         <div formGroupName="personal" class="well well-lg">
             <input formControlName="name" name="name" placeholder="name">
+            <input formControlName="label" name="label" placeholder="label">
+            <input formControlName="picture" name="picture" placeholder="picture">
+            <input formControlName="email" name="email" placeholder="email">
+            <div formArrayName="phones">
+                <div class="panel-heading">
+                    <span>Phones</span>
+                </div>
+                <div *ngFor="let phone of form.controls.personal.controls.phones.controls; let i=index" class="panel panel-default">
+                    <input input type="text" formControlName="{{i}}" name="phone" placeholder="phone">
+                    <a (click)="removePhone(i)" style="cursor: default">
+                        Remove Phone
+                    </a>
+                </div>
+                <a (click)="addPhone()" style="cursor: default">Add Phone + </a>
+            </div>
+            <input formControlName="summary" name="summary" placeholder="summary">
+            <div formGroupName="location" class="well well-lg">
+                <input formControlName="address" name="address" placeholder="address">
+                <input formControlName="postalCode" name="postalCode" placeholder="postalCode">
+                <input formControlName="city" name="city" placeholder="city">
+                <input formControlName="countryCode" name="countryCode" placeholder="countryCode">
+                <input formControlName="region" name="region" placeholder="region">
+            </div>
         </div>
+        <div formArrayName="awards">
+            <div class="panel-heading">
+                <span>Awards</span>
+            </div>
+            <div *ngFor="let awards of form.controls.awards.controls; let i=index" class="panel panel-default">
+                <div class="panel-body" [formGroupName]="i">
+                    <div class="form-group col-xs-6">
+                        <label>Title</label>
+                        <input type="text" class="form-control" formControlName="title">
+                        <small [hidden]="form.controls.awards.controls[i].controls.title.valid" class="text-danger">
+                              Title is required
+                            </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>From</label>
+                        <input type="text" class="form-control" formControlName="from">
+                        <small [hidden]="form.controls.awards.controls[i].controls.from.valid" class="text-danger">
+                              From is required
+                            </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Date</label>
+                        <input type="date" class="form-control" formControlName="date">
+                        <small [hidden]="form.controls.awards.controls[i].controls.date.valid" class="text-danger">
+                            Date is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Website</label>
+                        <input type="text" class="form-control" formControlName="website">
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Summary</label>
+                        <textarea class="form-control" formControlName="summary"></textarea>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Tags</label>
+                        <input type="text" class="form-control" formControlName="tag">
+                    </div>
+                </div>
+                <a (click)="removeAward(i)" style="cursor: default">
+                      Remove award
+                </a>
+            </div>
+        </div>
+        <a (click)="addAward()" style="cursor: default">Add award + </a>
         <div formArrayName="events">
             <div *ngFor="let languages of form.controls.events.controls; let i=index" class="panel panel-default">
                 <div class="panel-heading">
@@ -55,9 +124,7 @@
                 </a>
             </div>
         </div>
-        <a (click)="addEvent()" style="cursor: default">
-        Add event +
-        </a>
+        <a (click)="addEvent()" style="cursor: default">Add event + </a>
         <div formArrayName="languages">
             <div *ngFor="let languages of form.controls.languages.controls; let i=index" class="panel panel-default">
                 <div class="panel-heading">
@@ -90,167 +157,156 @@
     </form>
 </div>
 <div id="preview">
-
+    <hr>
     <p>Form value: {{ form.value | json }}</p>
-    <p>Personal.name: {{ form.value.personal.name }}</p>
+    <hr>
+    <p>Name: {{ form.value.personal.name }}</p>
+    <p>Label: {{ form.value.personal.label }}</p>
+    <p>Email: {{ form.value.personal.email }}</p>
+    <img src="{{ form.value.personal.picture }}">
+    <div id="phone">
+        <ul>
+            <li *ngFor="let phone of form.value.personal.phones">
+                {{phone}}
+            </li>
+        </ul>
+    </div>
     <!--
-  personal: {
-     name: 'Javier Alsina',
-     label: 'Creador de Jsons para Jorge',
-     picture: 'https://imgur.com/gallery/yg5vl',
-     email: 'mail@mail.com',
-     phone: ['12345678', '12345678'],
-     summary: 'Alta experiencia en creacion de jsons',
-     location: {
-      address: 'Miranda 2415',
-      postalCode: 'CP 11300',
-      city: 'Montevideo',
-      countryCode: 'UY',
-      region: 'Montevideo'
-     },
-     social: [{
-       network: 'Twitter',
-       username: 'TwitName',
-       url: 'www.twitter.com'
-      },
-      {
-       network: 'Facebook',
-       username: 'faceName',
-       url: 'www.facebook.com'
-      },
-      {
-       network: 'Instagram',
-       username: 'instaName',
-       url: 'www.instagran.com'
-      }
-     ]
+personal: {
+    phone: ['12345678', '12345678'],
+    summary: 'Alta experiencia en creacion de jsons',
+    social: [{
+    network: 'Twitter',    username: 'TwitName',    url: 'www.twitter.com'
     },
-    skills: [{
-      name: 'Automation Testing',
-      level: 'Senior',
-      summary: '',
-      tag: ['performance', 'Automation']
-     },
-     {
-      name: 'Web Performance Development',
-      level: 'Senior',
-      summary: '',
-      tag: ['performance', 'Development']
-     },
-     {
-      name: 'Java',
-      level: 'Semi-Senior',
-      summary: 'ESB, JSP, Java development version 7',
-      tag: ['Development']
-     },
-     {
-      name: 'Javascript',
-      level: 'Newbie',
-      summary: 'Angular 2, JQuery and ReactJS',
-      tag: ['Development']
-     }
-    ],
-    references: [{
-      name: 'Englander',
-      position: 'Boss',
-      mail: 'mailref@mail.com',
-      phone: '12345'
-     },
-     {
-      name: 'ref2',
-      position: 'Boss2',
-      mail: 'mailref2@mail.com',
-      phone: '123453'
-     }
-    ],
-    experience: [{
-      name: 'Globant',
-      summary: 'I tested things',
-      website: 'web.com',
-      startDate: new Date(2013, 12, 1),
-      endDate: new Date(2014, 12, 1),
-      tag: ['performance', 'Automation']
-     },
-     {
-      name: 'destapador de frascos',
-      summary: 'abrir botellas y frascos muy apretados?',
-      website: 'web.com',
-      startDate: new Date(2013, 12, 1),
-      endDate: new Date(2014, 12, 1),
-      tag: ['Cooking']
-     }
-    ],
-    work: [{
-      company: 'Globant',
-      position: 'CPresident',
-      website: 'globamt.com',
-      startDate: new Date(2013, 12, 1),
-      endDate: new Date(2014, 12, 1),
-      summary: 'I tested things',
-      logo: 'link a una imaggen',
-      tag: ['Performance']
-     },
-     {
-      company: 'Moovit',
-      position: 'Developer',
-      website: 'webmoovit.com',
-      startDate: new Date(2013, 12, 1),
-      endDate: new Date(2014, 12, 1),
-      summary: 'I developed things',
-      logo: 'link a una imaggen',
-      tag: ['Development']
-     }
-    ],
-    education: [{
-     institution: 'University of Montevideo',
-     carrier: 'Engineer',
-     startDate: new Date(2010, 6, 1),
-     endDate: new Date(2014, 1, 1),
-     logo: 'link a una imaggen',
-     summary: 'I engineered things'
-    }],
-    volunteer: [{
-     organization: 'Organization',
-     position: 'Maestro',
-     website: 'weblink.com',
-     startDate: new Date(2015, 1, 1),
-     endDate: new Date(2016, 1, 1),
-     summary: 'Maestro Roshi por 1 año',
-     tag: []
-    }],
-    certification: [{
-     name: 'Matrix Theorist',
-     date: new Date(2013, 11, 1),
-     link: 'Taca.com',
-     summary: 'There is no spoon',
-     tag: []
-    }],
-    publications: [{
-     name: 'How to create json',
-     publisher: 'FCC',
-     date: new Date(2014, 10, 1),
-     website: '',
-     summary: 'sumary',
-     tag: ['Development']
-    }],
-    awards: [{
-     title: 'Best json ever',
-     from: 'FCC',
-     date: new Date(2014, 10, 1),
-     website: '',
-     summary: 'summary here',
-     tag: ['Development']
-    }],
-  -->
+    {
+    network: 'Facebook',    username: 'faceName',    url: 'www.facebook.com'
+    },
+    {
+    network: 'Instagram',    username: 'instaName',    url: 'www.instagran.com'
+    }
+    ]
+},
+skills: [{
+    name: 'Automation Testing',
+    level: 'Senior',
+    summary: '',
+    tag: ['performance', 'Automation']
+    },
+    {
+    name: 'Web Performance Development',
+    level: 'Senior',
+    summary: '',
+    tag: ['performance', 'Development']
+    },
+    {
+    name: 'Java',
+    level: 'Semi-Senior',
+    summary: 'ESB, JSP, Java development version 7',
+    tag: ['Development']
+    },
+    {
+    name: 'Javascript',
+    level: 'Newbie',
+    summary: 'Angular 2, JQuery and ReactJS',
+    tag: ['Development']
+    }
+],
+references: [{
+    name: 'Englander',
+    position: 'Boss',
+    mail: 'mailref@mail.com',
+    phone: '12345'
+    },
+    {
+    name: 'ref2',
+    position: 'Boss2',
+    mail: 'mailref2@mail.com',
+    phone: '123453'
+    }
+],
+experience: [{
+    name: 'Globant',
+    summary: 'I tested things',
+    website: 'web.com',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
+    tag: ['performance', 'Automation']
+    },
+    {
+    name: 'destapador de frascos',
+    summary: 'abrir botellas y frascos muy apretados?',
+    website: 'web.com',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
+    tag: ['Cooking']
+    }
+],
+work: [{
+    company: 'Globant',
+    position: 'CPresident',
+    website: 'globamt.com',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
+    summary: 'I tested things',
+    logo: 'link a una imaggen',
+    tag: ['Performance']
+    },
+    {
+    company: 'Moovit',
+    position: 'Developer',
+    website: 'webmoovit.com',
+    startDate: new Date(2013, 12, 1),
+    endDate: new Date(2014, 12, 1),
+    summary: 'I developed things',
+    logo: 'link a una imaggen',
+    tag: ['Development']
+    }
+],
+education: [{
+    institution: 'University of Montevideo',
+    carrier: 'Engineer',
+    startDate: new Date(2010, 6, 1),
+    endDate: new Date(2014, 1, 1),
+    logo: 'link a una imaggen',
+    summary: 'I engineered things'
+}],
+volunteer: [{
+    organization: 'Organization',
+    position: 'Maestro',
+    website: 'weblink.com',
+    startDate: new Date(2015, 1, 1),
+    endDate: new Date(2016, 1, 1),
+    summary: 'Maestro Roshi por 1 año',
+    tag: []
+}],
+certification: [{
+    name: 'Matrix Theorist',
+    date: new Date(2013, 11, 1),
+    link: 'Taca.com',
+    summary: 'There is no spoon',
+    tag: []
+}],
+publications: [{
+    name: 'How to create json',
+    publisher: 'FCC',
+    date: new Date(2014, 10, 1),
+    website: '',
+    summary: 'sumary',
+    tag: ['Development']
+}],
+
+-->
+    <div id="awards">
+        <ul>
+            <li *ngFor="let award of form.value.awards">
+                {{award.title}} {{award.from}} {{award.date}} {{award.website}} {{award.summary}} {{award.tag}}
+            </li>
+        </ul>
+    </div>
     <div id="events">
         <ul>
             <li *ngFor="let event of form.value.events">
-                {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}}
-                <ul>
-                    <li *ngFor="let tag of event.tag">
-                        {{tag}}
-                    </li>
-                </ul>
+                {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}} {{event.tag}}
             </li>
         </ul>
     </div>

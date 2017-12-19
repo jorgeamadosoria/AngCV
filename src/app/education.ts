@@ -1,6 +1,6 @@
 export class Education {
     institution: String;
-    carrier: String;
+    career: String;
     startDate: Date;
     endDate: Date;
     logo: String;

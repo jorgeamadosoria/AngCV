@@ -5,7 +5,7 @@ export const mockCV: CV = {
    label: 'Creador de Jsons para Jorge',
    picture: 'https://imgur.com/gallery/yg5vl',
    email: 'mail@mail.com',
-   phone: ['12345678', '12345678'],
+   phones: ['12345678', '12345678'],
    summary: 'Alta experiencia en creacion de jsons',
    location: {
     address: 'Miranda 2415',
@@ -35,25 +35,25 @@ export const mockCV: CV = {
     name: 'Automation Testing',
     level: 'Senior',
     summary: '',
-    tag: ['performance', 'Automation']
+    tag: 'performance,Automation'
    },
    {
     name: 'Web Performance Development',
     level: 'Senior',
     summary: '',
-    tag: ['performance', 'Development']
+    tag: 'performance,Development'
    },
    {
     name: 'Java',
     level: 'Semi-Senior',
     summary: 'ESB, JSP, Java development version 7',
-    tag: ['Development']
+    tag: 'Development'
    },
    {
     name: 'Javascript',
     level: 'Newbie',
     summary: 'Angular 2, JQuery and ReactJS',
-    tag: ['Development']
+    tag: 'Development'
    }
   ],
   references: [{
@@ -75,7 +75,7 @@ export const mockCV: CV = {
     website: 'web.com',
     startDate: new Date(2013, 12, 1),
     endDate: new Date(2014, 12, 1),
-    tag: ['performance', 'Automation']
+    tag: 'performance,Automation'
    },
    {
     name: 'destapador de frascos',
@@ -83,7 +83,7 @@ export const mockCV: CV = {
     website: 'web.com',
     startDate: new Date(2013, 12, 1),
     endDate: new Date(2014, 12, 1),
-    tag: ['Cooking']
+    tag: 'Cooking'
    }
   ],
   work: [{
@@ -94,7 +94,7 @@ export const mockCV: CV = {
     endDate: new Date(2014, 12, 1),
     summary: 'I tested things',
     logo: 'link a una imaggen',
-    tag: ['Performance']
+    tag: 'Performance'
    },
    {
     company: 'Moovit',
@@ -104,12 +104,12 @@ export const mockCV: CV = {
     endDate: new Date(2014, 12, 1),
     summary: 'I developed things',
     logo: 'link a una imaggen',
-    tag: ['Development']
+    tag: 'Development'
    }
   ],
   education: [{
    institution: 'University of Montevideo',
-   carrier: 'Engineer',
+   career: 'Engineer',
    startDate: new Date(2010, 6, 1),
    endDate: new Date(2014, 1, 1),
    logo: 'link a una imaggen',
@@ -122,14 +122,14 @@ export const mockCV: CV = {
    startDate: new Date(2015, 1, 1),
    endDate: new Date(2016, 1, 1),
    summary: 'Maestro Roshi por 1 año',
-   tag: []
+   tag: ''
   }],
   certification: [{
    name: 'Matrix Theorist',
    date: new Date(2013, 11, 1),
    link: 'Taca.com',
    summary: 'There is no spoon',
-   tag: []
+   tag: ''
   }],
   publications: [{
    name: 'How to create json',
@@ -137,7 +137,7 @@ export const mockCV: CV = {
    date: new Date(2014, 10, 1),
    website: '',
    summary: 'sumary',
-   tag: ['Development']
+   tag: 'Development'
   }],
   awards: [{
    title: 'Best json ever',
@@ -145,7 +145,7 @@ export const mockCV: CV = {
    date: new Date(2014, 10, 1),
    website: '',
    summary: 'summary here',
-   tag: ['Development']
+   tag: 'Development'
   }],
   events: [{
    name: 'Conferencia de How to create json',
@@ -154,7 +154,7 @@ export const mockCV: CV = {
    endDate: new Date(2014, 10, 1),
    website: '',
    summary: 'summary',
-   tag: ['Development']
+   tag: 'Development'
   }],
   languages: [{
     language: 'English',

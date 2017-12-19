@@ -4,5 +4,5 @@ export class Experience {
     website: String;
     startDate: Date;
     endDate: Date;
-    tag: String[];
+    tag: String;
 }

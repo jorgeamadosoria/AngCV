@@ -4,5 +4,5 @@ export class Publication {
     date: Date;
     website: String;
     summary: String;
-    tag: String[];
+    tag: String;
 }

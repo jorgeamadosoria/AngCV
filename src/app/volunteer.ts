@@ -4,6 +4,6 @@ export class Volunteer {
     website: String;
     startDate: Date;
     endDate: Date;
-    tag: String[];
+    tag: String;
     summary: String;
 }

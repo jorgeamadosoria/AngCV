@@ -3,5 +3,5 @@ export class Certification {
     date: Date;
     link: String;
     summary: String;
-    tag: String[];
+    tag: String;
 }

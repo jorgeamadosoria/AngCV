@@ -4,7 +4,7 @@ export class Work {
     website: String;
     startDate: Date;
     endDate: Date;
-    tag: String[];
+    tag: String;
     summary: String;
     logo: String;
 }
