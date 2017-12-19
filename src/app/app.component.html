@@ -26,6 +26,41 @@
                 <input formControlName="region" name="region" placeholder="region">
             </div>
         </div>
+        <div formArrayName="skills">
+            <div class="panel-heading">
+                <span>Skills</span>
+            </div>
+            <div *ngFor="let awards of form.controls.skills.controls; let i=index" class="panel panel-default">
+                <div class="panel-body" [formGroupName]="i">
+                    <div class="form-group col-xs-6">
+                        <label>Name</label>
+                        <input type="text" class="form-control" formControlName="name">
+                        <small [hidden]="form.controls.skills.controls[i].controls.name.valid" class="text-danger">
+                              Name is required
+                        </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Level</label>
+                        <input type="text" class="form-control" formControlName="level">
+                        <small [hidden]="form.controls.skills.controls[i].controls.level.valid" class="text-danger">
+                              Level is required
+                            </small>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Summary</label>
+                        <input type="text" class="form-control" formControlName="summary">
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Tags</label>
+                        <input type="text" class="form-control" formControlName="tag">
+                    </div>
+                </div>
+                <a (click)="removeSkill(i)" style="cursor: default">
+                      Remove Skill
+                </a>
+            </div>
+        </div>
+        <a (click)="addSkill()" style="cursor: default">Add Skill + </a>
         <div formArrayName="awards">
             <div class="panel-heading">
                 <span>Awards</span>
@@ -37,7 +72,7 @@
                         <input type="text" class="form-control" formControlName="title">
                         <small [hidden]="form.controls.awards.controls[i].controls.title.valid" class="text-danger">
                               Title is required
-                            </small>
+                        </small>
                     </div>
                     <div class="form-group col-xs-6">
                         <label>From</label>
@@ -72,8 +107,267 @@
             </div>
         </div>
         <a (click)="addAward()" style="cursor: default">Add award + </a>
+        <div formArrayName="references">
+            <div class="panel-heading">
+                <span>References</span>
+            </div>
+            <div *ngFor="let reference of form.controls.references.controls; let i=index" class="panel panel-default">
+                <div class="form-group col-xs-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <small [hidden]="form.controls.references.controls[i].controls.name.valid" class="text-danger">
+                        Name is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Position</label>
+                    <input type="text" class="form-control" formControlName="position">
+                    <small [hidden]="form.controls.references.controls[i].controls.position.valid" class="text-danger">
+                        Position is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Mail</label>
+                    <input type="text" class="form-control" formControlName="mail">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" formControlName="phone">
+                </div>
+            </div>
+        </div>
+        <a (click)="addReference()" style="cursor: default">Add Reference + </a>
+        <div formArrayName="experience">
+            <div class="panel-heading">
+                <span>Experience</span>
+            </div>
+            <div *ngFor="let experience of form.controls.experience.controls; let i=index" class="panel panel-default">
+
+                <div class="form-group col-xs-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <small [hidden]="form.controls.experience.controls[i].controls.name.valid" class="text-danger">
+                              Name is required
+                            </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Summary</label>
+                    <textarea class="form-control" formControlName="summary"></textarea>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Website</label>
+                    <input type="text" class="form-control" formControlName="website">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control" formControlName="startDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>End Date</label>
+                    <input type="date" class="form-control" formControlName="endDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Tags</label>
+                    <input type="text" class="form-control" formControlName="tag">
+                </div>
+            </div>
+        </div>
+        <a (click)="addExperience()" style="cursor: default">Add Experience + </a>
+        <div formArrayName="work">
+            <div class="panel-heading">
+                <span>Work</span>
+            </div>
+            <div *ngFor="let work of form.controls.work.controls; let i=index" class="panel panel-default">
+                <div class="form-group col-xs-6">
+                    <label>Company</label>
+                    <input type="text" class="form-control" formControlName="company">
+                    <small [hidden]="form.controls.work.controls[i].controls.company.valid" class="text-danger">
+                        Company is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Position</label>
+                    <input type="text" class="form-control" formControlName="position">
+                    <small [hidden]="form.controls.work.controls[i].controls.position.valid" class="text-danger">
+                        Position is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Website</label>
+                    <input type="text" class="form-control" formControlName="website">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control" formControlName="startDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>End Date</label>
+                    <input type="date" class="form-control" formControlName="endDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Summary</label>
+                    <textarea class="form-control" formControlName="summary"></textarea>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Logo</label>
+                    <input type="text" class="form-control" formControlName="logo">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Tags</label>
+                    <input type="text" class="form-control" formControlName="tag">
+                </div>
+            </div>
+        </div>
+        <a (click)="addWork()" style="cursor: default">Add Work + </a>
+        <div formArrayName="certification">
+            <div class="panel-heading">
+                <span>Certifications</span>
+            </div>
+            <div *ngFor="let certification of form.controls.certification.controls; let i=index" class="panel panel-default">
+
+                <div class="form-group col-xs-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <small [hidden]="form.controls.certification.controls[i].controls.name.valid" class="text-danger">
+                        Name is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Link</label>
+                    <input type="text" class="form-control" formControlName="link">
+                    <small [hidden]="form.controls.certification.controls[i].controls.link.valid" class="text-danger">
+                        Link is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Date</label>
+                    <input type="date" class="form-control" formControlName="date">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Summary</label>
+                    <textarea class="form-control" formControlName="summary"></textarea>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Tags</label>
+                    <input type="text" class="form-control" formControlName="tag">
+                </div>
+            </div>
+        </div>
+        <a (click)="addCertification()" style="cursor: default">Add Certification + </a>
+        <div formArrayName="volunteer">
+            <div class="panel-heading">
+                <span>Volunteer</span>
+            </div>
+            <div *ngFor="let volunteer of form.controls.volunteer.controls; let i=index" class="panel panel-default">
+                <div class="form-group col-xs-6">
+                    <label>Organization</label>
+                    <input type="text" class="form-control" formControlName="organization">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Position</label>
+                    <input type="text" class="form-control" formControlName="position">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Website</label>
+                    <input type="text" class="form-control" formControlName="website">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control" formControlName="startDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>End Date</label>
+                    <input type="date" class="form-control" formControlName="endDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Summary</label>
+                    <textarea class="form-control" formControlName="summary"></textarea>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Tags</label>
+                    <input type="text" class="form-control" formControlName="tag">
+                </div>
+            </div>
+        </div>
+        <a (click)="addVolunteer()" style="cursor: default">Add Volunteer + </a>
+        <div formArrayName="education">
+            <div class="panel-heading">
+                <span>Education</span>
+            </div>
+            <div *ngFor="let education of form.controls.education.controls; let i=index" class="panel panel-default">
+                <div class="form-group col-xs-6">
+                    <label>Institution</label>
+                    <input type="text" class="form-control" formControlName="institution">
+                    <small [hidden]="form.controls.education.controls[i].controls.institution.valid" class="text-danger">
+                        Institution is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Career</label>
+                    <input type="text" class="form-control" formControlName="career">
+                    <small [hidden]="form.controls.education.controls[i].controls.career.valid" class="text-danger">
+                              Career is required
+                            </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control" formControlName="startDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>End Date</label>
+                    <input type="date" class="form-control" formControlName="endDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Logo</label>
+                    <input type="text" class="form-control" formControlName="logo">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Summary</label>
+                    <textarea class="form-control" formControlName="summary"></textarea>
+                </div>
+            </div>
+        </div>
+        <a (click)="addEducation()" style="cursor: default">Add Education + </a>
+        <div formArrayName="publications">
+            <div class="panel-heading">
+                <span>Publications</span>
+            </div>
+            <div *ngFor="let reference of form.controls.publications.controls; let i=index" class="panel panel-default">
+                <div class="form-group col-xs-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <small [hidden]="form.controls.publications.controls[i].controls.name.valid" class="text-danger">
+                          Name is required
+                        </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Publisher</label>
+                    <input type="text" class="form-control" formControlName="publisher">
+                    <small [hidden]="form.controls.publications.controls[i].controls.publisher.valid" class="text-danger">
+                        Publisher is required
+                    </small>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Date</label>
+                    <input type="date" class="form-control" formControlName="date">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Website</label>
+                    <input type="text" class="form-control" formControlName="website">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Summary</label>
+                    <textarea class="form-control" formControlName="summary"></textarea>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Tags</label>
+                    <input type="text" class="form-control" formControlName="tag">
+                </div>
+            </div>
+        </div>
+        <a (click)="addPublication()" style="cursor: default">Add Publications + </a>
         <div formArrayName="events">
-            <div *ngFor="let languages of form.controls.events.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let event of form.controls.events.controls; let i=index" class="panel panel-default">
                 <div class="panel-heading">
                     <span>Events</span>
                 </div>
@@ -171,131 +465,70 @@
             </li>
         </ul>
     </div>
-    <!--
-personal: {
-    phone: ['12345678', '12345678'],
-    summary: 'Alta experiencia en creacion de jsons',
-    social: [{
-    network: 'Twitter',    username: 'TwitName',    url: 'www.twitter.com'
-    },
-    {
-    network: 'Facebook',    username: 'faceName',    url: 'www.facebook.com'
-    },
-    {
-    network: 'Instagram',    username: 'instaName',    url: 'www.instagran.com'
-    }
-    ]
-},
-skills: [{
-    name: 'Automation Testing',
-    level: 'Senior',
-    summary: '',
-    tag: ['performance', 'Automation']
-    },
-    {
-    name: 'Web Performance Development',
-    level: 'Senior',
-    summary: '',
-    tag: ['performance', 'Development']
-    },
-    {
-    name: 'Java',
-    level: 'Semi-Senior',
-    summary: 'ESB, JSP, Java development version 7',
-    tag: ['Development']
-    },
-    {
-    name: 'Javascript',
-    level: 'Newbie',
-    summary: 'Angular 2, JQuery and ReactJS',
-    tag: ['Development']
-    }
-],
-references: [{
-    name: 'Englander',
-    position: 'Boss',
-    mail: 'mailref@mail.com',
-    phone: '12345'
-    },
-    {
-    name: 'ref2',
-    position: 'Boss2',
-    mail: 'mailref2@mail.com',
-    phone: '123453'
-    }
-],
-experience: [{
-    name: 'Globant',
-    summary: 'I tested things',
-    website: 'web.com',
-    startDate: new Date(2013, 12, 1),
-    endDate: new Date(2014, 12, 1),
-    tag: ['performance', 'Automation']
-    },
-    {
-    name: 'destapador de frascos',
-    summary: 'abrir botellas y frascos muy apretados?',
-    website: 'web.com',
-    startDate: new Date(2013, 12, 1),
-    endDate: new Date(2014, 12, 1),
-    tag: ['Cooking']
-    }
-],
-work: [{
-    company: 'Globant',
-    position: 'CPresident',
-    website: 'globamt.com',
-    startDate: new Date(2013, 12, 1),
-    endDate: new Date(2014, 12, 1),
-    summary: 'I tested things',
-    logo: 'link a una imaggen',
-    tag: ['Performance']
-    },
-    {
-    company: 'Moovit',
-    position: 'Developer',
-    website: 'webmoovit.com',
-    startDate: new Date(2013, 12, 1),
-    endDate: new Date(2014, 12, 1),
-    summary: 'I developed things',
-    logo: 'link a una imaggen',
-    tag: ['Development']
-    }
-],
-education: [{
-    institution: 'University of Montevideo',
-    carrier: 'Engineer',
-    startDate: new Date(2010, 6, 1),
-    endDate: new Date(2014, 1, 1),
-    logo: 'link a una imaggen',
-    summary: 'I engineered things'
-}],
-volunteer: [{
-    organization: 'Organization',
-    position: 'Maestro',
-    website: 'weblink.com',
-    startDate: new Date(2015, 1, 1),
-    endDate: new Date(2016, 1, 1),
-    summary: 'Maestro Roshi por 1 año',
-    tag: []
-}],
-certification: [{
-    name: 'Matrix Theorist',
-    date: new Date(2013, 11, 1),
-    link: 'Taca.com',
-    summary: 'There is no spoon',
-    tag: []
-}],
-publications: [{
-    name: 'How to create json',
-    publisher: 'FCC',
-    date: new Date(2014, 10, 1),
-    website: '',
-    summary: 'sumary',
-    tag: ['Development']
-}],
-
--->
+    <p>Summary: {{ form.value.personal.summary }}</p>
+    <div id="social">
+        <ul>
+            <li *ngFor="let social of form.value.personal.social">
+                {{social.network}} {{social.username}} {{social.url}}
+            </li>
+        </ul>
+    </div>
+    <div id="skills">
+        <ul>
+            <li *ngFor="let skill of form.value.skills">
+                {{skill.name}} {{skill.level}} {{skill.summary}} {{skill.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="references">
+        <ul>
+            <li *ngFor="let reference of form.value.references">
+                {{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
+            </li>
+        </ul>
+    </div>
+    <div id="experience">
+        <ul>
+            <li *ngFor="let experience of form.value.experience">
+                {{experience.name}} {{experience.summary}} {{experience.website}} {{experience.startDate}} {{experience.endDate}} {{experience.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="work">
+        <ul>
+            <li *ngFor="let work of form.value.work">
+                {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate}} {{work.endDate}} {{work.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="education">
+        <ul>
+            <li *ngFor="let education of form.value.education">
+                {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate}} {{education.endDate}} {{education.institution}}
+            </li>
+        </ul>
+    </div>
+    <div id="volunteer">
+        <ul>
+            <li *ngFor="let volunteer of form.value.volunteer">
+                {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate}} {{volunteer.endDate}} {{volunteer.summary}} {{volunteer.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="certification">
+        <ul>
+            <li *ngFor="let certification of form.value.certification">
+                {{certification.name}} {{certification.date}} {{certification.link}} {{certification.summary}} {{certification.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="publications">
+        <ul>
+            <li *ngFor="let publications of form.value.publications">
+                {{publications.name}} {{publications.date}} {{publications.publisher}} {{publications.website}} {{publications.summary}} {{publications.tag}}
+            </li>
+        </ul>
+    </div>
     <div id="awards">
         <ul>
             <li *ngFor="let award of form.value.awards">

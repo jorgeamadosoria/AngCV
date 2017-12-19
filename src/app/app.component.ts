@@ -66,10 +66,10 @@ export class AppComponent implements OnInit {
             references: this.formBuilder.array(
                 _.map(this.cv.references, function(reference){
                     return new FormGroup({
-                        name: new FormControl(reference, Validators.required),
-                        position: new FormControl(reference, Validators.required),
-                        mail: new FormControl(reference),
-                        phone: new FormControl(reference),
+                        name: new FormControl(reference.name, Validators.required),
+                        position: new FormControl(reference.position, Validators.required),
+                        mail: new FormControl(reference.mail),
+                        phone: new FormControl(reference.phone),
                     });
                 })
             ),
