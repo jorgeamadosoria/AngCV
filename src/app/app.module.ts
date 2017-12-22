@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-
+import {MatButtonModule, MatInputModule, MatCheckboxModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CVService } from './cv.service';
 
 
@@ -13,7 +14,10 @@ import { CVService } from './cv.service';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    MatButtonModule, MatCheckboxModule, MatInputModule,
+    
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [CVService],
   bootstrap: [AppComponent]

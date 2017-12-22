@@ -1,7 +1,9 @@
 <div id="form">
     <form [formGroup]="form" novalidate (ngSubmit)="save(form)">
         <div formGroupName="personal" class="well well-lg">
-            <input formControlName="name" name="name" placeholder="name">
+            <mat-form-field>
+                    <input matInput formControlName="name" name="name" placeholder="name">
+            </mat-form-field>
             <input formControlName="label" name="label" placeholder="label">
             <input formControlName="picture" name="picture" placeholder="picture">
             <input formControlName="email" name="email" placeholder="email">
