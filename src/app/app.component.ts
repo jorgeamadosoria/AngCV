@@ -201,12 +201,12 @@ initSkills() {
   });
 }
 
-addSkills() {
+addSkill() {
   const control = <FormArray>this.form.controls['skills'];
   control.push(this.initSkills());
 }
 
-removeSkills(i: number) {
+removeSkill(i: number) {
   const control = <FormArray>this.form.controls['skills'];
   control.removeAt(i);
 }
@@ -220,12 +220,12 @@ initReferences() {
   });
 }
 
-addReferences() {
+addReference() {
   const control = <FormArray>this.form.controls['references'];
   control.push(this.initReferences());
 }
 
-removeReferences(i: number) {
+removeReference(i: number) {
   const control = <FormArray>this.form.controls['references'];
   control.removeAt(i);
 }
@@ -332,17 +332,17 @@ initCertification() {
     });
 }
 
-addCertifications() {
+addCertification() {
     const control = <FormArray>this.form.controls['certification'];
     control.push(this.initCertification());
 }
 
-removeCertifications(i: number) {
+removeCertification(i: number) {
     const control = <FormArray>this.form.controls['certification'];
     control.removeAt(i);
 }
 
-initPublications() {
+initPublication() {
     return this.formBuilder.group({
         name: ['', Validators.required],
         publisher: ['', Validators.required],
@@ -353,12 +353,12 @@ initPublications() {
     });
 }
 
-addPublications() {
+addPublication() {
     const control = <FormArray>this.form.controls['publications'];
-    control.push(this.initAward());
+    control.push(this.initPublication());
 }
 
-removePublications(i: number) {
+removePublication(i: number) {
     const control = <FormArray>this.form.controls['publications'];
     control.removeAt(i);
 }

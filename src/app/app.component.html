@@ -20,13 +20,11 @@
                 <div>
                     <span>Phones</span>
                 </div>
-                <div *ngFor="let phone of form.controls.personal.controls.phones.controls; let i=index" class="panel panel-default">
+                <div *ngFor="let phone of form.controls.personal.controls.phones.controls; let i=index">
                     <mat-form-field>
                         <input matInput formControlName="{{i}}" name="phone" placeholder="phone">
                     </mat-form-field>
-                    <a (click)="removePhone(i)" style="cursor: default">
-                    Remove
-                    </a>
+                    <mat-icon (click)="removePhone(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
                 <a (click)="addPhone()" style="cursor: default">Add Phone + </a>
             </div>
@@ -47,43 +45,33 @@
                     <input matInput formControlName="region" name="region" placeholder="region">
                 </mat-form-field>
             </div>
-        </div> 
+        </div>
         <div formArrayName="skills">
             <div>
                 <span>Skills</span>
             </div>
-            <div *ngFor="let skill of form.controls.skills.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let skill of form.controls.skills.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Name</label>
-                        <mat-form-field>
-                            <input matInput class="form-control" formControlName="name">
-                        </mat-form-field>
-                        <mat-error [hidden]="form.controls.skills.controls[i].controls.name.valid" class="text-danger">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                        <mat-error *ngIf="!form.controls.skills.controls[i].controls.name.valid">
                             Name is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Level</label>
-                        <mat-form-field>
-                            <input matInput class="form-control" formControlName="level">
-                        </mat-form-field>
-                        <mat-error [hidden]="form.controls.skills.controls[i].controls.level.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="level" placeholder="Level">
+                        <mat-error *ngIf="!form.controls.skills.controls[i].controls.level.valid">
                             Level is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Summary</label>
-                        <input matInput class="form-control" formControlName="summary">
-                    </div>
-                    <div>
-                        <label>Tags</label>
-                        <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="summary" placeholder="Summary">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeSkill(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
-                <a (click)="removeSkill(i)" style="cursor: default">
-                    Remove 
-                </a>
             </div>
         </div>
         <a (click)="addSkill()" style="cursor: default">Add Skill + </a>
@@ -91,45 +79,37 @@
             <div>
                 <span>Awards</span>
             </div>
-            <div *ngFor="let awards of form.controls.awards.controls; let i=index" class="panel panel-default">
-                <div class="panel-body" [formGroupName]="i">
-                    <div>
-                        <label>Title</label>
-                        <input matInput class="form-control" formControlName="title">
-                        <mat-error [hidden]="form.controls.awards.controls[i].controls.title.valid" class="text-danger">
+            <div *ngFor="let award of form.controls.awards.controls; let i=index">
+                <div [formGroupName]="i">
+                    <mat-form-field>
+                        <input matInput formControlName="title" placeholder="Title">
+                        <mat-error *ngIf="!form.controls.awards.controls[i].controls.title.valid">
                             Title is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>From</label>
-                        <input matInput class="form-control" formControlName="from">
-                        <mat-error [hidden]="form.controls.awards.controls[i].controls.from.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="from" placeholder="From">
+                        <mat-error *ngIf="!form.controls.awards.controls[i].controls.from.valid">
                             From is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Date</label>
-                        <input matInput type="date" class="form-control" formControlName="date">
-                        <mat-error [hidden]="form.controls.awards.controls[i].controls.date.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="date" placeholder="Date">
+                        <mat-error *ngIf="!form.controls.awards.controls[i].controls.date.valid">
                             Date is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Website</label>
-                        <input matInput class="form-control" formControlName="website">
-                    </div>
-                    <div>
-                    <label>Summary</label>
-                        <textarea matInput class="form-control" formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                    <label>Tags</label>
-                        <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="website" placeholder="Website">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeAward(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
-                <a (click)="removeAward(i)" style="cursor: default">
-                    Remove
-                </a>
             </div>
         </div>
         <a (click)="addAward()" style="cursor: default">Add award + </a>
@@ -137,30 +117,27 @@
             <div>
                 <span>References</span>
             </div>
-            <div *ngFor="let reference of form.controls.references.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let reference of form.controls.references.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Name</label>
-                        <input matInput class="form-control" formControlName="name">
-                        <mat-error [hidden]="form.controls.references.controls[i].controls.name.valid" class="text-danger">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                        <mat-error *ngIf="!form.controls.references.controls[i].controls.name.valid">
                             Name is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Position</label>
-                        <input matInput class="form-control" formControlName="position">
-                        <mat-error [hidden]="form.controls.references.controls[i].controls.position.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="position" placeholder="Position">
+                        <mat-error *ngIf="!form.controls.references.controls[i].controls.position.valid">
                             Position is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Mail</label>
-                        <input matInput class="form-control" formControlName="mail">
-                    </div>
-                    <div>
-                        <label>Phone</label>
-                        <input matInput class="form-control" formControlName="phone">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="mail" placeholder="Mail">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="phone" placeholder="Phone">
+                    </mat-form-field>
+                    <mat-icon (click)="removeReference(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
             </div>
         </div>
@@ -169,35 +146,30 @@
             <div>
                 <span>Experience</span>
             </div>
-            <div *ngFor="let experience of form.controls.experience.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let experience of form.controls.experience.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Name</label>
-                        <input matInput class="form-control" formControlName="name">
-                        <mat-error [hidden]="form.controls.experience.controls[i].controls.name.valid" class="text-danger">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                        <mat-error *ngIf="!form.controls.experience.controls[i].controls.name.valid">
                             Name is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Summary</label>
-                        <textarea class="form-control" formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                        <label>Website</label>
-                        <input matInput class="form-control" formControlName="website">
-                    </div>
-                    <div>
-                        <label>Start Date</label>
-                        <input matInput type="date" class="form-control" formControlName="startDate">
-                    </div>
-                    <div>
-                        <label>End Date</label>
-                        <input matInput type="date" class="form-control" formControlName="endDate">
-                    </div>
-                    <div>
-                        <label>Tags</label>
-                        <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="website" placeholder="Website">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="startDate" placeholder="Start Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="endDate" placeholder="End Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeExperience(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
             </div>
         </div>
@@ -206,120 +178,104 @@
             <div>
                 <span>Work</span>
             </div>
-            <div *ngFor="let work of form.controls.work.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let work of form.controls.work.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Company</label>
-                        <input matInput class="form-control" formControlName="company">
-                        <mat-error [hidden]="form.controls.work.controls[i].controls.company.valid" class="text-danger">
+                    <label></label>
+                    <mat-form-field>
+                        <input matInput formControlName="company" placeholder="Company">
+                        <mat-error *ngIf="!form.controls.work.controls[i].controls.company.valid">
                             Company is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Position</label>
-                        <input matInput class="form-control" formControlName="position">
-                        <mat-error [hidden]="form.controls.work.controls[i].controls.position.valid" class="text-danger">
-                        Position is required
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="position" placeholder="Position">
+                        <mat-error *ngIf="!form.controls.work.controls[i].controls.position.valid">
+                            Position is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Website</label>
-                        <input matInput class="form-control" formControlName="website">
-                    </div>
-                    <div>
-                    <label>Start Date</label>
-                    <input matInput type="date" class="form-control" formControlName="startDate">
-                    </div>
-                    <div>
-                    <label>End Date</label>
-                    <input matInput type="date" class="form-control" formControlName="endDate">
-                    </div>
-                    <div>
-                    <label>Summary</label>
-                    <textarea class="form-control" formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                    <label>Logo</label>
-                    <input matInput class="form-control" formControlName="logo">
-                    </div>
-                    <div>
-                        <label>Tags</label>
-                        <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="website" placeholder="Website">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="startDate" placeholder="Start Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="endDate" placeholder="End Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="logo" placeholder="Logo">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeWork(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
             </div>
-        </div> 
+        </div>
         <a (click)="addWork()" style="cursor: default">Add Work + </a>
         <div formArrayName="certification">
             <div>
                 <span>Certifications</span>
             </div>
-            <div *ngFor="let certification of form.controls.certification.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let certification of form.controls.certification.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Name</label>
-                        <input matInput class="form-control" formControlName="name">
-                        <mat-error [hidden]="form.controls.certification.controls[i].controls.name.valid" class="text-danger">
-                        Name is required
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                        <mat-error *ngIf="!form.controls.certification.controls[i].controls.name.valid">
+                            Name is required
                         </mat-error>
-                    </div>
-                    <div>
-                    <label>Link</label>
-                    <input matInput class="form-control" formControlName="link">
-                    <mat-error [hidden]="form.controls.certification.controls[i].controls.link.valid" class="text-danger">
-                    Link is required
-                    </mat-error>
-                    </div>
-                    <div>
-                    <label>Date</label>
-                    <input matInput type="date" class="form-control" formControlName="date">
-                    </div>
-                    <div>
-                        <label>Summary</label>
-                        <textarea formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                        <label>Tags</label>
-                        <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="link" placeholder="Link">
+                        <mat-error *ngIf="!form.controls.certification.controls[i].controls.link.valid">
+                            Link is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="date" placeholder="Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeCertification(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
             </div>
-        </div> 
+        </div>
         <a (click)="addCertification()" style="cursor: default">Add Certification + </a>
         <div formArrayName="volunteer">
             <div>
                 <span>Volunteer</span>
             </div>
-            <div *ngFor="let volunteer of form.controls.volunteer.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let volunteer of form.controls.volunteer.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Organization</label>
-                        <input matInput class="form-control" formControlName="organization">
-                    </div>
-                    <div>
-                    <label>Position</label>
-                    <input matInput class="form-control" formControlName="position">
-                    </div>
-                    <div>
-                    <label>Website</label>
-                    <input matInput class="form-control" formControlName="website">
-                    </div>
-                    <div>
-                    <label>Start Date</label>
-                    <input matInput type="date" class="form-control" formControlName="startDate">
-                    </div>
-                    <div>
-                    <label>End Date</label>
-                    <input matInput type="date" class="form-control" formControlName="endDate">
-                    </div>
-                    <div>
-                    <label>Summary</label>
-                    <textarea class="form-control" formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                    <label>Tags</label>
-                    <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    <mat-form-field>
+                        <input matInput formControlName="organization" placeholder="Organization">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="position" placeholder="Position">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="website" placeholder="Website">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="startDate" placeholder="Start Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="endDate" placeholder="End Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeVolunteer(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
             </div>
         </div>
@@ -328,269 +284,240 @@
             <div>
                 <span>Education</span>
             </div>
-            <div *ngFor="let education of form.controls.education.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let education of form.controls.education.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Institution</label>
-                        <input matInput class="form-control" formControlName="institution">
-                        <mat-error [hidden]="form.controls.education.controls[i].controls.institution.valid" class="text-danger">
+                    <mat-form-field>
+                        <input matInput formControlName="institution" placeholder="Institution">
+                        <mat-error *ngIf="!form.controls.education.controls[i].controls.institution.valid">
                             Institution is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Career</label>
-                        <input matInput class="form-control" formControlName="career">
-                        <mat-error [hidden]="form.controls.education.controls[i].controls.career.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="career" placeholder="Career">
+                        <mat-error *ngIf="!form.controls.education.controls[i].controls.career.valid">
                             Career is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Start Date</label>
-                        <input matInput type="date" class="form-control" formControlName="startDate">
-                    </div>
-                    <div>
-                        <label>End Date</label>
-                        <input matInput type="date" class="form-control" formControlName="endDate">
-                    </div>
-                    <div>
-                        <label>Logo</label>
-                        <input matInput class="form-control" formControlName="logo">
-                    </div>
-                    <div>
-                        <label>Summary</label>
-                        <textarea class="form-control" formControlName="summary"></textarea>
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="startDate" placeholder="Start Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="endDate" placeholder="End Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="logo" placeholder="Logo">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-icon (click)="removeEducation(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
-            </div> 
-        </div> 
+            </div>
+        </div>
         <a (click)="addEducation()" style="cursor: default">Add Education + </a>
         <div formArrayName="publications">
             <div>
                 <span>Publications</span>
             </div>
-            <div *ngFor="let reference of form.controls.publications.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let publication of form.controls.publications.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                        <label>Name</label>
-                        <input matInput class="form-control" formControlName="name">
-                        <mat-error [hidden]="form.controls.publications.controls[i].controls.name.valid" class="text-danger">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                        <mat-error *ngIf="!form.controls.publications.controls[i].controls.name.valid">
                             Name is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Publisher</label>
-                        <input matInput class="form-control" formControlName="publisher">
-                        <mat-error [hidden]="form.controls.publications.controls[i].controls.publisher.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="publisher" placeholder="Publisher">
+                        <mat-error *ngIf="!form.controls.publications.controls[i].controls.publisher.valid">
                             Publisher is required
                         </mat-error>
-                    </div>
-                    <div>
-                    <label>Date</label>
-                    <input matInput type="date" class="form-control" formControlName="date">
-                    </div>
-                    <div>
-                    <label>Website</label>
-                    <input matInput class="form-control" formControlName="website">
-                    </div>
-                    <div>
-                    <label>Summary</label>
-                    <textarea class="form-control" formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                    <label>Tags</label>
-                    <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="date" placeholder="Date">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="website" placeholder="Website">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removePublication(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
             </div>
         </div>
         <a (click)="addPublication()" style="cursor: default">Add Publications + </a>
         <div formArrayName="events">
             <div>
-            <span>Events</span>
+                <span>Events</span>
             </div>
-            <div *ngFor="let event of form.controls.events.controls; let i=index" class="panel panel-default">
+            <div *ngFor="let event of form.controls.events.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div>
-                    <label>Name</label>
-                    <input matInput class="form-control" formControlName="name">
-                    <mat-error [hidden]="form.controls.events.controls[i].controls.name.valid" class="text-danger">
-                    Name is required
-                    </mat-error>
-                    </div>
-                    <div>
-                    <label>Publisher</label>
-                    <input matInput class="form-control" formControlName="publisher">
-                    <mat-error [hidden]="form.controls.events.controls[i].controls.publisher.valid" class="text-danger">
-                    Publisher is required
-                    </mat-error>
-                    </div>
-                    <div>
-                    <label>Start Date</label>
-                    <input matInput type="date" class="form-control" formControlName="startDate">
-                    <mat-error [hidden]="form.controls.events.controls[i].controls.startDate.valid" class="text-danger">
-                    Start Date is required
-                    </mat-error>
-                    </div>
-                    <div>
-                    <label>End Date</label>
-                    <input matInput type="date" class="form-control" formControlName="endDate">
-                    <mat-error [hidden]="form.controls.events.controls[i].controls.endDate.valid" class="text-danger">
-                    End Date is required
-                    </mat-error>
-                    </div>
-                    <div>
-                    <label>Website</label>
-                    <input matInput class="form-control" formControlName="website">
-                    </div>
-                    <div>
-                    <label>Summary</label>
-                    <textarea class="form-control" formControlName="summary"></textarea>
-                    </div>
-                    <div>
-                    <label>Tags</label>
-                    <input matInput class="form-control" formControlName="tag">
-                    </div>
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                        <mat-error *ngIf="!form.controls.events.controls[i].controls.name.valid">
+                            Name is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="publisher" placeholder="Publisher">
+                        <mat-error *ngIf="!form.controls.events.controls[i].controls.publisher.valid">
+                            Publisher is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="startDate" placeholder="Start Date">
+                        <mat-error *ngIf="!form.controls.events.controls[i].controls.startDate.valid">
+                            Start Date is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="date" formControlName="endDate" placeholder="End Date">
+                        <mat-error *ngIf="!form.controls.events.controls[i].controls.endDate.valid">
+                            End Date is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="website" placeholder="Website">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="summary" placeholder="Summary"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="tag" placeholder="Tags">
+                    </mat-form-field>
+                    <mat-icon (click)="removeEvent(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
-                <a (click)="removeEvent(i)" style="cursor: default">
-                    Remove
-                </a>
             </div>
         </div>
         <a (click)="addEvent()" style="cursor: default">Add event + </a>
         <div formArrayName="languages">
             <div>
                 <span>Languages</span>
-            </div>      
-            <div *ngFor="let languages of form.controls.languages.controls; let i=index" class="panel panel-default">
-                <div  [formGroupName]="i">
-                    <div>
-                        <label>Language</label>
-                        <input matInput class="form-control" formControlName="language">
-                        <mat-error [hidden]="form.controls.languages.controls[i].controls.language.valid" class="text-danger">
+            </div>
+            <div *ngFor="let languages of form.controls.languages.controls; let i=index">
+                <div [formGroupName]="i">
+                    <mat-form-field>
+                        <input matInput formControlName="language" placeholder="Language">
+                        <mat-error *ngIf="!form.controls.languages.controls[i].controls.language.valid">
                             Language is required
                         </mat-error>
-                    </div>
-                    <div>
-                        <label>Level</label>
-                        <input matInput class="form-control" formControlName="level">
-                        <mat-error [hidden]="form.controls.languages.controls[i].controls.level.valid" class="text-danger">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="level" placeholder="Level">
+                        <mat-error *ngIf="!form.controls.languages.controls[i].controls.level.valid">
                             Level is required
                         </mat-error>
-                    </div>
+                    </mat-form-field>
+                    <mat-icon (click)="removeLanguage(i)" style="cursor: default">remove_circle</mat-icon>
                 </div>
-                <a (click)="removeLanguage(i)" style="cursor: default">
-                    Remove
-                </a>
             </div>
         </div>
         <a (click)="addLanguage()" style="cursor: default">
             Add language +
-        </a>  
+        </a>
     </form>
 </div>
- <!--
- <div id="preview">
-<hr>
-<p>Form value: {{ form.value | json }}</p>
-<hr>
-<p>Name: {{ form.value.personal.name }}</p>
-<p>Label: {{ form.value.personal.label }}</p>
-<p>Email: {{ form.value.personal.email }}</p>
-<img src="{{ form.value.personal.picture }}">
-<div id="phone">
-<ul>
-<li *ngFor="let phone of form.value.personal.phones">
-{{phone}}
-</li>
-</ul>
-</div>
-<p>Summary: {{ form.value.personal.summary }}</p>
-<div id="social">
-<ul>
-<li *ngFor="let social of form.value.personal.social">
-{{social.network}} {{social.username}} {{social.url}}
-</li>
-</ul>
-</div>
-<div id="skills">
-<ul>
-<li *ngFor="let skill of form.value.skills">
-{{skill.name}} {{skill.level}} {{skill.summary}} {{skill.tag}}
-</li>
-</ul>
-</div>
-<div id="references">
-<ul>
-<li *ngFor="let reference of form.value.references">
-{{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
-</li>
-</ul>
-</div>
-<div id="experience">
-<ul>
-<li *ngFor="let experience of form.value.experience">
-{{experience.name}} {{experience.summary}} {{experience.website}} {{experience.startDate}} {{experience.endDate}} {{experience.tag}}
-</li>
-</ul>
-</div>
-<div id="work">
-<ul>
-<li *ngFor="let work of form.value.work">
-{{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate}} {{work.endDate}} {{work.tag}}
-</li>
-</ul>
-</div>
-<div id="education">
-<ul>
-<li *ngFor="let education of form.value.education">
-{{education.career}} {{education.logo}} {{education.summary}} {{education.startDate}} {{education.endDate}} {{education.institution}}
-</li>
-</ul>
-</div>
-<div id="volunteer">
-<ul>
-<li *ngFor="let volunteer of form.value.volunteer">
-{{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate}} {{volunteer.endDate}} {{volunteer.summary}}
-{{volunteer.tag}}
-</li>
-</ul>
-</div>
-<div id="certification">
-<ul>
-<li *ngFor="let certification of form.value.certification">
-{{certification.name}} {{certification.date}} {{certification.link}} {{certification.summary}} {{certification.tag}}
-</li>
-</ul>
-</div>
-<div id="publications">
-<ul>
-<li *ngFor="let publications of form.value.publications">
-{{publications.name}} {{publications.date}} {{publications.publisher}} {{publications.website}} {{publications.summary}}
-{{publications.tag}}
-</li>
-</ul>
-</div>
-<div id="awards">
-<ul>
-<li *ngFor="let award of form.value.awards">
-{{award.title}} {{award.from}} {{award.date}} {{award.website}} {{award.summary}} {{award.tag}}
-</li>
-</ul>
-</div>
-<div id="events">
-<ul>
-<li *ngFor="let event of form.value.events">
-{{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}} {{event.tag}}
-</li>
-</ul>
-</div>
-<div id="languages">
-<ul>
-<li *ngFor="let language of form.value.languages">
-{{language.language}} {{language.level}}
-</li>
-</ul>
-</div>
+
+<div id="preview">
+    <p>Name: {{ form.value.personal.name }}</p>
+    <p>Label: {{ form.value.personal.label }}</p>
+    <p>Email: {{ form.value.personal.email }}</p>
+    <img src="{{ form.value.personal.picture }}">
+    <div id="phone">
+        <ul>
+            <li *ngFor="let phone of form.value.personal.phones">
+                {{phone}}
+            </li>
+        </ul>
+    </div>
+    <p>Summary: {{ form.value.personal.summary }}</p>
+    <div id="social">
+        <ul>
+            <li *ngFor="let social of form.value.personal.social">
+                {{social.network}} {{social.username}} {{social.url}}
+            </li>
+        </ul>
+    </div>
+    <div id="skills">
+        <ul>
+            <li *ngFor="let skill of form.value.skills">
+                {{skill.name}} {{skill.level}} {{skill.summary}} {{skill.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="references">
+        <ul>
+            <li *ngFor="let reference of form.value.references">
+                {{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
+            </li>
+        </ul>
+    </div>
+    <div id="experience">
+        <ul>
+            <li *ngFor="let experience of form.value.experience">
+                {{experience.name}} {{experience.summary}} {{experience.website}} {{experience.startDate}} {{experience.endDate}} {{experience.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="work">
+        <ul>
+            <li *ngFor="let work of form.value.work">
+                {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate}} {{work.endDate}} {{work.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="education">
+        <ul>
+            <li *ngFor="let education of form.value.education">
+                {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate}} {{education.endDate}} {{education.institution}}
+            </li>
+        </ul>
+    </div>
+    <div id="volunteer">
+        <ul>
+            <li *ngFor="let volunteer of form.value.volunteer">
+                {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate}} {{volunteer.endDate}} {{volunteer.summary}} {{volunteer.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="certification">
+        <ul>
+            <li *ngFor="let certification of form.value.certification">
+                {{certification.name}} {{certification.date}} {{certification.link}} {{certification.summary}} {{certification.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="publications">
+        <ul>
+            <li *ngFor="let publications of form.value.publications">
+                {{publications.name}} {{publications.date}} {{publications.publisher}} {{publications.website}} {{publications.summary}} {{publications.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="awards">
+        <ul>
+            <li *ngFor="let award of form.value.awards">
+                {{award.title}} {{award.from}} {{award.date}} {{award.website}} {{award.summary}} {{award.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="events">
+        <ul>
+            <li *ngFor="let event of form.value.events">
+                {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}} {{event.tag}}
+            </li>
+        </ul>
+    </div>
+    <div id="languages">
+        <ul>
+            <li *ngFor="let language of form.value.languages">
+                {{language.language}} {{language.level}}
+            </li>
+        </ul>
+    </div>
 </div>
 <div id="filter"></div>
--->

@@ -3,7 +3,7 @@ export const mockCV: CV = {
   personal: {
    name: 'Javier Alsina',
    label: 'Creador de Jsons para Jorge',
-   picture: 'https://imgur.com/gallery/yg5vl',
+   picture: 'https://i.imgur.com/zktRC5t.gif',
    email: 'mail@mail.com',
    phones: ['12345678', '12345678'],
    summary: 'Alta experiencia en creacion de jsons',
