@@ -69,23 +69,6 @@ export const mockCV: CV = {
     phone: '123453'
    }
   ],
-  experience: [{
-    name: 'Globant',
-    summary: 'I tested things',
-    website: 'web.com',
-    startDate: new Date(2013, 12, 1),
-    endDate: new Date(2014, 12, 1),
-    tag: 'performance,Automation'
-   },
-   {
-    name: 'destapador de frascos',
-    summary: 'abrir botellas y frascos muy apretados?',
-    website: 'web.com',
-    startDate: new Date(2013, 12, 1),
-    endDate: new Date(2014, 12, 1),
-    tag: 'Cooking'
-   }
-  ],
   work: [{
     company: 'Globant',
     position: 'CPresident',
@@ -124,27 +107,28 @@ export const mockCV: CV = {
    summary: 'Maestro Roshi por 1 año',
    tag: ''
   }],
-  certification: [{
+  accolades: [{
    name: 'Matrix Theorist',
+   from: 'Myself',
    date: new Date(2013, 11, 1),
    link: 'Taca.com',
    summary: 'There is no spoon',
    tag: ''
-  }],
+  },
+  {
+    name: 'Best json ever',
+    from: 'FCC',
+    date: new Date(2014, 10, 1),
+    link: '',
+    summary: 'summary here',
+    tag: 'Development'
+   }],
   publications: [{
    name: 'How to create json',
    publisher: 'FCC',
    date: new Date(2014, 10, 1),
    website: '',
    summary: 'sumary',
-   tag: 'Development'
-  }],
-  awards: [{
-   title: 'Best json ever',
-   from: 'FCC',
-   date: new Date(2014, 10, 1),
-   website: '',
-   summary: 'summary here',
    tag: 'Development'
   }],
   events: [{

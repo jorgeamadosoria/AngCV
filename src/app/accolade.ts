@@ -1,8 +1,9 @@
-export class Award {
-    title: String;
+export class Accolade {
+    name: String;
     from: String;
     date: Date;
-    website: String;
+    link: String;
     summary: String;
     tag: String;
 }
+
