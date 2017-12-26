@@ -86,13 +86,13 @@ export class CV {
     this.volunteer.map(lambda);
     this.work.map(lambda);
     const startDate = new Date(Math.min(
-      _.min(this.work.map(obj => obj.startDate), obj => obj.getTime()),
-      _.min(this.events.map(obj => obj.startDate), obj => obj.getTime()),
-      _.min(this.publications.map(obj => obj.date), obj => obj.getTime())));
+      _.min(this.work.map(obj => obj.startDate.getTime())),
+      _.min(this.events.map(obj => obj.startDate.getTime())),
+      _.min(this.publications.map(obj => obj.date.getTime()))));
     const endDate = new Date(Math.max(
-      _.max(this.work.map(obj => obj.endDate), obj => obj.getTime()),
-      _.max(this.events.map(obj => obj.endDate), obj => obj.getTime()),
-      _.max(this.publications.map(obj => obj.date), obj => obj.getTime())));
+      _.max(this.work.map(obj => obj.endDate.getTime())),
+      _.max(this.events.map(obj => obj.endDate.getTime())),
+      _.max(this.publications.map(obj => obj.date.getTime()))));
 
     return <Filter>{
       tags: _.reject(_.uniq(tags), obj => obj === ''),

@@ -1,123 +1,125 @@
 <div class="example-sidenav-content">
-  <p>Name: {{ cv | json }}</p>
-  <div id="preview">
-    <p>Name: {{ pCv.personal.name }}</p>
-    <p>Label: {{ pCv.personal.label }}</p>
-    <p>Email: {{ pCv.personal.email }}</p>
-    <img src="{{ pCv.personal.picture }}">
-    <div id="phones">
-      <div>
-        <span>Phones</span>
-      </div>
-      <ul>
-        <li *ngFor="let phone of pCv.personal.phones">
-          {{phone}}
-        </li>
-      </ul>
+    <div id="preview">
+        <br>
+        <mat-card>
+            <mat-card-title>Personal</mat-card-title>
+            <mat-card-subtitle>Name</mat-card-subtitle>
+            <p>{{ pCv.personal.name }}</p>
+            <p>Label: {{ pCv.personal.label }}</p>
+            <p>Email: {{ pCv.personal.email }}</p>
+            <img src="{{ pCv.personal.picture }}">
+            <div id="phones">
+                <mat-card-title>Phones</mat-card-title>
+                <ul>
+                    <li *ngFor="let phone of pCv.personal.phones">
+                        {{phone}}
+                    </li>
+                </ul>
+            </div>
+            <p>Summary: {{ pCv.personal.summary }}</p>
+        </mat-card>
+        <br>
+        <mat-card>
+            <div id="social">
+                <div>
+                    <span>Social</span>
+                </div>
+                <ul>
+                    <li *ngFor="let social of pCv.personal.social">
+                        {{social.network}} {{social.username}} {{social.url}}
+                    </li>
+                </ul>
+            </div>
+        </mat-card>
+        <div id="skills">
+            <div>
+                <span>Skills</span>
+            </div>
+            <ul>
+                <li *ngFor="let skill of pCv.skills">
+                    {{skill.name}} {{skill.level}} {{skill.summary}} {{skill.tag}}
+                </li>
+            </ul>
+        </div>
+        <div id="references">
+            <div>
+                <span>References</span>
+            </div>
+            <ul>
+                <li *ngFor="let reference of pCv.references">
+                    {{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
+                </li>
+            </ul>
+        </div>
+        <div id="work">
+            <div>
+                <span>Work</span>
+            </div>
+            <ul>
+                <li *ngFor="let work of pCv.work">
+                    {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate}} {{work.endDate}} {{work.tag}}
+                </li>
+            </ul>
+        </div>
+        <div id="education">
+            <div>
+                <span>Education</span>
+            </div>
+            <ul>
+                <li *ngFor="let education of pCv.education">
+                    {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate}} {{education.endDate}} {{education.institution}}
+                </li>
+            </ul>
+        </div>
+        <div id="volunteer">
+            <div>
+                <span>Volunteer</span>
+            </div>
+            <ul>
+                <li *ngFor="let volunteer of pCv.volunteer">
+                    {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate}} {{volunteer.endDate}} {{volunteer.summary}} {{volunteer.tag}}
+                </li>
+            </ul>
+        </div>
+        <div id="publications">
+            <div>
+                <span>Publications</span>
+            </div>
+            <ul>
+                <li *ngFor="let publications of pCv.publications">
+                    {{publications.name}} {{publications.date}} {{publications.publisher}} {{publications.website}} {{publications.summary}} {{publications.tag}}
+                </li>
+            </ul>
+        </div>
+        <div id="accolades">
+            <div>
+                <span>Accolades</span>
+            </div>
+            <ul>
+                <li *ngFor="let accolade of pCv.accolades">
+                    {{accolade.name}} {{accolade.from}} {{accolade.date}} {{accolade.link}} {{accolade.summary}} {{accolade.tag}}
+                </li>
+            </ul>
+        </div>
+        <div id="events">
+            <div>
+                <span>Events</span>
+            </div>
+            <ul>
+                <li *ngFor="let event of pCv.events">
+                    {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}} {{event.tag}}
+                </li>
+            </ul>
+        </div>
+        <div id="languages">
+            <div>
+                <span>Languages</span>
+            </div>
+            <ul>
+                <li *ngFor="let language of pCv.languages">
+                    {{language.language}} {{language.level}}
+                </li>
+            </ul>
+        </div>
     </div>
-    <p>Summary: {{ pCv.personal.summary }}</p>
-    <div id="social">
-      <div>
-        <span>Social</span>
-      </div>
-      <ul>
-        <li *ngFor="let social of pCv.personal.social">
-          {{social.network}} {{social.username}} {{social.url}}
-        </li>
-      </ul>
-    </div>
-    <div id="skills">
-      <div>
-        <span>Skills</span>
-      </div>
-      <ul>
-        <li *ngFor="let skill of pCv.skills">
-          {{skill.name}} {{skill.level}} {{skill.summary}} {{skill.tag}}
-        </li>
-      </ul>
-    </div>
-    <div id="references">
-      <div>
-        <span>References</span>
-      </div>
-      <ul>
-        <li *ngFor="let reference of pCv.references">
-          {{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
-        </li>
-      </ul>
-    </div>
-    <div id="work">
-      <div>
-      <span>Work</span>
-    </div>
-    <ul>
-      <li *ngFor="let work of pCv.work">
-        {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate}} {{work.endDate}} {{work.tag}}
-      </li>
-    </ul>
-  </div>
-  <div id="education">
-    <div>
-      <span>Education</span>
-    </div>
-    <ul>
-      <li *ngFor="let education of pCv.education">
-        {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate}} {{education.endDate}} {{education.institution}}
-      </li>
-    </ul>
-  </div>
-  <div id="volunteer">
-    <div>
-      <span>Volunteer</span>
-    </div>
-    <ul>
-      <li *ngFor="let volunteer of pCv.volunteer">
-        {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate}} {{volunteer.endDate}} {{volunteer.summary}}
-        {{volunteer.tag}}
-      </li>
-    </ul>
-  </div>
-  <div id="publications">
-    <div>
-      <span>Publications</span>
-    </div>
-    <ul>
-      <li *ngFor="let publications of pCv.publications">
-        {{publications.name}} {{publications.date}} {{publications.publisher}} {{publications.website}} {{publications.summary}}
-        {{publications.tag}}
-      </li>
-    </ul>
-  </div>
-  <div id="accolades">
-    <div>
-      <span>Accolades</span>
-    </div>
-    <ul>
-      <li *ngFor="let accolade of pCv.accolades">
-          {{accolade.name}} {{accolade.from}} {{accolade.date}} 
-          {{accolade.link}} {{accolade.summary}} {{accolade.tag}}
-      </li>
-    </ul>
-  </div>
-  <div id="events">
-    <div>
-      <span>Events</span>
-    </div>
-    <ul>
-      <li *ngFor="let event of pCv.events">
-        {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}} {{event.tag}}
-      </li>
-    </ul>
-  </div>
-  <div id="languages">
-    <div>
-      <span>Languages</span>
-    </div>
-    <ul>
-      <li *ngFor="let language of pCv.languages">
-        {{language.language}} {{language.level}}
-      </li>
-    </ul>
-  </div>
-</div>
 </div>
