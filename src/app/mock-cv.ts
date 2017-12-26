@@ -1,6 +1,6 @@
 import { CV } from './cv';
-export const mockCV: CV = {
-  personal: {
+export const mockCV = new CV(
+  {
    name: 'Javier Alsina',
    label: 'Creador de Jsons para Jorge',
    picture: 'https://i.imgur.com/zktRC5t.gif',
@@ -31,7 +31,7 @@ export const mockCV: CV = {
     }
    ]
   },
-  skills: [{
+  [{
     name: 'Automation Testing',
     level: 'Senior',
     summary: '',
@@ -56,7 +56,7 @@ export const mockCV: CV = {
     tag: 'Development'
    }
   ],
-  references: [{
+  [{
     name: 'Englander',
     position: 'Boss',
     mail: 'mailref@mail.com',
@@ -69,7 +69,7 @@ export const mockCV: CV = {
     phone: '123453'
    }
   ],
-  work: [{
+  [{
     company: 'Globant',
     position: 'CPresident',
     website: 'globamt.com',
@@ -90,7 +90,7 @@ export const mockCV: CV = {
     tag: 'Development'
    }
   ],
-  education: [{
+  [{
    institution: 'University of Montevideo',
    career: 'Engineer',
    startDate: new Date(2010, 6, 1),
@@ -98,7 +98,7 @@ export const mockCV: CV = {
    logo: 'link a una imaggen',
    summary: 'I engineered things'
   }],
-  volunteer: [{
+  [{
    organization: 'Organization',
    position: 'Maestro',
    website: 'weblink.com',
@@ -107,7 +107,7 @@ export const mockCV: CV = {
    summary: 'Maestro Roshi por 1 año',
    tag: ''
   }],
-  accolades: [{
+  [{
    name: 'Matrix Theorist',
    from: 'Myself',
    date: new Date(2013, 11, 1),
@@ -123,7 +123,7 @@ export const mockCV: CV = {
     summary: 'summary here',
     tag: 'Development'
    }],
-  publications: [{
+   [{
    name: 'How to create json',
    publisher: 'FCC',
    date: new Date(2014, 10, 1),
@@ -131,7 +131,7 @@ export const mockCV: CV = {
    summary: 'sumary',
    tag: 'Development'
   }],
-  events: [{
+  [{
    name: 'Conferencia de How to create json',
    publisher: 'Conferences for all',
    startDate: new Date(2014, 10, 1),
@@ -140,7 +140,7 @@ export const mockCV: CV = {
    summary: 'summary',
    tag: 'Development'
   }],
-  languages: [{
+  [{
     language: 'English',
     level: 'Upper-Intermediate'
    },
@@ -149,4 +149,4 @@ export const mockCV: CV = {
     level: 'Native speaker'
    }
   ]
- };
+);

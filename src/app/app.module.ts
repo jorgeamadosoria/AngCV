@@ -5,8 +5,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CVService } from './cv.service';
-
-import {A11yModule} from '@angular/cdk/a11y';
 import {BidiModule} from '@angular/cdk/bidi';
 import {ObserversModule} from '@angular/cdk/observers';
 import {OverlayModule} from '@angular/cdk/overlay';
@@ -46,10 +44,12 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PreviewComponent
   ],
   imports: [
     BrowserModule,

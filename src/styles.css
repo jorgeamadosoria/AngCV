@@ -1,7 +1,25 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~@angular/material/theming';
-@import url('//fonts.googleapis.com/icon?family=Material+Icons');
-@include mat-core();
+
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+.example-fill-remaining-space {
+    display: flex;
+    flex: 1 1 auto;
+  }
+.example-container {
+    width: 100%;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+    width: 50%;
+  }
+
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
     flex-basis: 0;

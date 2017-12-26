@@ -2,49 +2,59 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Event } from './event';
 import { Language } from './language';
+import { Filter } from './filter';
 import { CV } from './cv';
 import { CVService } from './cv.service';
+
 import * as _ from 'underscore';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  form: FormGroup;
-  cv: CV;
-  constructor(private formBuilder: FormBuilder, private service: CVService) { }
+    form: FormGroup;
+    filterForm: FormGroup;
+    fullCv: CV;
+    cv: CV;
+    appliedFilter: Filter;
+    constructor(private service: CVService) { }
 
     getCV(): void {
-      this.service.getCV().subscribe(cv => this.cv = cv);
+        this.service.getCV().subscribe(cv => {
+            this.fullCv = cv;
+            this.cv = this.fullCv.clone();
+            this.appliedFilter = this.cv.createFilter();
+            this.cv.applyFilter(this.appliedFilter);
+            this.initFilterForm(this.appliedFilter);
+        });
     }
 
     ngOnInit() {
         this.getCV();
 
-
-        this.form = this.formBuilder.group({
-            personal: this.formBuilder.group({
-                name: this.formBuilder.control(this.cv.personal.name, [Validators.required, Validators.minLength(5)]),
-                label: this.formBuilder.control(this.cv.personal.label, [Validators.required]),
-                picture: this.formBuilder.control(this.cv.personal.picture, [Validators.required]),
-                email: this.formBuilder.control(this.cv.personal.email, [Validators.required]),
-                phones: this.formBuilder.array(
-                    _.map(this.cv.personal.phones, function(phone){
+        this.form = new FormGroup({
+            personal: new FormGroup({
+                name: new FormControl(this.fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
+                label: new FormControl(this.fullCv.personal.label, [Validators.required]),
+                picture: new FormControl(this.fullCv.personal.picture, [Validators.required]),
+                email: new FormControl(this.fullCv.personal.email, [Validators.required]),
+                phones: new FormArray(
+                    _.map(this.fullCv.personal.phones, function (phone) {
                         return new FormControl(phone);
                     })
                 ),
-                summary: this.formBuilder.control(this.cv.personal.summary),
-                location : this.formBuilder.group({
-                    address: this.formBuilder.control(this.cv.personal.location.address),
-                    postalCode: this.formBuilder.control(this.cv.personal.location.postalCode),
-                    city: this.formBuilder.control(this.cv.personal.location.city),
-                    countryCode: this.formBuilder.control(this.cv.personal.location.countryCode),
-                    region: this.formBuilder.control(this.cv.personal.location.region)
+                summary: new FormControl(this.fullCv.personal.summary),
+                location: new FormGroup({
+                    address: new FormControl(this.fullCv.personal.location.address),
+                    postalCode: new FormControl(this.fullCv.personal.location.postalCode),
+                    city: new FormControl(this.fullCv.personal.location.city),
+                    countryCode: new FormControl(this.fullCv.personal.location.countryCode),
+                    region: new FormControl(this.fullCv.personal.location.region)
                 }),
-                social: this.formBuilder.array(
-                    _.map(this.cv.personal.social, function(social){
+                social: new FormArray(
+                    _.map(this.fullCv.personal.social, function (social) {
                         return new FormGroup({
                             network: new FormControl(social.network, Validators.required),
                             username: new FormControl(social.username, Validators.required),
@@ -53,8 +63,8 @@ export class AppComponent implements OnInit {
                     })
                 )
             }),
-            skills: this.formBuilder.array(
-                _.map(this.cv.skills, function(skill){
+            skills: new FormArray(
+                _.map(this.fullCv.skills, function (skill) {
                     return new FormGroup({
                         name: new FormControl(skill.name, Validators.required),
                         level: new FormControl(skill.level, Validators.required),
@@ -63,8 +73,8 @@ export class AppComponent implements OnInit {
                     });
                 })
             ),
-            references: this.formBuilder.array(
-                _.map(this.cv.references, function(reference){
+            references: new FormArray(
+                _.map(this.fullCv.references, function (reference) {
                     return new FormGroup({
                         name: new FormControl(reference.name, Validators.required),
                         position: new FormControl(reference.position, Validators.required),
@@ -73,8 +83,8 @@ export class AppComponent implements OnInit {
                     });
                 })
             ),
-            work: this.formBuilder.array(
-                _.map(this.cv.work, function(work){
+            work: new FormArray(
+                _.map(this.fullCv.work, function (work) {
                     return new FormGroup({
                         company: new FormControl(work.company, Validators.required),
                         position: new FormControl(work.position, Validators.required),
@@ -85,9 +95,9 @@ export class AppComponent implements OnInit {
                         logo: new FormControl(work.logo),
                         tag: new FormControl(work.tag)
                     });
-            })),
-            accolades: this.formBuilder.array(
-                _.map(this.cv.accolades, function(accolade){
+                })),
+            accolades: new FormArray(
+                _.map(this.fullCv.accolades, function (accolade) {
                     return new FormGroup({
                         name: new FormControl(accolade.name, Validators.required),
                         from: new FormControl(accolade.from, Validators.required),
@@ -95,10 +105,10 @@ export class AppComponent implements OnInit {
                         date: new FormControl(accolade.date),
                         summary: new FormControl(accolade.summary),
                         tag: new FormControl(accolade.tag),
-                });
-            })),
-            volunteer: this.formBuilder.array(
-                _.map(this.cv.volunteer, function(volunteer){
+                    });
+                })),
+            volunteer: new FormArray(
+                _.map(this.fullCv.volunteer, function (volunteer) {
                     return new FormGroup({
                         organization: new FormControl(volunteer.organization),
                         position: new FormControl(volunteer.position),
@@ -108,29 +118,32 @@ export class AppComponent implements OnInit {
                         summary: new FormControl(volunteer.summary),
                         tag: new FormControl(volunteer.tag),
                     });
-            })),
-            education: this.formBuilder.array(
-                _.map(this.cv.education, function(education){ return new FormGroup({
-                    institution: new FormControl(education.institution, Validators.required),
-                    career: new FormControl(education.career, Validators.required),
-                    startDate: new FormControl(education.startDate),
-                    endDate: new FormControl(education.endDate),
-                    logo: new FormControl(education.logo),
-                    summary: new FormControl(education.summary)
-                });
-            })),
-            publications: this.formBuilder.array(
-                _.map(this.cv.publications, function(publication){ return new FormGroup({
-                    name: new FormControl(publication.name, Validators.required),
-                    publisher: new FormControl(publication.publisher, Validators.required),
-                    date: new FormControl(publication.date),
-                    website: new FormControl(publication.website),
-                    summary: new FormControl(publication.summary),
-                    tag: new FormControl(publication.tag),
-                });
-            })),
-            events: this.formBuilder.array(
-                _.map(this.cv.events, function(event){ return new FormGroup({
+                })),
+            education: new FormArray(
+                _.map(this.fullCv.education, function (education) {
+                    return new FormGroup({
+                        institution: new FormControl(education.institution, Validators.required),
+                        career: new FormControl(education.career, Validators.required),
+                        startDate: new FormControl(education.startDate),
+                        endDate: new FormControl(education.endDate),
+                        logo: new FormControl(education.logo),
+                        summary: new FormControl(education.summary)
+                    });
+                })),
+            publications: new FormArray(
+                _.map(this.fullCv.publications, function (publication) {
+                    return new FormGroup({
+                        name: new FormControl(publication.name, Validators.required),
+                        publisher: new FormControl(publication.publisher, Validators.required),
+                        date: new FormControl(publication.date),
+                        website: new FormControl(publication.website),
+                        summary: new FormControl(publication.summary),
+                        tag: new FormControl(publication.tag),
+                    });
+                })),
+            events: new FormArray(
+                _.map(this.fullCv.events, function (event) {
+                    return new FormGroup({
                         name: new FormControl(event.name, Validators.required),
                         publisher: new FormControl(event.publisher, Validators.required),
                         startDate: new FormControl(event.startDate),
@@ -141,8 +154,8 @@ export class AppComponent implements OnInit {
                     });
                 })
             ),
-            languages: this.formBuilder.array(
-                _.map(this.cv.languages, function(language) {
+            languages: new FormArray(
+                _.map(this.fullCv.languages, function (language) {
                     return new FormGroup({
                         language: new FormControl(language.language, Validators.required),
                         level: new FormControl(language.level, Validators.required)
@@ -153,227 +166,245 @@ export class AppComponent implements OnInit {
     }
 
     initSocial() {
-        return this.formBuilder.group({
-            network: ['', Validators.required],
-            username: ['', Validators.required],
-            url: ['', Validators.required],
+        return new FormGroup({
+            network: new FormControl('', Validators.required),
+            username: new FormControl('', Validators.required),
+            url: new FormControl('', Validators.required),
         });
     }
 
     addSocial() {
-    const control = <FormArray>this.form.controls['social'];
-    control.push(this.initSocial());
+        const control = <FormArray>this.form.controls['social'];
+        control.push(this.initSocial());
     }
 
     removeSocial(i: number) {
-    const control = <FormArray>this.form.controls['social'];
-    control.removeAt(i);
+        const control = <FormArray>this.form.controls['social'];
+        control.removeAt(i);
     }
 
 
-initSkills() {
-  return this.formBuilder.group({
-      name: ['', Validators.required],
-      level: ['', Validators.required],
-      summary: '',
-      tag: '',
-  });
-}
+    initSkills() {
+        return new FormGroup({
+            name: new FormControl('', Validators.required),
+            level: new FormControl('', Validators.required),
+            summary: new FormControl(''),
+            tag: new FormControl(''),
+        });
+    }
 
-addSkill() {
-  const control = <FormArray>this.form.controls['skills'];
-  control.push(this.initSkills());
-}
+    addSkill() {
+        const control = <FormArray>this.form.controls['skills'];
+        control.push(this.initSkills());
+    }
 
-removeSkill(i: number) {
-  const control = <FormArray>this.form.controls['skills'];
-  control.removeAt(i);
-}
+    removeSkill(i: number) {
+        const control = <FormArray>this.form.controls['skills'];
+        control.removeAt(i);
+    }
 
-initReferences() {
-  return this.formBuilder.group({
-      name: ['', Validators.required],
-      position: ['', Validators.required],
-      mail: '',
-      phone: '',
-  });
-}
+    initReferences() {
+        return new FormGroup({
+            name: new FormControl('', Validators.required),
+            position: new FormControl('', Validators.required),
+            mail: new FormControl(''),
+            phone: new FormControl(''),
+        });
+    }
 
-addReference() {
-  const control = <FormArray>this.form.controls['references'];
-  control.push(this.initReferences());
-}
+    addReference() {
+        const control = <FormArray>this.form.controls['references'];
+        control.push(this.initReferences());
+    }
 
-removeReference(i: number) {
-  const control = <FormArray>this.form.controls['references'];
-  control.removeAt(i);
-}
+    removeReference(i: number) {
+        const control = <FormArray>this.form.controls['references'];
+        control.removeAt(i);
+    }
 
-initWork() {
-  return this.formBuilder.group({
-    company: ['', Validators.required],
-    position: ['', Validators.required],
-    website: '',
-    startDate: new Date(),
-    endDate: new Date(),
-      summary: '',
-      logo: '',
-      tag: '',
-  });
-}
+    initWork() {
+        return new FormGroup({
+            company: new FormControl('', Validators.required),
+            position: new FormControl('', Validators.required),
+            website: new FormControl(''),
+            startDate: new FormControl(new Date()),
+            endDate: new FormControl(new Date()),
+            summary: new FormControl(''),
+            logo: new FormControl(''),
+            tag: new FormControl(''),
+        });
+    }
 
-addWork() {
-  const control = <FormArray>this.form.controls['work'];
-  control.push(this.initWork());
-}
+    addWork() {
+        const control = <FormArray>this.form.controls['work'];
+        control.push(this.initWork());
+    }
 
-removeWork(i: number) {
-  const control = <FormArray>this.form.controls['work'];
-  control.removeAt(i);
-}
+    removeWork(i: number) {
+        const control = <FormArray>this.form.controls['work'];
+        control.removeAt(i);
+    }
 
 
-initEducation() {
-   return this.formBuilder.group({
-    institution: ['', Validators.required],
-    career: ['', Validators.required],
-      startDate: new Date(),
-      endDate: new Date(),
-      logo: '',
-      summary: '',
-  });
-}
+    initEducation() {
+        return new FormGroup({
+            institution: new FormControl('', Validators.required),
+            career: new FormControl('', Validators.required),
+            startDate: new FormControl(new Date()),
+            endDate: new FormControl(new Date()),
+            logo: new FormControl(''),
+            summary: new FormControl(''),
+        });
+    }
 
-addEducation() {
-  const control = <FormArray>this.form.controls['education'];
-  control.push(this.initEducation());
-}
+    addEducation() {
+        const control = <FormArray>this.form.controls['education'];
+        control.push(this.initEducation());
+    }
 
-removeEducation(i: number) {
-  const control = <FormArray>this.form.controls['education'];
-  control.removeAt(i);
-}
+    removeEducation(i: number) {
+        const control = <FormArray>this.form.controls['education'];
+        control.removeAt(i);
+    }
 
-initVolunteer() {
-  return this.formBuilder.group({
-    organization: '',
-    position: '',
-    website: '',
-    startDate: new Date(),
-    endDate: new Date(),
-      summary: '',
-      tag: '',
-  });
-}
+    initVolunteer() {
+        return new FormGroup({
+            organization: new FormControl(''),
+            position: new FormControl(''),
+            website: new FormControl(''),
+            startDate: new FormControl(new Date()),
+            endDate: new FormControl(new Date()),
+            summary: new FormControl(''),
+            tag: new FormControl(''),
+        });
+    }
 
-addVolunteer() {
-  const control = <FormArray>this.form.controls['volunteer'];
-  control.push(this.initVolunteer());
-}
+    addVolunteer() {
+        const control = <FormArray>this.form.controls['volunteer'];
+        control.push(this.initVolunteer());
+    }
 
-removeVolunteer(i: number) {
-  const control = <FormArray>this.form.controls['volunteer'];
-  control.removeAt(i);
-}
+    removeVolunteer(i: number) {
+        const control = <FormArray>this.form.controls['volunteer'];
+        control.removeAt(i);
+    }
 
-initAccolade() {
-    return this.formBuilder.group({
-        name: ['', Validators.required],
-        from: ['', Validators.required],
-        link: ['', Validators.required],
-        date: new Date(),
-        summary: '',
-        tag: '',
-    });
-}
+    initAccolade() {
+        return new FormGroup({
+            name: new FormControl('', Validators.required),
+            from: new FormControl('', Validators.required),
+            link: new FormControl('', Validators.required),
+            date: new FormControl(new Date()),
+            summary: new FormControl(''),
+            tag: new FormControl(''),
+        });
+    }
 
-addAccolade() {
-    const control = <FormArray>this.form.controls['accolades'];
-    control.push(this.initAccolade());
-}
+    addAccolade() {
+        const control = <FormArray>this.form.controls['accolades'];
+        control.push(this.initAccolade());
+    }
 
-removeAccolade(i: number) {
-    const control = <FormArray>this.form.controls['accolades'];
-    control.removeAt(i);
-}
+    removeAccolade(i: number) {
+        const control = <FormArray>this.form.controls['accolades'];
+        control.removeAt(i);
+    }
 
-initPublication() {
-    return this.formBuilder.group({
-        name: ['', Validators.required],
-        publisher: ['', Validators.required],
-        date: new Date(),
-        website: '',
-        summary: '',
-        tag: '',
-    });
-}
+    initPublication() {
+        return new FormGroup({
+            name: new FormControl('', Validators.required),
+            publisher: new FormControl('', Validators.required),
+            date: new FormControl(new Date()),
+            website: new FormControl(''),
+            summary: new FormControl(''),
+            tag: new FormControl(''),
+        });
+    }
 
-addPublication() {
-    const control = <FormArray>this.form.controls['publications'];
-    control.push(this.initPublication());
-}
+    addPublication() {
+        const control = <FormArray>this.form.controls['publications'];
+        control.push(this.initPublication());
+    }
 
-removePublication(i: number) {
-    const control = <FormArray>this.form.controls['publications'];
-    control.removeAt(i);
-}
+    removePublication(i: number) {
+        const control = <FormArray>this.form.controls['publications'];
+        control.removeAt(i);
+    }
 
-initPhone() {
-    return new FormControl('');
-}
+    initPhone() {
+        return new FormControl('');
+    }
 
-addPhone() {
-    const control = <FormArray>this.form.controls['personal'];
-    control.controls['phones'].push(this.initPhone());
-}
+    addPhone() {
+        const control = <FormArray>this.form.controls['personal'];
+        control.controls['phones'].push(this.initPhone());
+    }
 
-removePhone(i: number) {
-    const control = <FormArray>this.form.controls['personal'];
-    control.controls['phones'].removeAt(i);
-}
+    removePhone(i: number) {
+        const control = <FormArray>this.form.controls['personal'];
+        control.controls['phones'].removeAt(i);
+    }
 
-initEvent() {
-    return this.formBuilder.group({
-        name: ['', Validators.required],
-        publisher: ['', Validators.required],
-        startDate: new Date(),
-        endDate: new Date(),
-        website: '',
-        summary: '',
-        tag: '',
-    });
-}
+    initEvent() {
+        return new FormGroup({
+            name: new FormControl('', Validators.required),
+            publisher: new FormControl('', Validators.required),
+            startDate: new FormControl(new Date()),
+            endDate: new FormControl(new Date()),
+            website: new FormControl(''),
+            summary: new FormControl(''),
+            tag: new FormControl(''),
+        });
+    }
 
-addEvent() {
-    const control = <FormArray>this.form.controls['events'];
-    control.push(this.initEvent());
-}
+    addEvent() {
+        const control = <FormArray>this.form.controls['events'];
+        control.push(this.initEvent());
+    }
 
-removeEvent(i: number) {
-    const control = <FormArray>this.form.controls['events'];
-    control.removeAt(i);
-}
+    removeEvent(i: number) {
+        const control = <FormArray>this.form.controls['events'];
+        control.removeAt(i);
+    }
 
-initLanguage() {
-    return this.formBuilder.group({
-        language: ['', Validators.required],
-        level: ['', Validators.required]
-    });
-}
+    initLanguage() {
+        return new FormGroup({
+            language: new FormControl('', Validators.required),
+            level: new FormControl('', Validators.required)
+        });
+    }
 
-addLanguage() {
-    const control = <FormArray>this.form.controls['languages'];
-    control.push(this.initLanguage());
-}
+    addLanguage() {
+        const control = <FormArray>this.form.controls['languages'];
+        control.push(this.initLanguage());
+    }
 
-removeLanguage(i: number) {
-    const control = <FormArray>this.form.controls['languages'];
-    control.removeAt(i);
-}
+    removeLanguage(i: number) {
+        const control = <FormArray>this.form.controls['languages'];
+        control.removeAt(i);
+    }
 
-save(model: CV) {
-    // call API to save
-    // ...
-    console.log(model);
-}
+    initFilterForm(filter: Filter) {
+        console.log('init ' + filter.tags);
+        this.filterForm = new FormGroup({
+            tags: new FormArray(
+                filter.tags.map(obj => new FormControl(obj))),
+            startDate: new FormControl(filter.startDate),
+            endDate: new FormControl(filter.endDate)
+        });
+    }
+
+    save(model: CV) {
+        this.fullCv.assignFrom(model);
+        this.filter(this.appliedFilter);
+        console.log(model);
+    }
+
+    filter(filter: Filter) {
+        this.cv = this.fullCv.clone();
+        this.cv.applyFilter(filter);
+        this.initFilterForm(this.fullCv.createFilter());
+        this.appliedFilter = filter;
+        console.log(filter);
+    }
 }
