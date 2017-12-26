@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container">
-    <mat-drawer #formDrawer class="example-sidenav" mode="over">
+    <mat-drawer #formDrawer class="example-left-sidenav" mode="over">
         <form [formGroup]="form" novalidate (ngSubmit)="formDrawer.toggle() && save(form.value)">
             <mat-accordion class="example-headers-align">
                 <mat-expansion-panel hideToggle="true">
@@ -498,7 +498,7 @@
             </mat-toolbar>
         </form>
     </mat-drawer>
-    <mat-drawer #filterDrawer class="example-sidenav" mode="over" position="end">
+    <mat-drawer #filterDrawer class="example-right-sidenav" mode="over" position="end">
         <form [formGroup]="filterForm" novalidate (ngSubmit)="filterDrawer.toggle() && filter(filterForm.value)">
             <div>
                 <div>
@@ -537,7 +537,7 @@
         </form>
     </mat-drawer>
     <mat-toolbar color="primary">
-        <span>DynaCV</span>
+        <span>DynaCV</span>&nbsp;&nbsp;
         <button mat-button type="button" (click)="filterDrawer.close() && formDrawer.toggle()">
         Edit
       </button>

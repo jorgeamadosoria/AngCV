@@ -15,7 +15,12 @@
     justify-content: center;
 }
 
-.example-sidenav {
+.example-left-sidenav {
+    padding: 20px;
+    width: 75%;
+}
+
+.example-right-sidenav {
     padding: 20px;
     width: 50%;
 }
