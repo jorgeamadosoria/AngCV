@@ -8,7 +8,7 @@
                     <p>{{ pCv.personal.name }}</p>
                 </mat-grid-tile>
                 <mat-grid-tile>
-                    {{ pCv.personal.location.address }}, {{ pCv.personal.location.city }}, {{ pCv.personal.location.postalCode }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.countryCode | lowercase}}
+                    {{ pCv.personal.location.address }}, {{ pCv.personal.location.city }}, {{ pCv.personal.location.postalCode }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.country}}
                 </mat-grid-tile>
                 <mat-grid-tile>
                     <mat-list>
@@ -32,27 +32,21 @@
         </mat-card>
         <br>
         <mat-card>
-            <div id="social">
-                <div>
-                    <span>Social</span>
-                </div>
-                <ul>
-                    <li *ngFor="let social of pCv.personal.social">
-                        <img *ngIf="social.network" src="assets/{{social.network}}.png"> 
-                        {{social.url}}
-                    </li>
-                </ul>
-            </div>
+            <mat-card-title>Social</mat-card-title>
+            <mat-grid-list cols="3" rowHeight="3em">
+
+                <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
+                    <span class="{{socialIcon(i)}}" *ngIf="social.network"></span>&nbsp;&nbsp;&nbsp;{{social.url}}
+                </mat-grid-tile>
+            </mat-grid-list>
         </mat-card>
         <div id="skills">
             <div>
                 <span>Skills & Expertise</span>
             </div>
-            <ul>
-                <li *ngFor="let skill of pCv.skills">
-                    {{skill.name}} {{skill.level}} {{skill.summary}}
-                </li>
-            </ul>
+            <mat-chip-list>
+                <mat-chip *ngFor="let skill of pCv.skills" color="primary" selected="true">{{skill.name}} {{skill.level}} {{skill.summary}}</mat-chip>
+            </mat-chip-list>
         </div>
         <div id="references">
             <div>
@@ -70,7 +64,7 @@
             </div>
             <ul>
                 <li *ngFor="let work of pCv.work">
-                    {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate}} {{work.endDate}}
+                    {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate | date: 'dd/MM/yyyy'}} {{work.endDate | date: 'dd/MM/yyyy'}}
                 </li>
             </ul>
         </div>
@@ -80,7 +74,7 @@
             </div>
             <ul>
                 <li *ngFor="let education of pCv.education">
-                    {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate}} {{education.endDate}} {{education.institution}}
+                    {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate | date: 'dd/MM/yyyy'}} {{education.endDate | date: 'dd/MM/yyyy'}} {{education.institution}}
                 </li>
             </ul>
         </div>
@@ -90,7 +84,7 @@
             </div>
             <ul>
                 <li *ngFor="let volunteer of pCv.volunteer">
-                    {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate}} {{volunteer.endDate}} {{volunteer.summary}} {{volunteer.tag}}
+                    {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate | date: 'dd/MM/yyyy'}} {{volunteer.endDate | date: 'dd/MM/yyyy'}} {{volunteer.summary}}
                 </li>
             </ul>
         </div>
@@ -100,7 +94,7 @@
             </div>
             <ul>
                 <li *ngFor="let publications of pCv.publications">
-                    {{publications.name}} {{publications.date}} {{publications.publisher}} {{publications.website}} {{publications.summary}} {{publications.tag}}
+                    {{publications.name}} {{publications.date | date: 'dd/MM/yyyy'}} {{publications.publisher}} {{publications.website}} {{publications.summary}}
                 </li>
             </ul>
         </div>
@@ -110,7 +104,7 @@
             </div>
             <ul>
                 <li *ngFor="let accolade of pCv.accolades">
-                    {{accolade.name}} {{accolade.from}} {{accolade.date}} {{accolade.link}} {{accolade.summary}} {{accolade.tag}}
+                    {{accolade.name}} {{accolade.from}} {{accolade.date | date: 'dd/MM/yyyy'}} {{accolade.link}} {{accolade.summary}}
                 </li>
             </ul>
         </div>
@@ -120,7 +114,7 @@
             </div>
             <ul>
                 <li *ngFor="let event of pCv.events">
-                    {{event.name}} {{event.publisher}} {{event.startDate}} {{event.endDate}} {{event.website}} {{event.summary}} {{event.tag}}
+                    {{event.name}} {{event.publisher}} {{event.startDate | date: 'dd/MM/yyyy'}} {{event.endDate | date: 'dd/MM/yyyy'}} {{event.website}} {{event.summary}}
                 </li>
             </ul>
         </div>

@@ -11,7 +11,7 @@ export const mockCV = new CV(
     address: 'Miranda 2415',
     postalCode: 'CP 11300',
     city: 'Montevideo',
-    countryCode: 'UY',
+    country: 'Uruguay',
     region: 'Montevideo'
    },
    social: [{

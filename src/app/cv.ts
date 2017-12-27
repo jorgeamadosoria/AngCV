@@ -88,10 +88,13 @@ export class CV {
     const startDate = new Date(Math.min(
       _.min(this.work.map(obj => obj.startDate.getTime())),
       _.min(this.events.map(obj => obj.startDate.getTime())),
-      _.min(this.publications.map(obj => obj.date.getTime()))));
-    const endDate = new Date(Math.max(
+    //  _.min(this.volunteer.map(obj => obj.startDate.getTime()))),
+      _.min(this.publications.map(obj => obj.date.getTime())));
+      console.log(startDate);
+      const endDate = new Date(Math.max(
       _.max(this.work.map(obj => obj.endDate.getTime())),
       _.max(this.events.map(obj => obj.endDate.getTime())),
+      _.max(this.volunteer.map(obj => obj.endDate.getTime())),
       _.max(this.publications.map(obj => obj.date.getTime()))));
 
     return <Filter>{

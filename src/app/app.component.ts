@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 import { Event } from './event';
 import { Language } from './language';
 import { Filter } from './filter';
+import { socialKeys } from './socialIcon';
 import { CV } from './cv';
 import { CVService } from './cv.service';
 
@@ -14,12 +15,12 @@ import * as _ from 'underscore';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    social: String[];
     form: FormGroup;
     filterForm: FormGroup;
     fullCv: CV;
     cv: CV;
     appliedFilter: Filter;
+    socialKeys: String[];
     constructor(private service: CVService) { }
 
     getCV(): void {
@@ -34,11 +35,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.getCV();
-
-        this.social = ['DeviantArt', 'Facebook', 'Github', 'Google Plus', 
-        'Instagram', 'LinkedIn', 'Messenger', 'Reddit', 'Skype',
-        'Slack', 'Snapchat', 'Telegram', 'Tumblr', 'Twitter',
-        'WhatsApp', 'Youtube'];
+        this.socialKeys = socialKeys;
         this.form = new FormGroup({
             personal: new FormGroup({
                 name: new FormControl(this.fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
@@ -55,7 +52,7 @@ export class AppComponent implements OnInit {
                     address: new FormControl(this.fullCv.personal.location.address),
                     postalCode: new FormControl(this.fullCv.personal.location.postalCode),
                     city: new FormControl(this.fullCv.personal.location.city),
-                    countryCode: new FormControl(this.fullCv.personal.location.countryCode),
+                    country: new FormControl(this.fullCv.personal.location.country),
                     region: new FormControl(this.fullCv.personal.location.region)
                 }),
                 social: new FormArray(

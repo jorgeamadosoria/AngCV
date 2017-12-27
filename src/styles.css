@@ -4,6 +4,10 @@
     flex: 1 1 auto;
 }
 
+.undecorated {
+    list-style-type: none;
+}
+
 .example-container {
     width: 100%;
 }

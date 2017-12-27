@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CV } from './../cv';
+import { socials } from './../socialIcon';
 
 @Component({
   selector: 'app-preview',
@@ -12,5 +13,7 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  socialIcon(idx: number ) {
+    return socials.get(this.pCv.personal.social[idx].network);
+}
 }
