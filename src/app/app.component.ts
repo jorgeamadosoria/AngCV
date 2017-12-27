@@ -14,6 +14,7 @@ import * as _ from 'underscore';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+    social: String[];
     form: FormGroup;
     filterForm: FormGroup;
     fullCv: CV;
@@ -34,6 +35,10 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.getCV();
 
+        this.social = ['DeviantArt', 'Facebook', 'Github', 'Google Plus', 
+        'Instagram', 'LinkedIn', 'Messenger', 'Reddit', 'Skype',
+        'Slack', 'Snapchat', 'Telegram', 'Tumblr', 'Twitter',
+        'WhatsApp', 'Youtube'];
         this.form = new FormGroup({
             personal: new FormGroup({
                 name: new FormControl(this.fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
@@ -57,7 +62,6 @@ export class AppComponent implements OnInit {
                     _.map(this.fullCv.personal.social, function (social) {
                         return new FormGroup({
                             network: new FormControl(social.network, Validators.required),
-                            username: new FormControl(social.username, Validators.required),
                             url: new FormControl(social.url, Validators.required),
                         });
                     })
@@ -168,19 +172,18 @@ export class AppComponent implements OnInit {
     initSocial() {
         return new FormGroup({
             network: new FormControl('', Validators.required),
-            username: new FormControl('', Validators.required),
             url: new FormControl('', Validators.required),
         });
     }
 
     addSocial() {
-        const control = <FormArray>this.form.controls['social'];
-        control.push(this.initSocial());
+        const control = <FormArray>this.form.controls['personal'];
+        control.controls['social'].push(this.initSocial());
     }
 
     removeSocial(i: number) {
-        const control = <FormArray>this.form.controls['social'];
-        control.removeAt(i);
+        const control = <FormArray>this.form.controls['personal'];
+        control.controls['social'].removeAt(i);
     }
 
 

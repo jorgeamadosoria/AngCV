@@ -38,7 +38,8 @@
                 </div>
                 <ul>
                     <li *ngFor="let social of pCv.personal.social">
-                        {{social.network}} {{social.username}} {{social.url}}
+                        <img *ngIf="social.network" src="assets/{{social.network}}.png"> 
+                        {{social.url}}
                     </li>
                 </ul>
             </div>

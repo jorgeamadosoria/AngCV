@@ -16,17 +16,14 @@ export const mockCV = new CV(
    },
    social: [{
      network: 'Twitter',
-     username: 'TwitName',
      url: 'www.twitter.com'
     },
     {
      network: 'Facebook',
-     username: 'faceName',
      url: 'www.facebook.com'
     },
     {
      network: 'Instagram',
-     username: 'instaName',
      url: 'www.instagran.com'
     }
    ]
