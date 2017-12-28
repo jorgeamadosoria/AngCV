@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Event } from './event';
 import { Language, languages, languageLevels } from './language';
-import { Filter } from './filter';
 import { Country, countries } from './countries';
+import { Filter } from './filter';
+import { skillLevels } from './skill';
 import { socialKeys } from './socialIcon';
 import { CV } from './cv';
 import { CVService } from './cv.service';
+import {MatChipInputEvent} from '@angular/material';
+import {ENTER, COMMA} from '@angular/cdk/keycodes';
 
 import * as _ from 'underscore';
 
@@ -23,8 +26,10 @@ export class AppComponent implements OnInit {
     appliedFilter: Filter;
     socialKeys: String[];
     languageLevels: String[];
+    skillLevels: String[];
     languages: String[];
     countries: Country[];
+
     constructor(private service: CVService) { }
 
     getCV(): void {
@@ -41,6 +46,7 @@ export class AppComponent implements OnInit {
         this.getCV();
         this.socialKeys = socialKeys;
         this.languageLevels = languageLevels;
+        this.skillLevels = skillLevels;
         this.languages = languages;
         this.countries = countries;
         this.form = new FormGroup({
@@ -171,6 +177,11 @@ export class AppComponent implements OnInit {
                 })
             )
         });
+    }
+
+    onChangePic(picture) {
+        console.log(picture);
+        this.fullCv.personal.picture = picture;
     }
 
     initSocial() {
