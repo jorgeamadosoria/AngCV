@@ -139,11 +139,11 @@ export const mockCV = new CV(
   }],
   [{
     language: 'English',
-    level: 'Upper-Intermediate'
+    level: 'advanced'
    },
    {
     language: 'Spanish',
-    level: 'Native speaker'
+    level: 'native'
    }
   ]
 );

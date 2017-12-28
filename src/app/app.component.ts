@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Event } from './event';
-import { Language } from './language';
+import { Language, languages, languageLevels } from './language';
 import { Filter } from './filter';
+import { Country, countries } from './countries';
 import { socialKeys } from './socialIcon';
 import { CV } from './cv';
 import { CVService } from './cv.service';
@@ -21,6 +22,9 @@ export class AppComponent implements OnInit {
     cv: CV;
     appliedFilter: Filter;
     socialKeys: String[];
+    languageLevels: String[];
+    languages: String[];
+    countries: Country[];
     constructor(private service: CVService) { }
 
     getCV(): void {
@@ -36,6 +40,9 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.getCV();
         this.socialKeys = socialKeys;
+        this.languageLevels = languageLevels;
+        this.languages = languages;
+        this.countries = countries;
         this.form = new FormGroup({
             personal: new FormGroup({
                 name: new FormControl(this.fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
@@ -369,8 +376,8 @@ export class AppComponent implements OnInit {
 
     initLanguage() {
         return new FormGroup({
-            language: new FormControl('', Validators.required),
-            level: new FormControl('', Validators.required)
+            language: new FormControl(languages[0], Validators.required),
+            level: new FormControl(languageLevels[0], Validators.required)
         });
     }
 
