@@ -30,25 +30,25 @@ export const mockCV = new CV(
   },
   [{
     name: 'Automation Testing',
-    level: 'Used it professionally',
+    level: 'Beginner',
     summary: '',
     tag: 'performance,Automation'
    },
    {
     name: 'Web Performance Development',
-    level: 'Used it professionally',
+    level: 'Professional',
     summary: '',
     tag: 'performance,Development'
    },
    {
     name: 'Java',
-    level: 'Used it professionally',
+    level: 'Professional',
     summary: 'ESB, JSP, Java development version 7',
     tag: 'Development'
    },
    {
     name: 'Javascript',
-    level: 'Read about it',
+    level: 'Intermediate',
     summary: 'Angular 2, JQuery and ReactJS',
     tag: 'Development'
    }

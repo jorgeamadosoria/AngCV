@@ -34,7 +34,6 @@
         <mat-card>
             <mat-card-title>Social</mat-card-title>
             <mat-grid-list cols="3" rowHeight="3em">
-
                 <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
                     <span class="{{socialIcon(i)}}" *ngIf="social.network"></span>&nbsp;&nbsp;&nbsp;{{social.url}}
                 </mat-grid-tile>
@@ -43,9 +42,11 @@
         <br>
         <mat-card>
             <mat-card-title>Skills & Expertise</mat-card-title>
-            <mat-chip-list>
-                <mat-chip *ngFor="let skill of pCv.skills" color="primary" selected="true">{{skill.name}} {{skill.level}} {{skill.summary}}</mat-chip>
-            </mat-chip-list>
+            <div class="skill-container" *ngFor="let skill of pCv.skills" color="primary" >
+                    <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}}  {{skill.summary}}</button>
+                    <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{skill.level}}</button>
+                    &nbsp;
+            </div>
         </mat-card>
         <br>
         <mat-card>

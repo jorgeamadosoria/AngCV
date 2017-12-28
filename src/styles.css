@@ -8,6 +8,28 @@
     list-style-type: none;
 }
 
+.skill-button-left {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    box-shadow: unset !important;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    float: left;
+}
+
+.skill-button-right {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    box-shadow: unset !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}
+
+.skill-container {
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
 .example-container {
     width: 100%;
 }

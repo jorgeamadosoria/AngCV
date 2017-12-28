@@ -6,5 +6,5 @@ export class Skill {
 }
 
 export const skillLevels: String[] = [
-    'Read about it', 'Tinkered with it', 'Used it professionally', 'Taught it to others'
+    'Beginner', 'Intermediate', 'Advanced', 'Professional'
 ];
