@@ -179,9 +179,10 @@ export class AppComponent implements OnInit {
         });
     }
 
-    onChangePic(picture) {
-        console.log(picture);
-        this.fullCv.personal.picture = picture;
+    onChangePic(event) {
+        console.log(event.target.value);
+        this.fullCv.personal.picture = event.target.value;
+        console.log(this.fullCv.personal.picture);
     }
 
     initSocial() {

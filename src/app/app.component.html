@@ -13,14 +13,10 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <div formGroupName="personal">
-                        {{fullCv.personal.picture}}
-                        <img src="{{picture}}">
                         <mat-card>
-                            <mat-grid-list cols="4" rowHeight="5em">
-                                <mat-grid-tile>
-                                    <mat-form-field>
-                                        <input matInput formControlName="picture" (onchange)="onChangePic($event)" name="picture" placeholder="picture">
-                                    </mat-form-field>
+                            <mat-grid-list cols="2" rowHeight="5em">
+                                <mat-grid-tile rowspan="3">
+                                    <img class="card-media" mat-image-avatar src="{{fullCv.personal.picture}}">
                                 </mat-grid-tile>
                                 <mat-grid-tile>
                                     <mat-form-field>
@@ -35,6 +31,11 @@
                                 <mat-grid-tile>
                                     <mat-form-field>
                                         <input matInput formControlName="email" name="email" placeholder="email">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field class="field-container">
+                                        <input matInput formControlName="picture" (change)="onChangePic($event)" name="picture" placeholder="picture url">
                                     </mat-form-field>
                                 </mat-grid-tile>
                             </mat-grid-list>
