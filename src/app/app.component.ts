@@ -55,15 +55,10 @@ export class AppComponent implements OnInit {
                 label: new FormControl(this.fullCv.personal.label, [Validators.required]),
                 picture: new FormControl(this.fullCv.personal.picture, [Validators.required]),
                 email: new FormControl(this.fullCv.personal.email, [Validators.required]),
-                phones: new FormArray(
-                    _.map(this.fullCv.personal.phones, function (phone) {
-                        return new FormControl(phone);
-                    })
-                ),
+                phone: new FormControl(this.fullCv.personal.phone, [Validators.required]),
                 summary: new FormControl(this.fullCv.personal.summary),
                 location: new FormGroup({
                     address: new FormControl(this.fullCv.personal.location.address),
-                    postalCode: new FormControl(this.fullCv.personal.location.postalCode),
                     city: new FormControl(this.fullCv.personal.location.city),
                     country: new FormControl(this.fullCv.personal.location.country),
                     region: new FormControl(this.fullCv.personal.location.region)
@@ -348,20 +343,6 @@ export class AppComponent implements OnInit {
     removePublication(i: number) {
         const control = <FormArray>this.form.controls['publications'];
         control.removeAt(i);
-    }
-
-    initPhone() {
-        return new FormControl('');
-    }
-
-    addPhone() {
-        const control = <FormArray>this.form.controls['personal'];
-        control.controls['phones'].push(this.initPhone());
-    }
-
-    removePhone(i: number) {
-        const control = <FormArray>this.form.controls['personal'];
-        control.controls['phones'].removeAt(i);
     }
 
     initEvent() {

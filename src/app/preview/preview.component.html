@@ -1,140 +1,143 @@
 <div class="example-sidenav-content">
-    <div id="preview">
-        <br>
-        <mat-card class="mat-typography">
-            <mat-grid-list cols="3" rowHeight="5em">
-                <mat-grid-tile rowspan="3"><img class="card-media" mat-image-avatar src="{{ pCv.personal.picture }}"></mat-grid-tile>
-                <mat-grid-tile>
-                    <p>{{ pCv.personal.name }}</p>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    {{ pCv.personal.location.address }}, {{ pCv.personal.location.city }}, {{ pCv.personal.location.postalCode }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.country}}
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-list>
-                        <mat-list-item *ngFor="let phone of pCv.personal.phones">
-                            <mat-icon matListIcon>smartphone</mat-icon>
-                            {{phone}}
-                        </mat-list-item>
-                    </mat-list>
-                </mat-grid-tile>
-                <mat-grid-tile> {{ pCv.personal.email }}
-                    <mat-icon matListIcon>email</mat-icon>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <p>{{ pCv.personal.label }}</p>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-card-subtitle>{{ pCv.personal.summary }}</mat-card-subtitle>
-                </mat-grid-tile>
+  <div id="preview">
+    <br>
+    <mat-card class="mat-typography">
+      <mat-grid-list cols="3" rowHeight="5em">
+        <mat-grid-tile rowspan="3">
+          <img class="card-media" mat-image-avatar src="{{ pCv.personal.picture }}">
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <p>{{ pCv.personal.name }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <p>{{ pCv.personal.label }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card-subtitle>{{ pCv.personal.summary }}</mat-card-subtitle>
+        </mat-grid-tile>
 
-            </mat-grid-list>
-        </mat-card>
-        <br>
-        <mat-card>
-            <mat-card-title>Social</mat-card-title>
-            <mat-grid-list cols="3" rowHeight="3em">
-                <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
-                    <span class="{{socialIcon(i)}}" *ngIf="social.network"></span>&nbsp;&nbsp;&nbsp;{{social.url}}
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-card>
-        <br>
-        <mat-card>
-            <mat-card-title>Skills & Expertise</mat-card-title>
-            <div class="skill-container" *ngFor="let skill of pCv.skills" color="primary" >
-                    <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}}  {{skill.summary}}</button>
-                    <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{skill.level}}</button>
-                    &nbsp;
-            </div>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>References</span>
-            </div>
-            <ul>
-                <li *ngFor="let reference of pCv.references">
-                    {{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Work Experience</span>
-            </div>
-            <ul>
-                <li *ngFor="let work of pCv.work">
-                    {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate | date: 'dd/MM/yyyy'}} {{work.endDate | date: 'dd/MM/yyyy'}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Education</span>
-            </div>
-            <ul>
-                <li *ngFor="let education of pCv.education">
-                    {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate | date: 'dd/MM/yyyy'}} {{education.endDate | date: 'dd/MM/yyyy'}} {{education.institution}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Volunteer</span>
-            </div>
-            <ul>
-                <li *ngFor="let volunteer of pCv.volunteer">
-                    {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate | date: 'dd/MM/yyyy'}} {{volunteer.endDate | date: 'dd/MM/yyyy'}} {{volunteer.summary}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Publications</span>
-            </div>
-            <ul>
-                <li *ngFor="let publications of pCv.publications">
-                    {{publications.name}} {{publications.date | date: 'dd/MM/yyyy'}} {{publications.publisher}} {{publications.website}} {{publications.summary}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Accolades</span>
-            </div>
-            <ul>
-                <li *ngFor="let accolade of pCv.accolades">
-                    {{accolade.name}} {{accolade.from}} {{accolade.date | date: 'dd/MM/yyyy'}} {{accolade.link}} {{accolade.summary}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Events</span>
-            </div>
-            <ul>
-                <li *ngFor="let event of pCv.events">
-                    {{event.name}} {{event.publisher}} {{event.startDate | date: 'dd/MM/yyyy'}} {{event.endDate | date: 'dd/MM/yyyy'}} {{event.website}} {{event.summary}}
-                </li>
-            </ul>
-        </mat-card>
-        <br>
-        <mat-card>
-            <div>
-                <span>Languages</span>
-            </div>
-            <ul>
-                <li *ngFor="let language of pCv.languages">
-                    {{language.language}} {{language.level}}
-                </li>
-            </ul>
-        </mat-card>
-    </div>
+      </mat-grid-list>
+    </mat-card>
+    <br>
+    <mat-card>
+      <mat-grid-list cols="3" rowHeight="3em">
+        <mat-grid-tile>
+          <mat-icon color="primary">room</mat-icon>&nbsp;&nbsp;&nbsp;{{ pCv.personal.location.city }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.country}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-icon color="primary">smartphone</mat-icon>
+          &nbsp;&nbsp;&nbsp;{{pCv.personal.phone}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-icon color="primary">email</mat-icon>
+          &nbsp;&nbsp;&nbsp;{{ pCv.personal.email }}
+        </mat-grid-tile>
+        <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
+          <span class="mat-icon-button mat-primary {{socialIcon(i)}}" *ngIf="social.network">
+          </span>&nbsp;&nbsp;&nbsp;{{social.url}}
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+    <br>
+    <mat-card>
+      <mat-card-title>Skills & Expertise</mat-card-title>
+      <div class="skill-container" *ngFor="let skill of pCv.skills" color="primary">
+        <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}} {{skill.summary}}</button>
+        <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{skill.level}}</button>
+        &nbsp;
+      </div>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>References</span>
+      </div>
+      <ul>
+        <li *ngFor="let reference of pCv.references">
+          {{reference.name}} {{reference.position}} {{reference.mail}} {{reference.phone}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>Work Experience</span>
+      </div>
+      <ul>
+        <li *ngFor="let work of pCv.work">
+          {{work.logo}} {{work.position}} {{work.company}} {{work.summary}} {{work.website}} {{work.startDate | date: 'dd/MM/yyyy'}}
+          {{work.endDate | date: 'dd/MM/yyyy'}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>Education</span>
+      </div>
+      <ul>
+        <li *ngFor="let education of pCv.education">
+          {{education.career}} {{education.logo}} {{education.summary}} {{education.startDate | date: 'dd/MM/yyyy'}} {{education.endDate
+          | date: 'dd/MM/yyyy'}} {{education.institution}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>Volunteer</span>
+      </div>
+      <ul>
+        <li *ngFor="let volunteer of pCv.volunteer">
+          {{volunteer.organization}} {{volunteer.position}} {{volunteer.website}} {{volunteer.startDate | date: 'dd/MM/yyyy'}} {{volunteer.endDate
+          | date: 'dd/MM/yyyy'}} {{volunteer.summary}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>Publications</span>
+      </div>
+      <ul>
+        <li *ngFor="let publications of pCv.publications">
+          {{publications.name}} {{publications.date | date: 'dd/MM/yyyy'}} {{publications.publisher}} {{publications.website}} {{publications.summary}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>Accolades</span>
+      </div>
+      <ul>
+        <li *ngFor="let accolade of pCv.accolades">
+          {{accolade.name}} {{accolade.from}} {{accolade.date | date: 'dd/MM/yyyy'}} {{accolade.link}} {{accolade.summary}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <div>
+        <span>Events</span>
+      </div>
+      <ul>
+        <li *ngFor="let event of pCv.events">
+          {{event.name}} {{event.publisher}} {{event.startDate | date: 'dd/MM/yyyy'}} {{event.endDate | date: 'dd/MM/yyyy'}} {{event.website}}
+          {{event.summary}}
+        </li>
+      </ul>
+    </mat-card>
+    <br>
+    <mat-card>
+      <mat-card-title>
+        Languages
+      </mat-card-title>
+      <div class="skill-container" *ngFor="let language of pCv.languages" color="primary">
+        <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{language.language}}</button>
+        <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{language.level}}</button>
+        &nbsp;
+      </div>
+    </mat-card>
+  </div>
 </div>

@@ -5,11 +5,10 @@ export const mockCV = new CV(
    label: 'Creador de Jsons para Jorge',
    picture: 'https://i.imgur.com/zktRC5t.gif',
    email: 'mail@mail.com',
-   phones: ['12345678', '12345678'],
+   phone: '12345678',
    summary: 'Alta experiencia en creacion de jsons',
    location: {
     address: 'Miranda 2415',
-    postalCode: 'CP 11300',
     city: 'Montevideo',
     country: 'Uruguay',
     region: 'Montevideo'

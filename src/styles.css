@@ -17,6 +17,11 @@
     float: left;
 }
 
+.social-align {
+    position: absolute;
+    text-align: left;
+}
+
 .skill-button-right {
     margin-right: 0px !important;
     margin-left: 0px !important;
