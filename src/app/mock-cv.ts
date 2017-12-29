@@ -72,7 +72,16 @@ export const mockCV = new CV(
     startDate: new Date(2013, 12, 1),
     endDate: new Date(2014, 12, 1),
     summary: 'I tested things',
-    logo: 'link a una imaggen',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Globant-Logo.svg',
+    tag: 'Performance'
+   }, {
+    company: 'UCI',
+    position: 'Teacher',
+    website: 'uci.cu',
+    startDate: new Date(2003, 12, 1),
+    endDate: new Date(2015, 6, 1),
+    summary: 'I taught things',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/6/67/UCi.jpg',
     tag: 'Performance'
    },
    {
@@ -82,7 +91,7 @@ export const mockCV = new CV(
     startDate: new Date(2013, 12, 1),
     endDate: new Date(2014, 12, 1),
     summary: 'I developed things',
-    logo: 'link a una imaggen',
+    logo: 'https://lh3.googleusercontent.com/UVKcWAC_p7NicUQlnhuYqYGG8u8CoIcb9FsYTlKrQCxNMu5YRlcfxcxyGTJ57lY85i4=w300',
     tag: 'Development'
    }
   ],
@@ -91,17 +100,17 @@ export const mockCV = new CV(
    career: 'Engineer',
    startDate: new Date(2010, 6, 1),
    endDate: new Date(2014, 1, 1),
-   logo: 'link a una imaggen',
+   logo: 'http://tc.iuscomparatum.info/tc/wp-content/uploads/2016/02/LOGO-UM-624x247px.png',
    summary: 'I engineered things'
   }],
   [{
-   organization: 'Organization',
+   organization: 'ACM ICPC',
    position: 'Maestro',
-   website: 'weblink.com',
+   website: 'https://icpc.baylor.edu/',
    startDate: new Date(2015, 1, 1),
    endDate: new Date(2016, 1, 1),
    summary: 'Maestro Roshi por 1 año',
-   tag: ''
+   tag: 'Programming, Development, ACM, ACM-ICPC'
   }],
   [{
    name: 'Matrix Theorist',
@@ -115,15 +124,15 @@ export const mockCV = new CV(
     name: 'Best json ever',
     from: 'FCC',
     date: new Date(2014, 10, 1),
-    link: '',
+    link: 'https://www.fcc.gov/',
     summary: 'summary here',
-    tag: 'Development'
+    tag: 'Development, Net Neutrality, Evil, FCC'
    }],
    [{
    name: 'How to create json',
-   publisher: 'FCC',
+   publisher: 'Self',
    date: new Date(2014, 10, 1),
-   website: '',
+   website: 'https://www.fcc.gov/',
    summary: 'sumary',
    tag: 'Development'
   }],
@@ -132,7 +141,7 @@ export const mockCV = new CV(
    publisher: 'Conferences for all',
    startDate: new Date(2014, 10, 1),
    endDate: new Date(2014, 10, 1),
-   website: '',
+   website: 'https://www.fcc.gov/',
    summary: 'summary',
    tag: 'Development'
   }],

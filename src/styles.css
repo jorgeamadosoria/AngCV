@@ -17,6 +17,14 @@
     float: left;
 }
 
+.logo {
+    display: block;
+    max-width: 4em;
+    max-height: 2em;
+    width: auto;
+    height: auto;
+}
+
 .social-align {
     position: absolute;
     text-align: left;
