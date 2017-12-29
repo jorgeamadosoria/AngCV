@@ -25,6 +25,11 @@
     height: auto;
 }
 
+.summary {
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
 .social-align {
     position: absolute;
     text-align: left;
