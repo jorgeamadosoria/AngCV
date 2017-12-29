@@ -13,7 +13,7 @@
           <p>{{ pCv.personal.label }}</p>
         </mat-grid-tile>
         <mat-grid-tile>
-          <mat-card-subtitle>{{ pCv.personal.summary }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ pCv.personal.summary | slice:0:600 }}</mat-card-subtitle>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card>
@@ -42,7 +42,7 @@
     <mat-card>
       <mat-card-title>Skills & Expertise</mat-card-title>
       <div class="skill-container" *ngFor="let skill of pCv.skills" color="primary">
-        <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}} {{skill.summary}}</button>
+        <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}} {{skill.summary | slice:0:600}}</button>
         <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{skill.level}}</button> &nbsp;
       </div>
     </mat-card>
@@ -83,7 +83,7 @@
           </h4>
           <p>{{work.company}} {{work.website}} {{work.startDate | date: 'dd/MM/yyyy'}} {{work.endDate | date: 'dd/MM/yyyy'}}
           </p>
-          <p class="summary">{{work.summary}} </p>
+          <p class="summary">{{work.summary | slice:0:600}} </p>
           <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>
@@ -99,7 +99,7 @@
           <p mat-line>
             {{education.startDate | date: 'dd/MM/yyyy'}} {{education.endDate | date: 'dd/MM/yyyy'}} {{education.institution}}
           </p>
-          <p class="summary"> {{education.summary}}
+          <p class="summary"> {{education.summary | slice:0:600 }}
           </p>
           <mat-divider></mat-divider>
         </mat-list-item>
@@ -116,7 +116,7 @@
           <p mat-line>{{volunteer.website}} {{volunteer.startDate | date: 'dd/MM/yyyy'}} {{volunteer.endDate | date: 'dd/MM/yyyy'}}
           </p>
           <p class="summary">
-            {{volunteer.summary}}
+            {{volunteer.summary | slice:0:600}}
           </p>
           <mat-divider></mat-divider>
         </mat-list-item>
@@ -132,7 +132,7 @@
           </h4>
           <p mat-line>{{publications.date | date: 'dd/MM/yyyy'}} {{publications.publisher}} {{publications.website}}
           </p>
-          <p class="summary"> {{publications.summary}}
+          <p class="summary"> {{publications.summary | slice:0:600}}
           </p>
           <mat-divider></mat-divider>
         </mat-list-item>
@@ -148,7 +148,7 @@
           </h4>
           <p mat-line>{{accolade.from}} {{accolade.date | date: 'dd/MM/yyyy'}} {{accolade.link}}
           </p>
-          <p class="summary"> {{accolade.summary}}</p>
+          <p class="summary"> {{accolade.summary | slice:0:600}}</p>
           <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>
@@ -163,7 +163,7 @@
           </h4>
           <p mat-line> {{event.publisher}} {{event.startDate | date: 'dd/MM/yyyy'}} {{event.endDate | date: 'dd/MM/yyyy'}} {{event.website}}
           </p>
-          <p class="summary"> {{event.summary}}
+          <p class="summary"> {{event.summary | slice:0:600}}
           </p>
           <mat-divider></mat-divider>
         </mat-list-item>
