@@ -31,7 +31,7 @@ export const mockCV = new CV(
     name: 'Automation Testing',
     level: 'Beginner',
     summary: '',
-    tag: 'performance,Automation'
+    tag: 'Performance,Automation'
    },
    {
     name: 'Web Performance Development',
@@ -53,13 +53,13 @@ export const mockCV = new CV(
    }
   ],
   [{
-    name: 'Englander',
+    name: 'Englander George Casablanca IV',
     position: 'Boss',
     mail: 'mailref@mail.com',
     phone: '+1-202-555-0105'
    },
    {
-    name: 'ref2',
+    name: 'Jerry Referer VIII',
     position: 'Boss2',
     mail: 'mailref2@mail.com',
     phone: '+1-202-555-0168'
@@ -71,7 +71,7 @@ export const mockCV = new CV(
     website: 'globamt.com',
     startDate: new Date(2013, 12, 1),
     endDate: new Date(2014, 12, 1),
-    summary: 'I tested things',
+    summary: 'I tested things. In in faucibus ipsum. Nam gravida lectus et pellentesque finibus. Donec tempus nunc ut tincidunt laoreet. Etiam libero diam, egestas id porttitor quis, laoreet non arcu. Donec efficitur dui ut magna tincidunt condimentum. Proin diam purus, ullamcorper vel volutpat nec, rutrum sed dui. Sed interdum elit in augue malesuada rhoncus. Donec et arcu vel enim congue efficitur et vel ipsum. Proin gravida nulla id rhoncus cursus. Nulla facilisi. Morbi vulputate a urna vitae laoreet. Etiam non ante in ex tristique varius consequat quis augue. Pellentesque accumsan leo nec nibh pulvinar tincidunt nec vel dui. Quisque eros erat, facilisis vitae velit vitae, consequat eleifend velit. Etiam eget libero vitae mauris facilisis interdum a in arcu.',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Globant-Logo.svg',
     tag: 'Performance'
    }, {
@@ -80,7 +80,7 @@ export const mockCV = new CV(
     website: 'uci.cu',
     startDate: new Date(2003, 12, 1),
     endDate: new Date(2015, 6, 1),
-    summary: 'I taught things',
+    summary: 'I taught things. Aenean tempus volutpat luctus. Nam consectetur nisl eget lacus ultricies, eu luctus metus feugiat. Maecenas fringilla erat at erat tristique, quis lacinia neque maximus. Suspendisse sed egestas arcu, ac venenatis ligula. In eros urna, scelerisque vitae imperdiet eget, egestas ac elit. Morbi vehicula vitae massa non luctus. Aliquam et nunc justo. Pellentesque in arcu ex. Maecenas in lacus turpis. Phasellus sit amet condimentum nunc.',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/6/67/UCi.jpg',
     tag: 'Performance'
    },
@@ -90,7 +90,7 @@ export const mockCV = new CV(
     website: 'webmoovit.com',
     startDate: new Date(2013, 12, 1),
     endDate: new Date(2014, 12, 1),
-    summary: 'I developed things',
+    summary: 'I developed things, Phasellus vestibulum, dui vitae molestie laoreet, lacus dui congue ipsum, quis tempor dui nisi id metus. Aliquam congue ante a congue tincidunt. Aliquam lacinia eget felis in sollicitudin. Ut vel facilisis purus, vitae ullamcorper risus. Etiam fringilla elit id cursus porta. Vestibulum a blandit diam, at pulvinar purus. Nam molestie magna quis magna pellentesque fringilla. Integer malesuada eu risus vel vestibulum.',
     logo: 'https://lh3.googleusercontent.com/UVKcWAC_p7NicUQlnhuYqYGG8u8CoIcb9FsYTlKrQCxNMu5YRlcfxcxyGTJ57lY85i4=w300',
     tag: 'Development'
    }
