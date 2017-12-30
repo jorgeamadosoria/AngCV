@@ -6,7 +6,13 @@ export const mockCV = new CV(
     picture: 'https://i.imgur.com/zktRC5t.gif',
     email: 'mail@mail.com',
     phone: '202-555-0103',
-    summary: 'Alta experiencia en creacion de jsons',
+    summary: 'I tested things. In in faucibus ipsum. Nam gravida lectus et pellentesque finibus. Donec tempus nunc ut tincidunt'
+    + ' laoreet. Etiam libero diam, egestas id porttitor quis, laoreet non arcu. Donec efficitur dui ut magna tincidunt'
+    + ' condimentum. Proin diam purus, ullamcorper vel volutpat nec, rutrum sed dui. Sed interdum elit in augue malesuada'
+    + ' rhoncus. Donec et arcu vel enim congue efficitur et vel ipsum. Proin gravida nulla id rhoncus cursus. Nulla facilisi.'
+    + ' Morbi vulputate a urna vitae laoreet. Etiam non ante in ex tristique varius consequat quis augue. Pellentesque accumsan'
+    + ' leo nec nibh pulvinar tincidunt nec vel dui. Quisque eros erat, facilisis vitae velit vitae, consequat eleifend velit.'
+    + ' Etiam eget libero vitae mauris facilisis interdum a in arcu.',
     location: {
       address: 'Miranda 2415',
       city: 'Montevideo',

@@ -18,16 +18,36 @@
 }
 
 .logo {
-    display: block;
-    max-width: 4em;
-    max-height: 2em;
+    max-width: 80px;
+    /* You can use different numbers for max-width and max-height! */
+    max-height: 80px;
     width: auto;
     height: auto;
+}
+
+.logo-container {
+    overflow: hidden;
+    width: 10%;
+    float: left;
+    position: relative;
+}
+
+.summary-container {
+    overflow: hidden;
+    width: 90%;
+    position: relative;
+    float: left;
+}
+
+.clear {
+    clear: both;
 }
 
 .summary {
     word-break: normal;
     overflow-wrap: break-word;
+    text-align: justify;
+    display: inline-block;
 }
 
 .social-align {
@@ -92,4 +112,47 @@
 .example-headers-align .mat-expansion-panel-header-description {
     justify-content: space-between;
     align-items: right;
+}
+
+.timeline-container {
+    max-width: 1024px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+$border-color: rgba(black, .3);
+.timeline-item {
+    padding: 3em 2em 2em;
+    position: relative;
+    color: rgba(black, .7);
+    border-left: 2px solid $border-color;
+    p {
+        font-size: 1rem;
+    }
+    &::before {
+        content: attr(title);
+        position: absolute;
+        left: 2em;
+        font-weight: bold;
+        top: 1em;
+        display: block;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: .785rem;
+    }
+    &::after {
+        width: 10px;
+        height: 10px;
+        display: block;
+        top: 1em;
+        position: absolute;
+        left: -7px;
+        border-radius: 10px;
+        content: '';
+        border: 2px solid $border-color;
+        background: white;
+    }
+    &:last-child {
+        border-image: linear-gradient( to bottom, $border-color 60%, rgba($border-color, 0)) 1 100%;
+    }
 }
