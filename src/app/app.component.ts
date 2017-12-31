@@ -121,6 +121,7 @@ export class AppComponent implements OnInit {
                     return new FormGroup({
                         organization: new FormControl(volunteer.organization),
                         position: new FormControl(volunteer.position),
+                        logo: new FormControl(volunteer.logo),
                         website: new FormControl(volunteer.website),
                         startDate: new FormControl(volunteer.startDate),
                         endDate: new FormControl(volunteer.endDate),
@@ -136,6 +137,7 @@ export class AppComponent implements OnInit {
                         startDate: new FormControl(education.startDate),
                         endDate: new FormControl(education.endDate),
                         logo: new FormControl(education.logo),
+                        website: new FormControl(education.website),
                         summary: new FormControl(education.summary)
                     });
                 })),
@@ -267,6 +269,7 @@ export class AppComponent implements OnInit {
             startDate: new FormControl(new Date()),
             endDate: new FormControl(new Date()),
             logo: new FormControl(''),
+            website: new FormControl(''),
             summary: new FormControl(''),
         });
     }
@@ -286,6 +289,7 @@ export class AppComponent implements OnInit {
             organization: new FormControl(''),
             position: new FormControl(''),
             website: new FormControl(''),
+            logo: new FormControl(''),
             startDate: new FormControl(new Date()),
             endDate: new FormControl(new Date()),
             summary: new FormControl(''),

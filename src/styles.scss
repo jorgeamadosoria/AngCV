@@ -19,24 +19,50 @@
 
 .logo {
     max-width: 80px;
-    /* You can use different numbers for max-width and max-height! */
     max-height: 80px;
     width: auto;
     height: auto;
 }
 
-.logo-container {
-    overflow: hidden;
-    width: 10%;
-    float: left;
-    position: relative;
+div.timeline-item mat-grid-list {
+    padding-bottom: 25% !important;
+}
+
+mat-grid-tile.personal-header .mat-figure {
+    justify-content: unset !important;
+    display: block !important;
+}
+
+mat-grid-list.personal-card {
+    padding-bottom: 25% !important;
+}
+
+mat-grid-tile.personal-content {
+    margin-top: unset !important;
+}
+mat-grid-tile.personal-content-image {
+    margin-top: unset !important;
+    padding-top: 25% !important;
+}
+
+
+mat-grid-tile.timeline-header .mat-figure {
+    justify-content: unset !important;
+    display: block !important;
+}
+
+mat-grid-tile.timeline-content {
+    margin-top: unset !important;
+}
+
+.timeline-header .mat-figure h4{
+    margin:0;
 }
 
 .summary-container {
+    display: inline-block;
     overflow: hidden;
-    width: 90%;
     position: relative;
-    float: left;
 }
 
 .clear {
@@ -47,7 +73,6 @@
     word-break: normal;
     overflow-wrap: break-word;
     text-align: justify;
-    display: inline-block;
 }
 
 .social-align {

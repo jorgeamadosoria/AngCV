@@ -1,4 +1,5 @@
 export class Volunteer {
+    logo: String;
     organization: String;
     position: String;
     website: String;

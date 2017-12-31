@@ -4,5 +4,6 @@ export class Education {
     startDate: Date;
     endDate: Date;
     logo: String;
+    website: String;
     summary: String;
 }
