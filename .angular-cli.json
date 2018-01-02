@@ -4,7 +4,7 @@
         "name": "angCV"
     },
     "apps": [{
-        "root": "src",
+        "root": "client",
         "outDir": "dist",
         "assets": [
             "assets",
