@@ -10,7 +10,6 @@ import { CV } from './cv';
 import { CVService } from './cv.service';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
-
 import * as _ from 'underscore';
 
 @Component({
@@ -32,8 +31,8 @@ export class AppComponent implements OnInit {
 
     constructor(private service: CVService) { }
 
-    getCV(): void {
-        this.service.getCV().subscribe(cv => {
+    getCV(id): void {
+        this.service.getCV(id).subscribe(cv => {
             this.fullCv = cv;
             this.cv = this.fullCv.clone();
             this.appliedFilter = this.cv.createFilter();
@@ -42,8 +41,14 @@ export class AppComponent implements OnInit {
         });
     }
 
+    persistCV(cv): void {
+        this.service.persistCV(cv);
+    }
+
     ngOnInit() {
-        this.getCV();
+
+        const cv = this.persistCV(this.service.getMock());
+        this.getCV(cv);
         this.socialKeys = socialKeys;
         this.languageLevels = languageLevels;
         this.skillLevels = skillLevels;

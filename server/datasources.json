@@ -2,7 +2,7 @@
     "mongodb": {
         "host": "localhost",
         "port": 27017,
-        "url": "mongodb://admin:admin@localhost:27017/angcv",
+        "url": "mongodb://localhost:27017/angcv",
         "database": "angcv",
         "password": "admin",
         "name": "mongodb",

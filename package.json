@@ -9,6 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:sdk": "./node_modules/.bin/lb-sdk server/server.js ./client/src/app/shared/sdk",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint && eslint .",
@@ -50,11 +51,14 @@
     "@angular/cli": "1.6.3",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
+    "@mean-expert/loopback-sdk-builder": "^2.1.2",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "@types/underscore": "^1.8.6",
     "codelyzer": "^4.0.1",
+    "eslint": "^3.17.1",
+    "eslint-config-loopback": "^8.0.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
@@ -63,13 +67,11 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nsp": "^2.1.0",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2",
-    "webpack": "^3.10.0",
-    "eslint": "^3.17.1",
-    "eslint-config-loopback": "^8.0.0",
-    "nsp": "^2.1.0"
+    "webpack": "^3.10.0"
   }
 }
