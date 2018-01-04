@@ -11,6 +11,7 @@ import { CVService } from './cv.service';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import * as _ from 'underscore';
+import { mockCV } from './mock-cv';
 
 @Component({
     selector: 'app-root',
@@ -29,47 +30,55 @@ export class AppComponent implements OnInit {
     languages: String[];
     countries: Country[];
 
-    constructor(private service: CVService) { }
+    constructor() { }
 
-    getCV(id): void {
-        this.service.getCV(id).subscribe(cv => {
-            this.fullCv = cv;
+    getMock() {
+        return mockCV;
+    }
+
+    getCV(): void {
+
+            this.cv = this.getMock();
+            this.fullCv = this.cv;
             this.cv = this.fullCv.clone();
             this.appliedFilter = this.cv.createFilter();
             this.cv.applyFilter(this.appliedFilter);
+            this.createForm(this.fullCv);
             this.initFilterForm(this.appliedFilter);
-        });
     }
 
     persistCV(cv): void {
-        this.service.persistCV(cv);
+        //  this.cvApi.upsert(cv).subscribe(r => ret = r, err => console.log(err) );
+       // this.service.persistCV(cv);
     }
 
     ngOnInit() {
-
-        const cv = this.persistCV(this.service.getMock());
-        this.getCV(cv);
+        this.getCV();
         this.socialKeys = socialKeys;
         this.languageLevels = languageLevels;
         this.skillLevels = skillLevels;
         this.languages = languages;
         this.countries = countries;
+    }
+
+
+    createForm(fullCv: CV) {
         this.form = new FormGroup({
             personal: new FormGroup({
-                name: new FormControl(this.fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
-                label: new FormControl(this.fullCv.personal.label, [Validators.required]),
-                picture: new FormControl(this.fullCv.personal.picture, [Validators.required]),
-                email: new FormControl(this.fullCv.personal.email, [Validators.required]),
-                phone: new FormControl(this.fullCv.personal.phone, [Validators.required]),
-                summary: new FormControl(this.fullCv.personal.summary),
+                name: new FormControl(fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
+                label: new FormControl(fullCv.personal.label, [Validators.required]),
+                picture: new FormControl(fullCv.personal.picture, [Validators.required]),
+                email: new FormControl(fullCv.personal.email, [Validators.required]),
+                phone: new FormControl(fullCv.personal.phone, [Validators.required]),
+                summary: new FormControl(fullCv.personal.summary),
                 location: new FormGroup({
-                    address: new FormControl(this.fullCv.personal.location.address),
-                    city: new FormControl(this.fullCv.personal.location.city),
-                    country: new FormControl(this.fullCv.personal.location.country),
-                    region: new FormControl(this.fullCv.personal.location.region)
+                    address: new FormControl(fullCv.personal.location.address),
+                    city: new FormControl(fullCv.personal.location.city),
+                    country: new FormControl(fullCv.personal.location.country),
+                    region: new FormControl(fullCv.personal.location.region)
                 }),
                 social: new FormArray(
-                    _.map(this.fullCv.personal.social, function (social) {
+                    _.map(fullCv.personal.social, function (social) {
                         return new FormGroup({
                             network: new FormControl(social.network, Validators.required),
                             url: new FormControl(social.url, Validators.required),
@@ -78,7 +87,7 @@ export class AppComponent implements OnInit {
                 )
             }),
             skills: new FormArray(
-                _.map(this.fullCv.skills, function (skill) {
+                _.map(fullCv.skills, function (skill) {
                     return new FormGroup({
                         name: new FormControl(skill.name, Validators.required),
                         level: new FormControl(skill.level, Validators.required),
@@ -88,7 +97,7 @@ export class AppComponent implements OnInit {
                 })
             ),
             references: new FormArray(
-                _.map(this.fullCv.references, function (reference) {
+                _.map(fullCv.references, function (reference) {
                     return new FormGroup({
                         name: new FormControl(reference.name, Validators.required),
                         position: new FormControl(reference.position, Validators.required),
@@ -98,7 +107,7 @@ export class AppComponent implements OnInit {
                 })
             ),
             work: new FormArray(
-                _.map(this.fullCv.work, function (work) {
+                _.map(fullCv.work, function (work) {
                     return new FormGroup({
                         company: new FormControl(work.company, Validators.required),
                         position: new FormControl(work.position, Validators.required),
@@ -111,7 +120,7 @@ export class AppComponent implements OnInit {
                     });
                 })),
             accolades: new FormArray(
-                _.map(this.fullCv.accolades, function (accolade) {
+                _.map(fullCv.accolades, function (accolade) {
                     return new FormGroup({
                         name: new FormControl(accolade.name, Validators.required),
                         from: new FormControl(accolade.from, Validators.required),
@@ -122,7 +131,7 @@ export class AppComponent implements OnInit {
                     });
                 })),
             volunteer: new FormArray(
-                _.map(this.fullCv.volunteer, function (volunteer) {
+                _.map(fullCv.volunteer, function (volunteer) {
                     return new FormGroup({
                         organization: new FormControl(volunteer.organization),
                         position: new FormControl(volunteer.position),
@@ -135,7 +144,7 @@ export class AppComponent implements OnInit {
                     });
                 })),
             education: new FormArray(
-                _.map(this.fullCv.education, function (education) {
+                _.map(fullCv.education, function (education) {
                     return new FormGroup({
                         institution: new FormControl(education.institution, Validators.required),
                         career: new FormControl(education.career, Validators.required),
@@ -147,7 +156,7 @@ export class AppComponent implements OnInit {
                     });
                 })),
             publications: new FormArray(
-                _.map(this.fullCv.publications, function (publication) {
+                _.map(fullCv.publications, function (publication) {
                     return new FormGroup({
                         name: new FormControl(publication.name, Validators.required),
                         publisher: new FormControl(publication.publisher, Validators.required),
@@ -158,7 +167,7 @@ export class AppComponent implements OnInit {
                     });
                 })),
             events: new FormArray(
-                _.map(this.fullCv.events, function (event) {
+                _.map(fullCv.events, function (event) {
                     return new FormGroup({
                         name: new FormControl(event.name, Validators.required),
                         publisher: new FormControl(event.publisher, Validators.required),
@@ -171,7 +180,7 @@ export class AppComponent implements OnInit {
                 })
             ),
             languages: new FormArray(
-                _.map(this.fullCv.languages, function (language) {
+                _.map(fullCv.languages, function (language) {
                     return new FormGroup({
                         language: new FormControl(language.language, Validators.required),
                         level: new FormControl(language.level, Validators.required)
@@ -405,6 +414,7 @@ export class AppComponent implements OnInit {
 
     save(model: CV) {
         this.fullCv.assignFrom(model);
+        this.persistCV(this.fullCv);
         this.filter(this.appliedFilter);
         console.log(model);
     }

@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { CVService } from './cv.service';
 import {BidiModule} from '@angular/cdk/bidi';
 import {ObserversModule} from '@angular/cdk/observers';
 import {OverlayModule} from '@angular/cdk/overlay';
@@ -54,6 +54,8 @@ import { PreviewComponent } from './preview/preview.component';
     PreviewComponent
   ],
   imports: [
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -89,7 +91,7 @@ import { PreviewComponent } from './preview/preview.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [CVService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
