@@ -1,6 +1,11 @@
 export class Language {
     language: String;
     level: String;
+
+    constructor(src: any) {
+        this.language = src.language;
+        this.level = src.level;
+    }
 }
 
 export const languageLevels: String[] = [

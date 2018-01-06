@@ -13,17 +13,41 @@ import { FilterTag } from './filtertag';
 import * as _ from 'underscore';
 
 export class CV {
+  public personal: Personal;
+  public skills: Skill[];
+  public references: Reference[];
+  public work: Work[];
+  public education: Education[];
+  public volunteer: Volunteer[];
+  public accolades: Accolade[];
+  public publications: Publication[];
+  public events: Event[];
+  public languages: Language[];
 
-  constructor(public personal: Personal,
-    public skills: Skill[],
-    public references: Reference[],
-    public work: Work[],
-    public education: Education[],
-    public volunteer: Volunteer[],
-    public accolades: Accolade[],
-    public publications: Publication[],
-    public events: Event[],
-    public languages: Language[]) {
+  constructor(src: any) {
+    this.personal = new Personal(src.personal);
+    this.skills = _.map(src.personal.skills, o => new Skill(o));
+    this.references = _.map(src.references, o => new Reference(o));
+    this.work = _.map(src.references, o => new Work(o));
+    this.education = _.map(src.references, o => new Education(o));
+    this.volunteer = _.map(src.volunteer, o => new Volunteer(o));
+    this.accolades = _.map(src.accolades, o => new Accolade(o));
+    this.publications = _.map(src.publications, o => new Publication(o));
+    this.events = _.map(src.events, o => new Event(o));
+    this.languages = _.map(src.languages, o => new Language(o));
+  }
+
+  assignFromAny(src: any) {
+    this.personal = src.personal;
+    this.skills = src.skills;
+    this.references = src.references;
+    this.work = src.work;
+    this.education = src.education;
+    this.volunteer = src.volunteer;
+    this.accolades = src.accolades;
+    this.publications = src.publications;
+    this.events = src.events;
+    this.languages = src.languages;
   }
 
   assignFrom(src: CV) {
@@ -40,16 +64,7 @@ export class CV {
   }
 
   clone() {
-    return new CV(this.personal,
-      this.skills,
-      this.references,
-      this.work,
-      this.education,
-      this.volunteer,
-      this.accolades,
-      this.publications,
-      this.events,
-      this.languages);
+    return new CV(this);
   }
 
   applyFilter(filter: Filter) {

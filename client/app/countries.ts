@@ -1,6 +1,11 @@
 export class Country {
     name: String;
     code: String;
+
+    constructor(src: any) {
+        this.name = src.name;
+        this.code = src.code;
+    }
 }
 
 export const countries: Country[] = [{name: 'Aruba', code: 'ABW'},
@@ -250,4 +255,5 @@ export const countries: Country[] = [{name: 'Aruba', code: 'ABW'},
 {name: 'Yemen', code: 'YEM'},
 {name: 'South Africa', code: 'ZAF'},
 {name: 'Zambia', code: 'ZMB'},
-{name: 'Zimbabwe', code: 'ZWE'}]
+{name: 'Zimbabwe', code: 'ZWE'} ];
+

@@ -45,7 +45,6 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import { SDKBrowserModule } from '../src/app/shared/sdk/index';
 import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({

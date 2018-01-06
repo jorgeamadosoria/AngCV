@@ -1,6 +1,6 @@
 import { CV } from './cv';
-export const mockCV = new CV(
-  {
+export const mockCV = new CV({
+  personal: {
     name: 'Javier Alsina',
     label: 'Creador de Jsons para Jorge',
     picture: 'https://i.imgur.com/zktRC5t.gif',
@@ -33,7 +33,7 @@ export const mockCV = new CV(
     }
     ]
   },
-  [{
+  skills: [{
     name: 'Automation Testing',
     level: 'Beginner',
     summary: '',
@@ -58,7 +58,7 @@ export const mockCV = new CV(
     tag: 'Development'
   }
   ],
-  [{
+  references: [{
     name: 'Englander George Casablanca IV',
     position: 'Boss',
     mail: 'mailref@mail.com',
@@ -71,7 +71,7 @@ export const mockCV = new CV(
     phone: '+1-202-555-0168'
   }
   ],
-  [{
+  work: [{
     company: 'Globant',
     position: 'CPresident',
     website: 'globamt.com',
@@ -113,7 +113,7 @@ export const mockCV = new CV(
     tag: 'Development'
   }
   ],
-  [{
+  education: [{
     institution: 'University of Montevideo',
     career: 'Engineer',
     startDate: new Date(2010, 6, 1),
@@ -125,7 +125,7 @@ export const mockCV = new CV(
     + ' iaculis. Morbi dolor risus, placerat et ex sodales, luctus cursus libero. Suspendisse potenti. Integer sagittis viverra'
     + ' varius. In vel gravida ante.'
   }],
-  [{
+  volunteer: [{
     organization: 'ACM ICPC',
     position: 'Maestro',
     website: 'https://icpc.baylor.edu/',
@@ -194,7 +194,7 @@ export const mockCV = new CV(
     + ' velit purus. Donec vel risus rhoncus, consectetur orci eu, molestie sem.',
     tag: 'Programming, Development, ACM, ACM-ICPC'
   }],
-  [{
+  accolades: [{
     name: 'Matrix Theorist',
     from: 'Myself',
     date: new Date(2013, 11, 1),
@@ -223,7 +223,7 @@ export const mockCV = new CV(
     + 'placerat maximus. Pellentesque fermentum est mi, eget convallis sapien tempus vitae.',
     tag: 'Development, Net Neutrality, Evil, FCC'
   }],
-  [{
+  publications:[{
     name: 'How to create json',
     publisher: 'Self',
     date: new Date(2014, 10, 1),
@@ -244,7 +244,7 @@ export const mockCV = new CV(
     + ' tis.Nam ultricies lacus lacus, quis pharetra ante fermentum et. Curabitur nec lacinia augue.',
     tag: 'Development'
   }],
-  [{
+  events: [{
     name: 'Conferencia de How to create json',
     publisher: 'Conferences for all',
     startDate: new Date(2014, 10, 1),
@@ -259,13 +259,13 @@ export const mockCV = new CV(
     + ' amet sagittis metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae',
     tag: 'Development'
   }],
-  [{
+  languages: [{
     language: 'English',
     level: 'advanced'
   },
-  {
+   {
     language: 'Spanish',
     level: 'native'
   }
   ]
-);
+});

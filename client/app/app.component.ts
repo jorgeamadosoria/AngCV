@@ -6,12 +6,14 @@ import { Country, countries } from './countries';
 import { Filter } from './filter';
 import { skillLevels } from './skill';
 import { socialKeys } from './socialIcon';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CV } from './cv';
-import { CVService } from './cv.service';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import * as _ from 'underscore';
 import { mockCV } from './mock-cv';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Component({
     selector: 'app-root',
@@ -30,21 +32,28 @@ export class AppComponent implements OnInit {
     languages: String[];
     countries: Country[];
 
-    constructor() { }
+    constructor(private http: HttpClient) { this.http.get('http://localhost:3000/api/cvs/findOne'
+    + '?filter=%7B%22personal%22%3A%7B%22name%22%3A%22Javier%20Alsina%22%7D%7D').map(res => {
+        console.log('res ' + res);
+        this.cv = new CV(res);
+        this.fullCv = this.cv;
+        console.log('fullCv ' + this.cv);
+        this.cv = this.fullCv.clone();
+        this.appliedFilter = this.cv.createFilter();
+        this.cv.applyFilter(this.appliedFilter);
+        this.createForm(this.fullCv);
+        this.initFilterForm(this.appliedFilter);
+    });
+
+    this.socialKeys = socialKeys;
+    this.languageLevels = languageLevels;
+    this.skillLevels = skillLevels;
+    this.languages = languages;
+    this.countries = countries;
+}
 
     getMock() {
         return mockCV;
-    }
-
-    getCV(): void {
-
-            this.cv = this.getMock();
-            this.fullCv = this.cv;
-            this.cv = this.fullCv.clone();
-            this.appliedFilter = this.cv.createFilter();
-            this.cv.applyFilter(this.appliedFilter);
-            this.createForm(this.fullCv);
-            this.initFilterForm(this.appliedFilter);
     }
 
     persistCV(cv): void {
@@ -53,16 +62,12 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getCV();
-        this.socialKeys = socialKeys;
-        this.languageLevels = languageLevels;
-        this.skillLevels = skillLevels;
-        this.languages = languages;
-        this.countries = countries;
+        
     }
 
 
     createForm(fullCv: CV) {
+        console.log(fullCv);
         this.form = new FormGroup({
             personal: new FormGroup({
                 name: new FormControl(fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
