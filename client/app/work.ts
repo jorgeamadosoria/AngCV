@@ -12,8 +12,8 @@ export class Work {
         this.company = src.company;
         this.position = src.position;
         this.website = src.website;
-        this.startDate = src.startDate;
-        this.endDate = src.endDate;
+        this.startDate = new Date(src.startDate);
+        this.endDate = new Date(src.endDate);
         this.tag = src.tag;
         this.summary = src.summary;
         this.logo = src.logo;

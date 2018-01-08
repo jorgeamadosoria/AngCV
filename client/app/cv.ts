@@ -26,15 +26,16 @@ export class CV {
 
   constructor(src: any) {
     this.personal = new Personal(src.personal);
-    this.skills = _.map(src.personal.skills, o => new Skill(o));
+    this.skills = _.map(src.skills, o => new Skill(o));
     this.references = _.map(src.references, o => new Reference(o));
-    this.work = _.map(src.references, o => new Work(o));
-    this.education = _.map(src.references, o => new Education(o));
+    this.work = _.map(src.work, o => new Work(o));
+    this.education = _.map(src.education, o => new Education(o));
     this.volunteer = _.map(src.volunteer, o => new Volunteer(o));
     this.accolades = _.map(src.accolades, o => new Accolade(o));
     this.publications = _.map(src.publications, o => new Publication(o));
     this.events = _.map(src.events, o => new Event(o));
     this.languages = _.map(src.languages, o => new Language(o));
+  //  console.log("Work array " + JSON.stringify(this.work));
   }
 
   assignFromAny(src: any) {
@@ -93,7 +94,7 @@ export class CV {
 
   createFilter() {
     let tags: string[] = [];
-    const lambda = obj => tags = tags.concat(obj.tag.split(','));
+    const lambda = obj => tags = obj.tag ? tags.concat(obj.tag.split(',')) : [];
     this.accolades.map(lambda);
     this.events.map(lambda);
     this.publications.map(lambda);
@@ -105,13 +106,11 @@ export class CV {
       _.min(this.events.map(obj => obj.startDate.getTime())),
       _.min(this.volunteer.map(obj => obj.startDate.getTime())),
       _.min(this.publications.map(obj => obj.date.getTime()))));
-      console.log(startDate);
       const endDate = new Date(Math.max(
       _.max(this.work.map(obj => obj.endDate.getTime())),
       _.max(this.events.map(obj => obj.endDate.getTime())),
       _.max(this.volunteer.map(obj => obj.endDate.getTime())),
       _.max(this.publications.map(obj => obj.date.getTime()))));
-
     return <Filter>{
       tags: _.reject(_.uniq(tags), obj => obj === ''),
       startDate: startDate, endDate: endDate

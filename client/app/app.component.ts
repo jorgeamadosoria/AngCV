@@ -32,25 +32,7 @@ export class AppComponent implements OnInit {
     languages: String[];
     countries: Country[];
 
-    constructor(private http: HttpClient) { this.http.get('http://localhost:3000/api/cvs/findOne'
-    + '?filter=%7B%22personal%22%3A%7B%22name%22%3A%22Javier%20Alsina%22%7D%7D').map(res => {
-        console.log('res ' + res);
-        this.cv = new CV(res);
-        this.fullCv = this.cv;
-        console.log('fullCv ' + this.cv);
-        this.cv = this.fullCv.clone();
-        this.appliedFilter = this.cv.createFilter();
-        this.cv.applyFilter(this.appliedFilter);
-        this.createForm(this.fullCv);
-        this.initFilterForm(this.appliedFilter);
-    });
-
-    this.socialKeys = socialKeys;
-    this.languageLevels = languageLevels;
-    this.skillLevels = skillLevels;
-    this.languages = languages;
-    this.countries = countries;
-}
+    constructor(private http: HttpClient) {}
 
     getMock() {
         return mockCV;
@@ -62,12 +44,27 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        this.http.get('http://localhost:3000/api/cvs/findOne'
+        + '?filter=%7B%22personal%22%3A%7B%22name%22%3A%22Javier%20Alsina%22%7D%7D')
+        .subscribe(res => {
+            this.cv = new CV(res);
+            this.fullCv = new CV(res);
+            this.appliedFilter = this.cv.createFilter();
+            this.cv.applyFilter(this.appliedFilter);
+            this.createForm(this.fullCv);
+            this.initFilterForm(this.appliedFilter);
+            console.log(this.fullCv);
+        });
+
+        this.socialKeys = socialKeys;
+        this.languageLevels = languageLevels;
+        this.skillLevels = skillLevels;
+        this.languages = languages;
+        this.countries = countries;
     }
 
 
     createForm(fullCv: CV) {
-        console.log(fullCv);
         this.form = new FormGroup({
             personal: new FormGroup({
                 name: new FormControl(fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
@@ -192,7 +189,7 @@ export class AppComponent implements OnInit {
                     });
                 })
             )
-        });
+        }); 
     }
 
     onChangePic(event) {
