@@ -1,22 +1,24 @@
 {
-  "restApiRoot": "/api",
-  "host": "0.0.0.0",
-  "port": 3000,
-  "remoting": {
-    "context": false,
-    "rest": {
-      "handleErrors": false,
-      "normalizeHttpPath": false,
-      "xml": false
-    },
-    "json": {
-      "strict": false,
-      "limit": "100kb"
-    },
-    "urlencoded": {
-      "extended": true,
-      "limit": "100kb"
-    },
-    "cors": false
-  }
+    "restApiRoot": "/api",
+    "host": "0.0.0.0",
+    "port": 3000,
+    "remoting": {
+        "context": false,
+        "rest": {
+            "handleErrors": false,
+            "normalizeHttpPath": false,
+            "xml": false
+        },
+        "json": {
+            "strict": false,
+            "limit": "100kb"
+        },
+        "urlencoded": {
+            "extended": true,
+            "limit": "100kb"
+        },
+        "cors": false
+    }
 }
+/*1038669607477-72jchidr8fm378pf02qncnek749737e8.apps.googleusercontent.com
+CMOruiGo4RqEfyLH8wKqNxtq*/
