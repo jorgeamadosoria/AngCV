@@ -13,6 +13,7 @@ import { FilterTag } from './filtertag';
 import * as _ from 'underscore';
 
 export class CV {
+  public login: String; // field to query on the server
   public personal: Personal;
   public skills: Skill[];
   public references: Reference[];
@@ -25,6 +26,7 @@ export class CV {
   public languages: Language[];
 
   constructor(src: any) {
+    this.login = src.login;
     this.personal = new Personal(src.personal);
     this.skills = _.map(src.skills, o => new Skill(o));
     this.references = _.map(src.references, o => new Reference(o));
@@ -35,10 +37,10 @@ export class CV {
     this.publications = _.map(src.publications, o => new Publication(o));
     this.events = _.map(src.events, o => new Event(o));
     this.languages = _.map(src.languages, o => new Language(o));
-  //  console.log("Work array " + JSON.stringify(this.work));
   }
-
+/*/
   assignFromAny(src: any) {
+    this.login = src.login;
     this.personal = src.personal;
     this.skills = src.skills;
     this.references = src.references;
@@ -50,7 +52,7 @@ export class CV {
     this.events = src.events;
     this.languages = src.languages;
   }
-
+*/
   assignFrom(src: CV) {
     this.personal = src.personal;
     this.skills = src.skills;
@@ -69,7 +71,6 @@ export class CV {
   }
 
   applyFilter(filter: Filter) {
-    console.log('checked ' + filter.tags);
     const lambda = obj => obj.tag && _.intersection(filter.tags, obj.tag.split(',')).length === 0;
     this.accolades = _.reject(this.accolades, lambda);
     this.events = _.reject(this.events, lambda);

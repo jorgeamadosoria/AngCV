@@ -11,7 +11,6 @@ import { CV } from './cv';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import * as _ from 'underscore';
-import { mockCV } from './mock-cv';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -31,21 +30,25 @@ export class AppComponent implements OnInit {
     skillLevels: String[];
     languages: String[];
     countries: Country[];
+    server: String;
 
-    constructor(private http: HttpClient) {}
-
-    getMock() {
-        return mockCV;
+    constructor(private http: HttpClient) {
+        this.server = 'http://localhost:3000/api';
     }
 
-    persistCV(cv): void {
-        //  this.cvApi.upsert(cv).subscribe(r => ret = r, err => console.log(err) );
-       // this.service.persistCV(cv);
+    persistCV(cv: CV): void {
+        console.log(this.fullCv);
+        const login = 'jasx89@gmail.com';
+
+        this.http.post(this.server + '/cvs/upsertWithWhere?where='
+        + encodeURI('{"login":"' + login + '"}'), cv, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json'),
+          }).subscribe(res => console.log(res));
     }
 
     ngOnInit() {
-        this.http.get('http://localhost:3000/api/cvs/findOne'
-        + '?filter=%7B%22personal%22%3A%7B%22name%22%3A%22Javier%20Alsina%22%7D%7D')
+        const login = 'jasx89@gmail.com';
+        this.http.get(this.server + '/cvs/findOne?' + encodeURI('{"where":{"login":"' + login + '"}}'))
         .subscribe(res => {
             this.cv = new CV(res);
             this.fullCv = new CV(res);
@@ -193,9 +196,7 @@ export class AppComponent implements OnInit {
     }
 
     onChangePic(event) {
-        console.log(event.target.value);
         this.fullCv.personal.picture = event.target.value;
-        console.log(this.fullCv.personal.picture);
     }
 
     initSocial() {
@@ -214,7 +215,6 @@ export class AppComponent implements OnInit {
         const control = <FormArray>this.form.controls['personal'];
         control.controls['social'].removeAt(i);
     }
-
 
     initSkills() {
         return new FormGroup({
@@ -276,7 +276,6 @@ export class AppComponent implements OnInit {
         const control = <FormArray>this.form.controls['work'];
         control.removeAt(i);
     }
-
 
     initEducation() {
         return new FormGroup({
@@ -405,7 +404,6 @@ export class AppComponent implements OnInit {
     }
 
     initFilterForm(filter: Filter) {
-        console.log('init ' + filter.tags);
         this.filterForm = new FormGroup({
             tags: new FormArray(
                 filter.tags.map(obj => new FormControl(obj))),
@@ -416,9 +414,9 @@ export class AppComponent implements OnInit {
 
     save(model: CV) {
         this.fullCv.assignFrom(model);
+        
         this.persistCV(this.fullCv);
         this.filter(this.appliedFilter);
-        console.log(model);
     }
 
     filter(filter: Filter) {
@@ -426,6 +424,5 @@ export class AppComponent implements OnInit {
         this.cv.applyFilter(filter);
         this.initFilterForm(this.fullCv.createFilter());
         this.appliedFilter = filter;
-        console.log(filter);
     }
 }

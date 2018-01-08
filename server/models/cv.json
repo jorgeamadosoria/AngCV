@@ -7,6 +7,11 @@
         "validateUpsert": true
     },
     "properties": {
+
+        "login": {
+            "type": "string",
+            "required": true
+        },
         "personal": {
             "type": "object",
             "required": true
