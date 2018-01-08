@@ -17,6 +17,17 @@
     float: left;
 }
 
+.app-logo {
+    max-width: 50px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+}
+
+svg path {
+    fill: white;
+}
+
 .logo {
     max-width: 80px;
     max-height: 80px;
@@ -40,11 +51,11 @@ mat-grid-list.personal-card {
 mat-grid-tile.personal-content {
     margin-top: unset !important;
 }
+
 mat-grid-tile.personal-content-image {
     margin-top: unset !important;
     padding-top: 25% !important;
 }
-
 
 mat-grid-tile.timeline-header .mat-figure {
     justify-content: unset !important;
@@ -55,8 +66,8 @@ mat-grid-tile.timeline-content {
     margin-top: unset !important;
 }
 
-.timeline-header .mat-figure h4{
-    margin:0;
+.timeline-header .mat-figure h4 {
+    margin: 0;
 }
 
 .summary-container {
