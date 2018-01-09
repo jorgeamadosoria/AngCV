@@ -1,9 +1,41 @@
 'use strict';
 
 var loopback = require('loopback');
+var path = require('path');
 var boot = require('loopback-boot');
+var PassportConfigurator = require('loopback-component-passport').PassportConfigurator;
+var passportConfigurator = new PassportConfigurator(app);
 
 var app = module.exports = loopback();
+
+app.use(loopback.session({ secret: 'keyboard cat' }));
+
+var config = {};
+try {
+	config = require('../providers.json');
+} catch (err) {
+	console.trace(err);
+	process.exit(1); // fatal
+}
+
+// Initialize passport
+passportConfigurator.init();
+
+// Set up related models
+passportConfigurator.setupModels({
+ userModel: app.models.user,
+ userIdentityModel: app.models.userIdentity,
+ userCredentialModel: app.models.userCredential
+});
+
+// Configure passport strategies for third party auth providers
+for(var s in config) {
+  var c = config[s];
+  c.session = c.session !== false;
+  passportConfigurator.configureProvider(s, c);
+ }
+
+
 
 app.start = function() {
   // start the web server
