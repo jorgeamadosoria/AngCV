@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CV } from './../cv';
-import { socials } from './../socialIcon';
+import { CV } from '../../../common/cv';
+import { socials } from '../../../common/socialIcon';
 
 @Component({
   selector: 'app-preview',

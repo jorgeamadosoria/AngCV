@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Event } from './event';
-import { Language, languages, languageLevels } from './language';
-import { Country, countries } from './countries';
-import { Filter } from './filter';
-import { skillLevels } from './skill';
-import { socialKeys } from './socialIcon';
+import { Event } from '../../common/event';
+import { Language, languages, languageLevels } from '../../common/language';
+import { Country, countries } from '../../common/countries';
+import { Filter } from '../../common/filter';
+import { skillLevels } from '../../common/skill';
+import { socialKeys } from '../../common/socialIcon';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CV } from './cv';
+import { CV } from '../../common/cv';
 import {MatChipInputEvent} from '@angular/material';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import * as _ from 'underscore';
@@ -30,33 +30,33 @@ export class AppComponent implements OnInit {
     skillLevels: String[];
     languages: String[];
     countries: Country[];
-    server: String;
 
-    constructor(private http: HttpClient) {
-        this.server = 'http://localhost:3000/api';
-    }
+    constructor(private http: HttpClient) { }
 
     persistCV(cv: CV): void {
         console.log(this.fullCv);
         const login = 'jasx89@gmail.com';
 
-        this.http.post(this.server + '/cvs/upsertWithWhere?where='
-        + encodeURI('{"login":"' + login + '"}'), cv, {
+        this.http.post('http://localhost:3000/api', cv, {
             headers: new HttpHeaders().set('Content-Type', 'application/json'),
           }).subscribe(res => console.log(res));
     }
 
+    initializeCV(cv: CV): void {
+        this.appliedFilter = this.cv.createFilter();
+        this.cv.applyFilter(this.appliedFilter);
+        this.createForm(this.fullCv);
+        this.initFilterForm(this.appliedFilter);
+        console.log(this.fullCv);
+    }
+
     ngOnInit() {
         const login = 'jasx89@gmail.com';
-        this.http.get(this.server + '/cvs/findOne?' + encodeURI('{"where":{"login":"' + login + '"}}'))
+        this.http.get('http://localhost:3000/api')
         .subscribe(res => {
             this.cv = new CV(res);
             this.fullCv = new CV(res);
-            this.appliedFilter = this.cv.createFilter();
-            this.cv.applyFilter(this.appliedFilter);
-            this.createForm(this.fullCv);
-            this.initFilterForm(this.appliedFilter);
-            console.log(this.fullCv);
+            this.initializeCV(this.cv);
         });
 
         this.socialKeys = socialKeys;

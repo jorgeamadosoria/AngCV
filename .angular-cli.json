@@ -4,7 +4,7 @@
         "name": "ang-cv"
     },
     "apps": [{
-        "root": "client",
+        "root": "src",
         "outDir": "dist",
         "assets": [
             "assets",
