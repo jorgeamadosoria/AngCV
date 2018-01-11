@@ -1,4 +1,5 @@
 var model = require('../data/cv');
+var mongoose = require('mongoose');
 
 module.exports = {
 
@@ -16,6 +17,6 @@ module.exports = {
     },
 
     findById: function(id) {
-        return model.findById(mongoose.Types.ObjectId(id)).lean().exec();
+        return model.findById(mongoose.Types.ObjectId(id)).exec();
     }
 };

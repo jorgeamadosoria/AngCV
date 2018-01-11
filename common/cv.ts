@@ -38,34 +38,6 @@ export class CV {
     this.events = _.map(src.events, o => new Event(o));
     this.languages = _.map(src.languages, o => new Language(o));
   }
-/*/
-  assignFromAny(src: any) {
-    this.login = src.login;
-    this.personal = src.personal;
-    this.skills = src.skills;
-    this.references = src.references;
-    this.work = src.work;
-    this.education = src.education;
-    this.volunteer = src.volunteer;
-    this.accolades = src.accolades;
-    this.publications = src.publications;
-    this.events = src.events;
-    this.languages = src.languages;
-  }
-*/
-  assignFrom(src: CV) {
-    this.personal = src.personal;
-    this.skills = src.skills;
-    this.references = src.references;
-    this.work = src.work;
-    this.education = src.education;
-    this.volunteer = src.volunteer;
-    this.accolades = src.accolades;
-    this.publications = src.publications;
-    this.events = src.events;
-    this.languages = src.languages;
-  }
-
   clone() {
     return new CV(this);
   }

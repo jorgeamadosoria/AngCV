@@ -3,7 +3,7 @@ import { Location } from './location';
 import * as _ from 'underscore';
 
 export class Personal {
-    name: String;
+    fullname: String;
     label: String;
     picture: String;
     email: String;
@@ -13,7 +13,8 @@ export class Personal {
     social: Social[];
 
     constructor(src: any) {
-    this.name = src.name;
+        console.log("constructor " + src.fullname);
+    this.fullname = src.fullname;
     this.label = src.label;
     this.picture = src.picture;
     this.email = src.email;

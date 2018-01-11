@@ -1,6 +1,6 @@
 module.exports = {
     personal: {
-        name: 'Javier Alsina',
+        fullname: 'Javier X Alsina',
         label: 'Creador de Jsons para Jorge',
         picture: 'https://i.imgur.com/zktRC5t.gif',
         email: 'mail@mail.com',

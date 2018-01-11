@@ -47,15 +47,16 @@ export class AppComponent implements OnInit {
         this.cv.applyFilter(this.appliedFilter);
         this.createForm(this.fullCv);
         this.initFilterForm(this.appliedFilter);
-        console.log(this.fullCv);
     }
 
     ngOnInit() {
         const login = 'jasx89@gmail.com';
         this.http.get('http://localhost:3000/api')
         .subscribe(res => {
+         //   console.log('result '+ JSON.stringify(res));
             this.cv = new CV(res);
             this.fullCv = new CV(res);
+            console.log('result '+ this.fullCv.personal.fullname);
             this.initializeCV(this.cv);
         });
 
@@ -68,9 +69,10 @@ export class AppComponent implements OnInit {
 
 
     createForm(fullCv: CV) {
+        console.log("fullname " + fullCv.personal.fullname);
         this.form = new FormGroup({
             personal: new FormGroup({
-                name: new FormControl(fullCv.personal.name, [Validators.required, Validators.minLength(5)]),
+                fullname: new FormControl(fullCv.personal.fullname, [Validators.required]),
                 label: new FormControl(fullCv.personal.label, [Validators.required]),
                 picture: new FormControl(fullCv.personal.picture, [Validators.required]),
                 email: new FormControl(fullCv.personal.email, [Validators.required]),
@@ -412,15 +414,15 @@ export class AppComponent implements OnInit {
         });
     }
 
-    save(model: CV) {
-        this.fullCv.assignFrom(model);
-        
-        this.persistCV(this.fullCv);
+    save(model: any) {
+        console.log('name ' + model.personal.fullname);
+        this.fullCv = new CV(model);
+        this.persistCV(model);
         this.filter(this.appliedFilter);
     }
 
     filter(filter: Filter) {
-        this.cv = this.fullCv.clone();
+        this.cv = new CV(this.fullCv);
         this.cv.applyFilter(filter);
         this.initFilterForm(this.fullCv.createFilter());
         this.appliedFilter = filter;

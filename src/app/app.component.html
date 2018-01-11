@@ -20,7 +20,7 @@
                                 </mat-grid-tile>
                                 <mat-grid-tile>
                                     <mat-form-field>
-                                        <input matInput formControlName="name" name="name" placeholder="name">
+                                        <input matInput formControlName="fullname" name="fullname" placeholder="fullx name">
                                     </mat-form-field>
                                 </mat-grid-tile>
                                 <mat-grid-tile>
@@ -893,6 +893,7 @@
       About
     </button>
     </mat-toolbar>
+    {{from.value.personal.fullname}}
     <br>
     <app-preview [pCv]="cv"></app-preview>
     <br>
