@@ -13,7 +13,7 @@ import { FilterTag } from './filtertag';
 import * as _ from 'underscore';
 
 export class CV {
-  public login: String; // field to query on the server
+  public _id: String; // field to query on the server
   public personal: Personal;
   public skills: Skill[];
   public references: Reference[];
@@ -26,7 +26,7 @@ export class CV {
   public languages: Language[];
 
   constructor(src: any) {
-    this.login = src.login;
+    this._id = src._id;
     this.personal = new Personal(src.personal);
     this.skills = _.map(src.skills, o => new Skill(o));
     this.references = _.map(src.references, o => new Reference(o));

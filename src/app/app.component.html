@@ -1,6 +1,7 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="example-container" *ngIf="form">
     <mat-drawer #formDrawer class="example-left-sidenav" mode="over">
         <form [formGroup]="form" novalidate (ngSubmit)="formDrawer.toggle() && save(form.value)">
+            <input type="hidden" formControlName="_id" name="_id">
             <mat-accordion class="example-headers-align">
                 <mat-expansion-panel hideToggle="true">
                     <mat-expansion-panel-header>
@@ -20,7 +21,7 @@
                                 </mat-grid-tile>
                                 <mat-grid-tile>
                                     <mat-form-field>
-                                        <input matInput formControlName="fullname" name="fullname" placeholder="fullx name">
+                                        <input matInput formControlName="fullname" name="fullname" placeholder="full name">
                                     </mat-form-field>
                                 </mat-grid-tile>
                                 <mat-grid-tile>
@@ -893,7 +894,6 @@
       About
     </button>
     </mat-toolbar>
-    {{from.value.personal.fullname}}
     <br>
     <app-preview [pCv]="cv"></app-preview>
     <br>

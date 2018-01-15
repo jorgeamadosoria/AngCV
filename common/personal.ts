@@ -13,7 +13,6 @@ export class Personal {
     social: Social[];
 
     constructor(src: any) {
-        console.log("constructor " + src.fullname);
     this.fullname = src.fullname;
     this.label = src.label;
     this.picture = src.picture;

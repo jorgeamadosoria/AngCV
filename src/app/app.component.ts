@@ -31,33 +31,15 @@ export class AppComponent implements OnInit {
     languages: String[];
     countries: Country[];
 
-    constructor(private http: HttpClient) { }
-
-    persistCV(cv: CV): void {
-        console.log(this.fullCv);
-        const login = 'jasx89@gmail.com';
-
-        this.http.post('http://localhost:3000/api', cv, {
-            headers: new HttpHeaders().set('Content-Type', 'application/json'),
-          }).subscribe(res => console.log(res));
-    }
-
-    initializeCV(cv: CV): void {
-        this.appliedFilter = this.cv.createFilter();
-        this.cv.applyFilter(this.appliedFilter);
-        this.createForm(this.fullCv);
-        this.initFilterForm(this.appliedFilter);
-    }
-
-    ngOnInit() {
-        const login = 'jasx89@gmail.com';
-        this.http.get('http://localhost:3000/api')
+    constructor(private http: HttpClient) {
+        this.http.get('http://localhost:3000/api?_id=5a5792fd1976a60980781076')
         .subscribe(res => {
-         //   console.log('result '+ JSON.stringify(res));
             this.cv = new CV(res);
             this.fullCv = new CV(res);
-            console.log('result '+ this.fullCv.personal.fullname);
-            this.initializeCV(this.cv);
+            this.createForm(this.fullCv);
+            this.appliedFilter = this.cv.createFilter();
+            this.cv.applyFilter(this.appliedFilter);
+            this.initFilterForm(this.appliedFilter);
         });
 
         this.socialKeys = socialKeys;
@@ -65,18 +47,30 @@ export class AppComponent implements OnInit {
         this.skillLevels = skillLevels;
         this.languages = languages;
         this.countries = countries;
+
+    }
+
+    persistCV(cv: CV): void {
+        this.http.post('http://localhost:3000/api', cv, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json'),
+          }).subscribe(res => console.log(res));
+    }
+
+    ngOnInit() {
+
     }
 
 
     createForm(fullCv: CV) {
-        console.log("fullname " + fullCv.personal.fullname);
-        this.form = new FormGroup({
+      //  console.log("fullname " + fullCv.personal.fullname);
+      this.form = new FormGroup({
+            _id: new FormControl(fullCv._id),
             personal: new FormGroup({
-                fullname: new FormControl(fullCv.personal.fullname, [Validators.required]),
-                label: new FormControl(fullCv.personal.label, [Validators.required]),
-                picture: new FormControl(fullCv.personal.picture, [Validators.required]),
-                email: new FormControl(fullCv.personal.email, [Validators.required]),
-                phone: new FormControl(fullCv.personal.phone, [Validators.required]),
+                fullname: new FormControl(fullCv.personal.fullname),
+                label: new FormControl(fullCv.personal.label),
+                picture: new FormControl(fullCv.personal.picture),
+                email: new FormControl(fullCv.personal.email),
+                phone: new FormControl(fullCv.personal.phone),
                 summary: new FormControl(fullCv.personal.summary),
                 location: new FormGroup({
                     address: new FormControl(fullCv.personal.location.address),
@@ -194,7 +188,7 @@ export class AppComponent implements OnInit {
                     });
                 })
             )
-        }); 
+        });
     }
 
     onChangePic(event) {
