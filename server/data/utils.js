@@ -1,20 +1,21 @@
 var express = require('express');
 var _ = require("underscore");
 var moment = require("moment");
+var path = require("path");
 
 module.exports = {
 
 
-    loggedRole: function(roles) {
-        var alwaysLoggedIn = true;
+    loggedRole: function() {
+        var alwaysLoggedIn = false;
 
         return function(req, res, next) {
             if (!alwaysLoggedIn) {
 
                 res.locals.user = req.user;
-                if (req.user && req.isAuthenticated() && _.contains(roles, req.user.role))
+                if (req.user && req.isAuthenticated())
                     return next();
-                res.redirect('/login');
+                res.redirect('api/login');
             } else {
                 res.locals.user = { google: { name: "DEBUG", email: "email" }, role: "admin" };
                 return next();

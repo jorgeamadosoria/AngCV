@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
             this.appliedFilter = this.cv.createFilter();
             this.cv.applyFilter(this.appliedFilter);
             this.initFilterForm(this.appliedFilter);
-        });
+        }, err => console.log(err));
 
         this.socialKeys = socialKeys;
         this.languageLevels = languageLevels;
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     persistCV(cv: CV): void {
         this.http.post('http://localhost:3000/api', cv, {
             headers: new HttpHeaders().set('Content-Type', 'application/json'),
-          }).subscribe(res => console.log(res));
+          }).subscribe(res => console.log(res), err => console.log(err));
     }
 
     ngOnInit() {
@@ -409,7 +409,6 @@ export class AppComponent implements OnInit {
     }
 
     save(model: any) {
-        console.log('name ' + model.personal.fullname);
         this.fullCv = new CV(model);
         this.persistCV(model);
         this.filter(this.appliedFilter);
