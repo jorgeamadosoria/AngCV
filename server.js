@@ -48,7 +48,7 @@ api.get('/auth/google', passport.authenticate('google', {
 api.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/',
-        failureRedirect: '/api/login'
+        failureRedirect: '/login'
     }));
 
 app.use(express.static(path.join(__dirname, 'server/views')))
