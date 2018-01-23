@@ -6,7 +6,7 @@ var path = require("path");
 module.exports = {
 
     loggedRole: function() {
-        var alwaysLoggedIn = false;
+        var alwaysLoggedIn = true;
 
         return function(req, res, next) {
             if (!alwaysLoggedIn) {
