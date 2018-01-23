@@ -9,7 +9,7 @@ var path = require('path');
 var router = express.Router();
 router.get('/login', (req, res) => {
     //  console.log(path.join(__dirname, '../views/login.html'));
-    res.redirect(path.join(__dirname, '../views/login.html'));
+    res.render(path.join(__dirname, '../views/login.html'));
 });
 
 router.get('/', utils.loggedRole(), (req, res) => {

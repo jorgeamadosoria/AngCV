@@ -14,14 +14,13 @@ module.exports = function(passport) {
 
     // load the auth variables
     var configAuth = {
-    
+
         'googleAuth': {
-            'clientID': process.env.GOOGLEAUTH_CLIENTID,
-            'clientSecret': process.env.GOOGLEAUTH_CLIENTSECRET,
-            'callbackURL': process.env.GOOGLEAUTH_CALLBACKURL,
-            'realm': process.env.GOOGLEAUTH_REALM
+            'clientID': '1038669607477-72jchidr8fm378pf02qncnek749737e8.apps.googleusercontent.com',
+            'clientSecret': 'CMOruiGo4RqEfyLH8wKqNxtq',
+            'callbackURL': 'http://localhost:3000/auth/google/callback'
         }
-    
+
     };
 
 
@@ -82,11 +81,10 @@ module.exports = function(passport) {
 
     passport.use(new GoogleStrategy({
 
-            clientID: configAuth.googleAuth.clientID,
-            clientSecret: configAuth.googleAuth.clientSecret,
-            callbackURL: configAuth.googleAuth.callbackURL,
-            realm: configAuth.googleAuth.realm
-        },userCallback
-        ));
+        clientID: configAuth.googleAuth.clientID,
+        clientSecret: configAuth.googleAuth.clientSecret,
+        callbackURL: configAuth.googleAuth.callbackURL,
+        realm: configAuth.googleAuth.realm
+    }, userCallback));
 
 };

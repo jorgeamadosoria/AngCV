@@ -1,13 +1,12 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-var promise = mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL +
-  process.env.OPENSHIFT_APP_NAME, {
+var promise = mongoose.connect('mongodb://localhost:27017/angcv', {
     useMongoClient: true,
-  });
+});
 
-  promise.then(function(db) {
+promise.then(function(db) {
     db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-  });
+});
 
 module.exports = mongoose;
