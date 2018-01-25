@@ -47,26 +47,22 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { PreviewComponent } from './preview/preview.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
-  { path: 'crisis-center', component: CrisisListComponent },
-  { path: 'hero/:id',      component: HeroDetailComponent },
-  {
-    path: 'heroes',
-    component: HeroListComponent,
-    data: { title: 'Heroes List' }
-  },
-  { path: '',
-    redirectTo: '/heroes',
-    pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'index', component: AppComponent },
+  { path: 'login',      component: LoginComponent },
+  { path: 'dashboard',      component: DashboardComponent },
+  { path: '', redirectTo: '/index', pathMatch: 'full' },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PreviewComponent
+    PreviewComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     RouterModule.forRoot(
