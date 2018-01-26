@@ -7,14 +7,11 @@ var path = require('path');
 
 
 var router = express.Router();
-router.get('/login', (req, res) => {
-    //  console.log(path.join(__dirname, '../views/login.html'));
-    res.render(path.join(__dirname, '../views/login.html'));
-});
 
 router.get('/', utils.loggedRole(), (req, res) => {
     console.log(req.query._id);
     service.findById(req.query._id).then(obj => {
+        console.log(JSON.stringify(obj));
         res.send(JSON.stringify(obj));
     });
     //   res.send(JSON.stringify(mockCV));
