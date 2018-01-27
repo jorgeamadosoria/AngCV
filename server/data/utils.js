@@ -6,7 +6,7 @@ var path = require("path");
 module.exports = {
 
     loggedRole: function() {
-        var alwaysLoggedIn = true;
+        var alwaysLoggedIn = false;
 
         return function(req, res, next) {
             if (!alwaysLoggedIn) {
@@ -14,7 +14,7 @@ module.exports = {
                 res.locals.user = req.user;
                 if (req.user && req.isAuthenticated())
                     return next();
-                res.redirect('api/login');
+                res.sendStatus(401);
             } else {
                 res.locals.user = { google: { name: "DEBUG", email: "email" }, role: "admin" };
                 return next();

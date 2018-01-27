@@ -17,7 +17,6 @@ const api = require('./server/routes/api');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'server/views'));
 app.engine('html', require('ejs').renderFile);
 app.use(cookieParser());
 
@@ -44,6 +43,11 @@ api.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
+api.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 // the callback after google has authenticated the user
 api.get('/auth/google/callback',
     passport.authenticate('google', {
@@ -53,7 +57,7 @@ api.get('/auth/google/callback',
 
 app.use(express.static(path.join(__dirname, 'server/views')))
     // Set our api routes
-app.use('/api', api);
+app.use('/', api);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

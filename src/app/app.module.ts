@@ -47,12 +47,16 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { PreviewComponent } from './preview/preview.component';
+import { AuthGuard } from './AuthGuard';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
+
+
 const appRoutes: Routes = [
   { path: 'login',      component: LoginComponent },
-  { path: 'dashboard',      component: DashboardComponent },
+  { path: 'dashboard',      component: DashboardComponent, canActivate: [ AuthGuard ] },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
@@ -63,6 +67,7 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent
   ],
+  providers: [AuthGuard],
   imports: [
     RouterModule.forRoot(
       appRoutes,
@@ -105,7 +110,6 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
