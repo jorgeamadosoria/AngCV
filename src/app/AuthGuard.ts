@@ -1,26 +1,25 @@
-import {Injectable }from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import {
-  CanActivate, Router, 
-  ActivatedRouteSnapshot, 
+  CanActivate, Router,
+  ActivatedRouteSnapshot,
   RouterStateSnapshot
-}from '@angular/router'; 
-import {HttpClient, HttpHeaders }from '@angular/common/http'; 
-import {Observable }from 'rxjs/Observable'; 
-import 'rxjs/add/observable/of'; 
-import 'rxjs/add/operator/do'; 
-import 'rxjs/add/operator/delay'; 
+} from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../../common/user';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  user: User;
 
-  auth(fallback): Observable < boolean >  {
+  auth(success, fallback): Observable<boolean> {
 
-    return this.http.get('/auth/check').map((res) => res ? true : fallback() );
+    return this.http.get('/auth/check').map((res) => res ? success(res) : fallback(res));
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable < boolean >  {
-    return this.auth((res) => {this.router.navigate(['/login']); return false; });
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.auth((res) => { this.user = new User(res); return true; }, (res) => { this.router.navigate(['/login']); return false; });
   }
 }

@@ -16,7 +16,7 @@ module.exports = {
         return model.findByIdAndRemove(mongoose.Types.ObjectId(id)).exec();
     },
 
-    findById: function(id) {
-        return model.findById(mongoose.Types.ObjectId(id)).exec();
+    findById: function(email) {
+        return model.findOne({"email":email});
     }
 };

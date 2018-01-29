@@ -79,7 +79,7 @@ export class CV {
       _.min(this.events.map(obj => obj.startDate.getTime())),
       _.min(this.volunteer.map(obj => obj.startDate.getTime())),
       _.min(this.publications.map(obj => obj.date.getTime()))));
-      const endDate = new Date(Math.max(
+    const endDate = new Date(Math.max(
       _.max(this.work.map(obj => obj.endDate.getTime())),
       _.max(this.events.map(obj => obj.endDate.getTime())),
       _.max(this.volunteer.map(obj => obj.endDate.getTime())),

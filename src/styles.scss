@@ -8,6 +8,12 @@
     list-style-type: none;
 }
 
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+
 .skill-button-left {
     margin-right: 0px !important;
     margin-left: 0px !important;
@@ -15,6 +21,11 @@
     border-top-left-radius: 20px !important;
     border-bottom-left-radius: 20px !important;
     float: left;
+}
+
+.filter-option {
+    position: absolute;
+  left: 5px;
 }
 
 .app-logo {

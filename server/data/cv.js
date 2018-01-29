@@ -3,6 +3,7 @@ mongoose = require('./connect');
 var mongoose = require('mongoose');
 
 var cvSchema = mongoose.Schema({
+    "email": String,
     "personal": {
         "fullname": String,
         "label": String,

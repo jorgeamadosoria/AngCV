@@ -1,4 +1,5 @@
 module.exports = {
+    email: 'darksoul.uci@gmail.com',
     personal: {
         fullname: 'Javier X Alsina',
         label: 'Creador de Jsons para Jorge',
