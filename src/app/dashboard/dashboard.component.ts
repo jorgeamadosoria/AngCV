@@ -15,6 +15,8 @@ import { AuthGuard } from '../AuthGuard';
 import * as _ from 'underscore';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import { AboutComponent } from '../about/about.component';
 
 @Component({
     selector: 'app-dashboard',
@@ -33,8 +35,10 @@ export class DashboardComponent implements OnInit {
     languages: String[];
     countries: Country[];
     user: User;
+    dialogRef: MatDialogRef<AboutComponent>;
 
-    constructor(private authGuard: AuthGuard, private http: HttpClient) {
+
+    constructor(private dialog: MatDialog, private authGuard: AuthGuard, private http: HttpClient) {
         this.user = authGuard.user;
         this.http.get('http://localhost:3000/api')
             .subscribe(res => {
@@ -53,6 +57,11 @@ export class DashboardComponent implements OnInit {
         this.countries = countries;
 
     }
+
+    openAboutDialog() {
+        this.dialogRef = this.dialog.open(AboutComponent, {
+            hasBackdrop: false});
+      }
 
     persistCV(cv: CV): void {
         this.http.post('http://localhost:3000/api', cv, {
