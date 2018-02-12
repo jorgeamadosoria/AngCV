@@ -28,6 +28,23 @@ router.get('/api', utils.loggedRole(), (req, res) => {
        res.send(JSON.stringify(mockCV));
 });
 
+
+router.get('/api/export', (req, res) => {
+    /*  
+      service.findById(req.user.google.email).then(obj => {
+          if (obj == null){
+              service.upsert(new cv(),null).then(
+                  obj2 => res.send(JSON.stringify(obj2)));
+          }
+          else {
+              console.log(JSON.stringify(obj));
+              res.send(JSON.stringify(obj));
+          }
+      });*/
+         res.send(JSON.stringify(mockCV));
+  });
+  
+
 router.post('/api', utils.loggedRole(), (req, res) => {
     service.upsert(req.body, req.body._id).then(obj => res.send(obj)).catch(obj => res.send(obj));
 

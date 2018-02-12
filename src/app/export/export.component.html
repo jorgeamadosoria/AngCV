@@ -1,0 +1,75 @@
+<mat-drawer-container autosize class="example-container" *ngIf="form">
+   <mat-drawer #filterDrawer class="example-right-sidenav" mode="over" position="end">
+    <form [formGroup]="filterForm" novalidate (ngSubmit)="filterDrawer.toggle() && filter(filterForm.value)">
+      <div>
+        <div>
+          <label>Date interval</label>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
+          </mat-form-field>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+          <mat-form-field>
+            <input matInput [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
+          </mat-form-field>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+        </div>
+      </div>
+      <div formArrayName="tags">
+        <div>
+          <label>Tags</label>
+        </div>
+        <div>
+          <mat-grid-list cols="3" rowHeight="2em">
+            <mat-grid-tile *ngFor="let tag of filterForm.controls.tags.controls; let i=index">
+              <span class="filter-option">
+                <mat-checkbox matInput formControlName="{{i}}" name="tag" placeholder="tag">
+                  {{appliedFilter.tags[i]}}&nbsp;&nbsp;
+                </mat-checkbox>
+              </span>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+      <div>
+        <button type="submit" color="primary" mat-raised-button>
+          Filter
+        </button>
+      </div>
+    </form>
+  </mat-drawer>
+  <mat-toolbar color="primary">
+    <span>
+      <button matTooltip="manage CV info" mat-button type="button" (click)="filterDrawer.close() && formDrawer.toggle()">
+        <mat-icon>edit</mat-icon>&nbsp;&nbsp;Edit
+      </button>
+      <button matTooltip="Filter CV by tag and date" mat-button type="button" (click)="filterDrawer.toggle() && formDrawer.close()">
+        <mat-icon>filter_list</mat-icon>&nbsp;&nbsp;Filter
+      </button>
+      <button matTooltip="Show About info" mat-button type="button" (click)="openAboutDialog()">
+        <mat-icon>chat_bubble</mat-icon>&nbsp;&nbsp;About
+      </button>
+    </span>
+    <span class="example-fill-remaining-space"></span>
+    <span>
+      {{user.google.name}}
+      <a matTooltip="Logout" mat-icon-button href="/logout">
+        <mat-icon>power_settings_new</mat-icon>
+      </a>
+    </span>
+  </mat-toolbar>
+  <br>
+  <app-preview [pCv]="fullCv"></app-preview>
+  <br>
+  <mat-toolbar color="primary">
+    <span>
+    </span>
+    <span class="example-fill-remaining-space"></span>
+    <span>
+      <a matTooltip="See the code of this app on Github" mat-icon-button href="https://github.com/jorgeamadosoria/AngCV">
+        <i class="socicon socicon-github"></i>
+      </a>
+    </span>
+  </mat-toolbar>
+</mat-drawer-container>
