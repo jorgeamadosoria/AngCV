@@ -50,6 +50,8 @@ import { PreviewComponent } from './preview/preview.component';
 import { AuthGuard } from './AuthGuard';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
+import { AboutDlgComponent } from './about-dlg/about-dlg.component';
 
 
 
@@ -65,8 +67,11 @@ const appRoutes: Routes = [
     AppComponent,
     PreviewComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AboutComponent,
+    AboutDlgComponent
   ],
+  entryComponents: [AboutComponent],
   providers: [AuthGuard],
   imports: [
     RouterModule.forRoot(
