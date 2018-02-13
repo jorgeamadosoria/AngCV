@@ -37,16 +37,16 @@ export class ExportComponent implements OnInit {
             .subscribe(res => {
                 this.cv = new CV(res);
                 this.fullCv = new CV(res);
-                this.appliedFilter = this.cv.createFilter();
+             /*   this.appliedFilter = this.cv.createFilter();
                 this.cv.applyFilter(this.appliedFilter);
-                this.initFilterForm(this.appliedFilter);
+                this.initFilterForm(this.appliedFilter);*/
             }, err => console.log(err));
 
         this.socialKeys = socialKeys;
-        this.languageLevels = languageLevels;
-        this.skillLevels = skillLevels;
-        this.languages = languages;
-        this.countries = countries;
+    //    this.languageLevels = languageLevels;
+    //    this.skillLevels = skillLevels;
+    //    this.languages = languages;
+    //    this.countries = countries;
 
     }
 
