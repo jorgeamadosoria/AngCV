@@ -56,7 +56,7 @@ import { ExportComponent } from './export/export.component';
 const appRoutes: Routes = [
   { path: 'login',      component: LoginComponent },
   { path: 'dashboard',  component: DashboardComponent, canActivate: [ AuthGuard ] },
-  { path: 'export',     component: ExportComponent },
+  { path: 'export/:id',     component: ExportComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
@@ -69,7 +69,7 @@ const appRoutes: Routes = [
     AboutComponent,
     ExportComponent
   ],
-  entryComponents: [AboutComponent],
+  entryComponents: [ExportComponent, AboutComponent],
   providers: [AuthGuard],
   imports: [
     RouterModule.forRoot(

@@ -3,9 +3,26 @@
   <p>About message</p>
   <p>Technology logos</p>
   <p>Link to license</p>
-  <p>Link to github</p>
-<p>Contact info para Javi y yo</p>
+  <p>
+    <span>
+      <a matTooltip="LinkedIn profile" mat-icon-button href="">
+        <i class="socicon socicon-linkedin"></i>
+      </a>
+    </span>
+    <span>
+      <a matTooltip="Email the developer" mat-icon-button href="mailto:darksoul.uci@gmail.com">
+        <i class="socicon socicon-mail"></i>
+      </a>
+    </span>
+    <span>
+      <a matTooltip="See the code of this app on Github" mat-icon-button href="https://github.com/jorgeamadosoria/AngCV">
+        <i class="socicon socicon-github"></i>
+      </a>
+    </span>
+  </p>
+  <p>Contact info para Javi y yo</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button type="button" (click)="close()">Close</button>
+  <span class="example-fill-remaining-space"></span>
+  <button mat-raised-button color="primary" type="button" (click)="close()">Close</button>
 </mat-dialog-actions>
