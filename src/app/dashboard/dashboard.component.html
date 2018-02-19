@@ -1,90 +1,89 @@
 <mat-drawer-container autosize class="example-container" *ngIf="form">
-  <mat-drawer #formDrawer class="example-left-sidenav" mode="over">
-    <form [formGroup]="form" novalidate (ngSubmit)="formDrawer.toggle() && save(form.value)">
-      <input type="hidden" formControlName="_id" name="_id">
-      <mat-accordion class="example-headers-align">
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Personal data
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>My name, email, phone and other info to find me</span>
-              <mat-icon class="mat-primary">account_circle</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formGroupName="personal">
-            <mat-card>
-              <mat-grid-list cols="2" rowHeight="5em">
-                <mat-grid-tile rowspan="3">
-                  <img class="card-media" mat-image-avatar src="{{fullCv.personal.picture}}">
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field>
-                    <input matInput formControlName="fullname" name="fullname" placeholder="full name">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field>
-                    <input matInput formControlName="label" name="label" placeholder="label">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field>
-                    <input matInput formControlName="email" name="email" placeholder="email">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field class="field-container">
-                    <input matInput formControlName="picture" (change)="onChangePic($event)" name="picture" placeholder="picture url">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field>
-                    <input matInput formControlName="phone" name="phone" placeholder="phone">
-                  </mat-form-field>
-                </mat-grid-tile>
-              </mat-grid-list>
-              <mat-grid-list cols="3" rowHeight="10em">
-                <mat-grid-tile colspan="3">
-                  <mat-form-field class="field-container">
-                    <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                      name="summary" placeholder="summary"></textarea>
-                  </mat-form-field>
-                </mat-grid-tile>
-              </mat-grid-list>
-            </mat-card>
-            <br>
-            <mat-card formGroupName="location">
-              <mat-grid-list cols="4" rowHeight="5em">
-                <mat-grid-tile>
-                  <mat-form-field class="field-container">
-                    <input matInput formControlName="address" name="address" placeholder="address">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field class="field-container">
-                    <input matInput formControlName="city" name="city" placeholder="city">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field class="field-container">
-                    <input matInput formControlName="region" name="region" placeholder="region">
-                  </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <mat-form-field class="field-container">
-                    <mat-select formControlName="country" placeholder="country" name="country">
-                      <mat-option *ngFor="let country of countries" [value]="country.name">
-                        <img src="./assets/countries/{{country.code | lowercase }}.svg" width="20em"> {{ country.name }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </mat-grid-tile>
-              </mat-grid-list>
-            </mat-card>
-            <br>
-            <span formArrayName="social">
+    <mat-drawer #formDrawer class="example-left-sidenav" mode="over">
+        <form [formGroup]="form" novalidate (ngSubmit)="formDrawer.toggle() && save(form.value)">
+            <input type="hidden" formControlName="_id" name="_id">
+            <mat-accordion class="example-headers-align">
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Personal data
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>My name, email, phone and other info to find me</span>
+                            <mat-icon class="mat-primary">account_circle</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formGroupName="personal">
+                        <mat-card>
+                            <mat-grid-list cols="2" rowHeight="5em">
+                                <mat-grid-tile rowspan="3">
+                                    <img class="card-media" mat-image-avatar src="{{fullCv.personal.picture}}">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field>
+                                        <input matInput formControlName="fullname" name="fullname" placeholder="full name">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field>
+                                        <input matInput formControlName="label" name="label" placeholder="label">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field>
+                                        <input matInput formControlName="email" name="email" placeholder="email">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field class="field-container">
+                                        <input matInput formControlName="picture" (change)="onChangePic($event)" name="picture" placeholder="picture url">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field>
+                                        <input matInput formControlName="phone" name="phone" placeholder="phone">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                            <mat-grid-list cols="3" rowHeight="10em">
+                                <mat-grid-tile colspan="3">
+                                    <mat-form-field class="field-container">
+                                        <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </mat-card>
+                        <br>
+                        <mat-card formGroupName="location">
+                            <mat-grid-list cols="4" rowHeight="5em">
+                                <mat-grid-tile>
+                                    <mat-form-field class="field-container">
+                                        <input matInput formControlName="address" name="address" placeholder="address">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field class="field-container">
+                                        <input matInput formControlName="city" name="city" placeholder="city">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field class="field-container">
+                                        <input matInput formControlName="region" name="region" placeholder="region">
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <mat-form-field class="field-container">
+                                        <mat-select formControlName="country" placeholder="country" name="country">
+                                            <mat-option *ngFor="let country of countries" [value]="country.name">
+                                                <img src="./assets/countries/{{country.code | lowercase }}.svg" width="20em"> {{ country.name }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </mat-card>
+                        <br>
+                        <span formArrayName="social">
               <mat-card *ngFor="let soc of form.controls.personal.controls.social.controls;let i=index">
                 <mat-grid-list [formGroupName]="i" cols="3" rowHeight="5em">
                   <mat-grid-tile>
@@ -112,731 +111,720 @@
                 </button>
               </mat-card>
             </span>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Skills
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Tools I know and how good I am with them</span>
-              <mat-icon class="mat-primary">build</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="skills">
-            <div *ngFor="let skill of form.controls.skills.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="name" placeholder="Name">
-                      <mat-error *ngIf="!form.controls.skills.controls[i].controls.name.valid">
-                        Name is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <mat-select formControlName="level" placeholder="level" name="level">
-                        <mat-option *ngFor="let lvl of skillLevels" [value]="lvl">
-                          {{ lvl }}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="!form.controls.skills.controls[i].controls.level.valid">
-                        Level is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="10em">
-                  <mat-grid-tile colspan="4">
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="tag" placeholder="Tags">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-button color="warn" (click)="removeSkill(i)">
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Skills
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Tools I know and how good I am with them</span>
+                            <mat-icon class="mat-primary">build</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="skills">
+                        <div *ngFor="let skill of form.controls.skills.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="name" placeholder="Name">
+                                            <mat-error *ngIf="!form.controls.skills.controls[i].controls.name.valid">
+                                                Name is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <mat-select formControlName="level" placeholder="level" name="level">
+                                                <mat-option *ngFor="let lvl of skillLevels" [value]="lvl">
+                                                    {{ lvl }}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="!form.controls.skills.controls[i].controls.level.valid">
+                                                Level is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="10em">
+                                    <mat-grid-tile colspan="4">
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="tag" placeholder="Tags">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-button color="warn" (click)="removeSkill(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addSkill()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addSkill()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
 
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Accolades
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Awards, certifications or diplomas some people felt I´ve earned</span>
-              <mat-icon class="mat-primary">bookmark</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="accolades">
-            <div *ngFor="let accolade of form.controls.accolades.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="name" placeholder="name">
-                      <mat-error *ngIf="!form.controls.accolades.controls[i].controls.name.valid">
-                        Name is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="date" placeholder="date">
-                      <mat-error *ngIf="!form.controls.accolades.controls[i].controls.date.valid">
-                        Date is required
-                      </mat-error>
-                      <mat-datepicker #datePicker></mat-datepicker>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="from" placeholder="From">
-                      <mat-error *ngIf="!form.controls.accolades.controls[i].controls.from.valid">
-                        From is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="link" placeholder="link">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="1" rowHeight="10em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="tag" placeholder="Tags">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeAccolade(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Accolades
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Awards, certifications or diplomas some people felt I´ve earned</span>
+                            <mat-icon class="mat-primary">bookmark</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="accolades">
+                        <div *ngFor="let accolade of form.controls.accolades.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="name" placeholder="name">
+                                            <mat-error *ngIf="!form.controls.accolades.controls[i].controls.name.valid">
+                                                Name is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="date" placeholder="date">
+                                            <mat-error *ngIf="!form.controls.accolades.controls[i].controls.date.valid">
+                                                Date is required
+                                            </mat-error>
+                                            <mat-datepicker #datePicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="from" placeholder="From">
+                                            <mat-error *ngIf="!form.controls.accolades.controls[i].controls.from.valid">
+                                                From is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="link" placeholder="link">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="1" rowHeight="10em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="tag" placeholder="Tags">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeAccolade(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addAccolade()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addAccolade()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              References
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>People that can vouch for me</span>
-              <mat-icon class="mat-primary">group</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="references">
-            <div *ngFor="let reference of form.controls.references.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="name" placeholder="Name">
-                      <mat-error *ngIf="!form.controls.references.controls[i].controls.name.valid">
-                        Name is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="position" placeholder="Position">
-                      <mat-error *ngIf="!form.controls.references.controls[i].controls.position.valid">
-                        Position is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="mail" placeholder="Mail">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="phone" placeholder="Phone">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeReference(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            References
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>People that can vouch for me</span>
+                            <mat-icon class="mat-primary">group</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="references">
+                        <div *ngFor="let reference of form.controls.references.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="name" placeholder="Name">
+                                            <mat-error *ngIf="!form.controls.references.controls[i].controls.name.valid">
+                                                Name is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="position" placeholder="Position">
+                                            <mat-error *ngIf="!form.controls.references.controls[i].controls.position.valid">
+                                                Position is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="mail" placeholder="Mail">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="phone" placeholder="Phone">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeReference(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addReference()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addReference()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Work
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Places I have worked at</span>
-              <mat-icon class="mat-primary">business center</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="work">
-            <div *ngFor="let work of form.controls.work.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="logo" placeholder="Logo">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="company" placeholder="Company">
-                      <mat-error *ngIf="!form.controls.work.controls[i].controls.company.valid">
-                        Company is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="website" placeholder="Website">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="position" placeholder="Position">
-                      <mat-error *ngIf="!form.controls.work.controls[i].controls.position.valid">
-                        Position is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-datepicker #startDatePicker></mat-datepicker>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate"
-                        placeholder="End Date">
-                    </mat-form-field>
-                    <mat-datepicker #endDatePicker></mat-datepicker>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="1" rowHeight="10em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="tag" placeholder="Tags">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeWork(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Work
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Places I have worked at</span>
+                            <mat-icon class="mat-primary">business center</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="work">
+                        <div *ngFor="let work of form.controls.work.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="logo" placeholder="Logo">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="company" placeholder="Company">
+                                            <mat-error *ngIf="!form.controls.work.controls[i].controls.company.valid">
+                                                Company is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="website" placeholder="Website">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="position" placeholder="Position">
+                                            <mat-error *ngIf="!form.controls.work.controls[i].controls.position.valid">
+                                                Position is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-datepicker #startDatePicker></mat-datepicker>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
+                                        </mat-form-field>
+                                        <mat-datepicker #endDatePicker></mat-datepicker>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="1" rowHeight="10em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="tag" placeholder="Tags">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeWork(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addWork()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addWork()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Volunteering
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Pro bono work or community stuff done for love or lolz</span>
-              <mat-icon class="mat-primary">favorite</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="volunteer">
-            <div *ngFor="let volunteer of form.controls.volunteer.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="logo" placeholder="Logo">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="organization" placeholder="Organization">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="website" placeholder="Website">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="position" placeholder="Position">
-                      <mat-error *ngIf="!form.controls.work.controls[i].controls.position.valid">
-                        Position is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-datepicker #startDatePicker></mat-datepicker>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate"
-                        placeholder="End Date">
-                    </mat-form-field>
-                    <mat-datepicker #endDatePicker></mat-datepicker>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="1" rowHeight="10em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="tag" placeholder="Tags">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeVolunteer(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Volunteering
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Pro bono work or community stuff done for love or lolz</span>
+                            <mat-icon class="mat-primary">favorite</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="volunteer">
+                        <div *ngFor="let volunteer of form.controls.volunteer.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="logo" placeholder="Logo">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="organization" placeholder="Organization">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="website" placeholder="Website">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="position" placeholder="Position">
+                                            <mat-error *ngIf="!form.controls.work.controls[i].controls.position.valid">
+                                                Position is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-datepicker #startDatePicker></mat-datepicker>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
+                                        </mat-form-field>
+                                        <mat-datepicker #endDatePicker></mat-datepicker>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="1" rowHeight="10em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="tag" placeholder="Tags">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeVolunteer(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addVolunteer()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addVolunteer()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Education
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Places I have studied at</span>
-              <mat-icon class="mat-primary">school</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="education">
-            <div *ngFor="let education of form.controls.education.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="logo" placeholder="Logo">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="institution" placeholder="Institution">
-                      <mat-error *ngIf="!form.controls.education.controls[i].controls.institution.valid">
-                        Institution is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="website" placeholder="Website">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="career" placeholder="Career">
-                      <mat-error *ngIf="!form.controls.education.controls[i].controls.career.valid">
-                        Career is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-datepicker #startDatePicker></mat-datepicker>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate"
-                        placeholder="End Date">
-                    </mat-form-field>
-                    <mat-datepicker #endDatePicker></mat-datepicker>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="1" rowHeight="10em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeEducation(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Education
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Places I have studied at</span>
+                            <mat-icon class="mat-primary">school</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="education">
+                        <div *ngFor="let education of form.controls.education.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="logo" placeholder="Logo">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="institution" placeholder="Institution">
+                                            <mat-error *ngIf="!form.controls.education.controls[i].controls.institution.valid">
+                                                Institution is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="website" placeholder="Website">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="career" placeholder="Career">
+                                            <mat-error *ngIf="!form.controls.education.controls[i].controls.career.valid">
+                                                Career is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-datepicker #startDatePicker></mat-datepicker>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
+                                        </mat-form-field>
+                                        <mat-datepicker #endDatePicker></mat-datepicker>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="1" rowHeight="10em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeEducation(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addEducation()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addEducation()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Publications
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Articles, blogs, books or other written works I´ve put out there</span>
-              <mat-icon class="mat-primary">chrome_reader_mode</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="publications">
-            <div *ngFor="let publication of form.controls.publications.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="name" placeholder="Name">
-                      <mat-error *ngIf="!form.controls.publications.controls[i].controls.name.valid">
-                        Name is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="website" placeholder="Website">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="publisher" placeholder="Publisher">
-                      <mat-error *ngIf="!form.controls.publications.controls[i].controls.publisher.valid">
-                        Publisher is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="date" [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="date" placeholder="Date">
-                      <mat-datepicker #datePicker></mat-datepicker>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="1" rowHeight="10em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="tag" placeholder="Tags">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removePublication(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Publications
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Articles, blogs, books or other written works I´ve put out there</span>
+                            <mat-icon class="mat-primary">chrome_reader_mode</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="publications">
+                        <div *ngFor="let publication of form.controls.publications.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="name" placeholder="Name">
+                                            <mat-error *ngIf="!form.controls.publications.controls[i].controls.name.valid">
+                                                Name is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="website" placeholder="Website">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="publisher" placeholder="Publisher">
+                                            <mat-error *ngIf="!form.controls.publications.controls[i].controls.publisher.valid">
+                                                Publisher is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="date" [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="date" placeholder="Date">
+                                            <mat-datepicker #datePicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="1" rowHeight="10em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="tag" placeholder="Tags">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removePublication(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addPublication()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addPublication()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Events
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Conferences or other gatherings I´ve attended or organized</span>
-              <mat-icon class="mat-primary">event</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="events">
-            <div *ngFor="let event of form.controls.events.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="3" rowHeight="5em">
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="name" placeholder="Name">
-                      <mat-error *ngIf="!form.controls.events.controls[i].controls.name.valid">
-                        Name is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="publisher" placeholder="Publisher/Organizer">
-                      <mat-error *ngIf="!form.controls.events.controls[i].controls.publisher.valid">
-                        Publisher/Organizer is required
-                      </mat-error>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="website" placeholder="Website">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
-                      <mat-error *ngIf="!form.controls.events.controls[i].controls.startDate.valid">
-                        Start Date is required
-                      </mat-error>
-                      <mat-datepicker #startDatePicker></mat-datepicker>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate"
-                        placeholder="End Date">
-                      <mat-error *ngIf="!form.controls.events.controls[i].controls.endDate.valid">
-                        End Date is required
-                      </mat-error>
-                      <mat-datepicker #endDatePicker></mat-datepicker>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="1" rowHeight="10em">
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary"
-                        name="summary" placeholder="summary"></textarea>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                </mat-grid-list>
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="3">
-                    <mat-form-field class="field-container">
-                      <input matInput formControlName="tag" placeholder="Tags">
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeEvent(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Events
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Conferences or other gatherings I´ve attended or organized</span>
+                            <mat-icon class="mat-primary">event</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="events">
+                        <div *ngFor="let event of form.controls.events.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="3" rowHeight="5em">
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="name" placeholder="Name">
+                                            <mat-error *ngIf="!form.controls.events.controls[i].controls.name.valid">
+                                                Name is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="publisher" placeholder="Publisher/Organizer">
+                                            <mat-error *ngIf="!form.controls.events.controls[i].controls.publisher.valid">
+                                                Publisher/Organizer is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="website" placeholder="Website">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
+                                            <mat-error *ngIf="!form.controls.events.controls[i].controls.startDate.valid">
+                                                Start Date is required
+                                            </mat-error>
+                                            <mat-datepicker #startDatePicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="endDate" [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
+                                            <mat-error *ngIf="!form.controls.events.controls[i].controls.endDate.valid">
+                                                End Date is required
+                                            </mat-error>
+                                            <mat-datepicker #endDatePicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="1" rowHeight="10em">
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <textarea maxlength="450" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" matInput formControlName="summary" name="summary" placeholder="summary"></textarea>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="3">
+                                        <mat-form-field class="field-container">
+                                            <input matInput formControlName="tag" placeholder="Tags">
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeEvent(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-          </div>
-          <button type="button" color="primary" mat-button (click)="addEvent()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                    </div>
+                    <button type="button" color="primary" mat-button (click)="addEvent()">
             <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
           </button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Languages
-            </mat-panel-title>
-            <mat-panel-description>
-              <span>Languages I handle and how well I do it</span>
-              <mat-icon class="mat-primary">translate</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div formArrayName="languages">
-            <div *ngFor="let language of form.controls.languages.controls; let i=index">
-              <mat-card [formGroupName]="i">
-                <mat-grid-list cols="4" rowHeight="5em">
-                  <mat-grid-tile colspan="2">
-                    <mat-form-field class="field-container">
-                      <mat-select formControlName="language" placeholder="language" name="language">
-                        <mat-option *ngFor="let lvl of languages" [value]="lvl">
-                          {{ lvl }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <mat-form-field class="field-container">
-                      <mat-select formControlName="level" placeholder="level" name="level">
-                        <mat-option *ngFor="let lvl of languageLevels" [value]="lvl">
-                          {{ lvl }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <button mat-icon-button color="warn" (click)="removeLanguage(i)">
+                </mat-expansion-panel>
+                <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Languages
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span>Languages I handle and how well I do it</span>
+                            <mat-icon class="mat-primary">translate</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="languages">
+                        <div *ngFor="let language of form.controls.languages.controls; let i=index">
+                            <mat-card [formGroupName]="i">
+                                <mat-grid-list cols="4" rowHeight="5em">
+                                    <mat-grid-tile colspan="2">
+                                        <mat-form-field class="field-container">
+                                            <mat-select formControlName="language" placeholder="language" name="language">
+                                                <mat-option *ngFor="let lvl of languages" [value]="lvl">
+                                                    {{ lvl }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field class="field-container">
+                                            <mat-select formControlName="level" placeholder="level" name="level">
+                                                <mat-option *ngFor="let lvl of languageLevels" [value]="lvl">
+                                                    {{ lvl }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <button mat-icon-button color="warn" (click)="removeLanguage(i)">
                       Remove
                       <mat-icon>remove_circle</mat-icon>
                     </button>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </mat-card>
-              <br>
-            </div>
-            <button type="button" color="primary" mat-button (click)="addLanguage()">
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </mat-card>
+                            <br>
+                        </div>
+                        <button type="button" color="primary" mat-button (click)="addLanguage()">
               <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Add
             </button>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <br>
-      <mat-toolbar>
-        <span class="example-fill-remaining-space"></span>
-        <button type="submit" color="primary" mat-raised-button>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <br>
+            <mat-toolbar>
+                <span class="example-fill-remaining-space"></span>
+                <button type="submit" color="primary" mat-raised-button>
           Save
         </button>
-      </mat-toolbar>
-    </form>
-  </mat-drawer>
-  <mat-drawer #filterDrawer class="example-right-sidenav" mode="over" position="end">
-    <form [formGroup]="filterForm" novalidate (ngSubmit)="filterDrawer.toggle() && filter(filterForm.value)">
-      <div>
-        <div>
-          <label>Date interval</label>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
-          </mat-form-field>
-          <mat-datepicker #startDatePicker></mat-datepicker>
-          <mat-form-field>
-            <input matInput [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
-          </mat-form-field>
-          <mat-datepicker #endDatePicker></mat-datepicker>
-        </div>
-      </div>
-      <div formArrayName="tags">
-        <div>
-          <label>Tags</label>
-        </div>
-        <div>
-          <mat-grid-list cols="3" rowHeight="2em">
-            <mat-grid-tile *ngFor="let tag of filterForm.controls.tags.controls; let i=index">
-              <span class="filter-option">
+            </mat-toolbar>
+        </form>
+    </mat-drawer>
+    <mat-drawer #filterDrawer class="example-right-sidenav" mode="over" position="end">
+        <form [formGroup]="filterForm" novalidate (ngSubmit)="filterDrawer.toggle() && filter(filterForm.value)">
+            <div>
+                <div>
+                    <label>Date interval</label>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="startDatePicker" (focus)="startDatePicker.open()" formControlName="startDate" placeholder="Start Date">
+                    </mat-form-field>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="endDatePicker" (focus)="endDatePicker.open()" formControlName="endDate" placeholder="End Date">
+                    </mat-form-field>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                </div>
+            </div>
+            <div formArrayName="tags">
+                <div>
+                    <label>Tags</label>
+                </div>
+                <div>
+                    <mat-grid-list cols="3" rowHeight="2em">
+                        <mat-grid-tile *ngFor="let tag of filterForm.controls.tags.controls; let i=index">
+                            <span class="filter-option">
                 <mat-checkbox matInput formControlName="{{i}}" name="tag" placeholder="tag">
                   {{appliedFilter.tags[i]}}&nbsp;&nbsp;
                 </mat-checkbox>
               </span>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </div>
-      </div>
-      <div>
-        <button type="submit" color="primary" mat-raised-button>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+            </div>
+            <div>
+                <button type="submit" color="primary" mat-raised-button>
           Filter
         </button>
-      </div>
-    </form>
-  </mat-drawer>
-  <mat-toolbar color="primary">
-    <span>
+            </div>
+        </form>
+    </mat-drawer>
+    <mat-toolbar color="primary">
+        <span>
       <button matTooltip="manage CV info" mat-button type="button" (click)="filterDrawer.close() && formDrawer.toggle()">
         <mat-icon>edit</mat-icon>&nbsp;&nbsp;Edit
       </button>
       <button matTooltip="Filter CV by tag and date" mat-button type="button" (click)="filterDrawer.toggle() && formDrawer.close()">
         <mat-icon>filter_list</mat-icon>&nbsp;&nbsp;Filter
       </button>
-      <a matTooltip="public CV view" type="button" mat-button routerLink="/export" routerLinkActive="active"><mat-icon>filter_list</mat-icon>&nbsp;&nbsp;Export</a>
+      <a matTooltip="public CV view" type="button" mat-button [routerLink]="['/export', cv._id]" routerLinkActive="active"><mat-icon>filter_list</mat-icon>&nbsp;&nbsp;Export</a>
       <button matTooltip="Show About info" mat-button type="button" (click)="openAboutDialog()">
         <mat-icon>chat_bubble</mat-icon>&nbsp;&nbsp;About
       </button>
     </span>
-    <span class="example-fill-remaining-space"></span>
-    <span>
+        <span class="example-fill-remaining-space"></span>
+        <span>
       {{user.google.name}}
       <a matTooltip="Logout" mat-icon-button href="/logout">
         <mat-icon>power_settings_new</mat-icon>
       </a>
     </span>
-  </mat-toolbar>
-  <br>
-  <app-preview [pCv]="cv"></app-preview>
-  <br>
-  <mat-toolbar color="primary">
-    <span>
+    </mat-toolbar>
+    <br>
+    <app-preview [pCv]="cv"></app-preview>
+    <br>
+    <mat-toolbar color="primary">
+        <span>
     </span>
-    <span class="example-fill-remaining-space"></span>
-    <span>
+        <span class="example-fill-remaining-space"></span>
+        <span>
       <a matTooltip="See the code of this app on Github" mat-icon-button href="https://github.com/jorgeamadosoria/AngCV">
         <i class="socicon socicon-github"></i>
       </a>
     </span>
-  </mat-toolbar>
+    </mat-toolbar>
 </mat-drawer-container>

@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
         this.user = authGuard.user;
         this.http.get('http://localhost:3000/api')
             .subscribe(res => {
+                console.log(res);
                 this.cv = new CV(res);
                 this.fullCv = new CV(res);
                 this.createForm(this.fullCv);
