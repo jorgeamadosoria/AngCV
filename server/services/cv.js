@@ -1,15 +1,19 @@
 var model = require('../data/cv');
 var mongoose = require('mongoose');
+var cv = require('../data/cv');
 
 module.exports = {
 
     upsert: function(obj, id) {
-        if (id === undefined)
-            return model.create(obj);
+        if (id === undefined || id == null){
+            console.log('id ' + id);
+            console.log(obj);
+            return model.create(new cv(),res => console.log(res));
+        }
         else {
             obj._id = mongoose.Types.ObjectId(id);
             return model.findByIdAndUpdate(obj._id, obj).exec();
-        }
+        } 
     },
 
     delete: function(id) {

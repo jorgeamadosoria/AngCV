@@ -17,10 +17,11 @@ router.get('/api', utils.loggedRole(), (req, res) => {
     console.log(req.user.google.email);
     service.findByEmail(req.user.google.email).then(obj => {
         if (obj == null) {
+            console.log('obj is null');
             service.upsert(new cv(), null).then(
-                obj2 => res.send(JSON.stringify(obj2)));
+                obj2 => res.send(JSON.stringify(obj2))).catch(err => console.log(err));
         } else {
-            console.log(JSON.stringify(obj));
+            console.log('obj is not null');
             res.send(JSON.stringify(obj));
         }
     });
@@ -35,6 +36,7 @@ router.get('/api/export/:id', (req, res, next) => {
 
 
 router.post('/api', utils.loggedRole(), (req, res) => {
+    console.log("Body " + JSON.stringify(req.body));
     service.upsert(req.body, req.body._id).then(obj => res.send(obj)).catch(obj => res.send(obj));
 
 });
