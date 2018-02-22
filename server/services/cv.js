@@ -6,8 +6,6 @@ module.exports = {
 
     upsert: function(obj, id) {
         if (id === undefined || id == null){
-            console.log('id ' + id);
-            console.log(obj);
             return model.create(new cv(),res => console.log(res));
         }
         else {
@@ -21,7 +19,7 @@ module.exports = {
     },
 
     findByEmail: function(email) {
-        return model.findOne({ "email": email });
+        return model.findOne({ "personal.email": email });
     },
 
     findById: function(id) {

@@ -25,19 +25,33 @@
       <mat-card-title>Contact Info</mat-card-title>
       <mat-grid-list cols="3" rowHeight="3em">
         <mat-grid-tile>
-          <mat-icon color="primary">room</mat-icon>&nbsp;&nbsp;&nbsp;{{ pCv.personal.location.city }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.country}}
+          <div class="text-left">
+            <span class="mat-icon-button mat-primary">
+              <mat-icon color="primary">room</mat-icon>
+            </span>&nbsp;&nbsp;&nbsp;{{ pCv.personal.location.city }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.country}}
+          </div>
         </mat-grid-tile>
         <mat-grid-tile>
-          <mat-icon color="primary">smartphone</mat-icon>
-          &nbsp;&nbsp;&nbsp;{{pCv.personal.phone}}
+          <div class="text-left">
+            <span class="mat-icon-button mat-primary">
+              <mat-icon color="primary">smartphone</mat-icon>
+            </span>
+            &nbsp;&nbsp;&nbsp;{{pCv.personal.phone}}
+          </div>
         </mat-grid-tile>
         <mat-grid-tile>
-          <mat-icon color="primary">email</mat-icon>
-          &nbsp;&nbsp;&nbsp;{{ pCv.personal.email }}
+          <div class="text-left">
+            <span class="mat-icon-button mat-primary">
+              <mat-icon color="primary">email</mat-icon>
+            </span>
+            &nbsp;&nbsp;&nbsp;{{ pCv.personal.email }}
+          </div>
         </mat-grid-tile>
         <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
-          <span class="mat-icon-button mat-primary {{socialIcon(i)}}" *ngIf="social.network">
-          </span>&nbsp;&nbsp;&nbsp;{{social.url}}
+          <div class="text-left">
+            <span class="mat-icon-button mat-primary {{socialIcon(i)}}" *ngIf="social.network">
+            </span>&nbsp;&nbsp;&nbsp;{{social.url | slice:0:40 }}
+          </div>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card>
