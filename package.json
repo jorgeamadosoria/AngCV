@@ -44,6 +44,7 @@
     "express-flash": "0.0.2",
     "express-session": "*",
     "global-modules": "^1.0.0",
+    "hammerjs": "^2.0.8",
     "helmet": "^1.3.0",
     "moment": "^2.18.1",
     "mongoose": "^4.13.9",
