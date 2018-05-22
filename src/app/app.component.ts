@@ -9,10 +9,7 @@ import { socialKeys } from '../../common/socialIcon';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CV } from '../../common/cv';
 import {MatChipInputEvent} from '@angular/material';
-import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import * as _ from 'underscore';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 @Component({
     selector: 'app-root',
