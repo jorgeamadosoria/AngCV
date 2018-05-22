@@ -4,14 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BidiModule} from '@angular/cdk/bidi';
-import {ObserversModule} from '@angular/cdk/observers';
-import {OverlayModule} from '@angular/cdk/overlay';
-import {PlatformModule} from '@angular/cdk/platform';
-import {PortalModule} from '@angular/cdk/portal';
-import {MatChipInputEvent} from '@angular/material';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PlatformModule } from '@angular/cdk/platform';
+import { PortalModule } from '@angular/cdk/portal';
+import { MatChipInputEvent } from '@angular/material';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { RouterModule, Routes } from '@angular/router';
 import {
   MatAutocompleteModule,
@@ -32,7 +32,6 @@ import {
   MatRippleModule,
   MatSelectModule,
   MatSidenavModule,
-  MatSnackBarModule,
   MatStepperModule,
   MatTableModule,
   MatTabsModule,
@@ -47,9 +46,9 @@ import { AboutComponent } from './about/about.component';
 import { ExportComponent } from './export/export.component';
 
 const appRoutes: Routes = [
-  { path: 'login',      component: LoginComponent },
-  { path: 'dashboard',  component: DashboardComponent, canActivate: [ AuthGuard ] },
-  { path: 'export/:id',     component: ExportComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'export/:id', component: ExportComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
@@ -86,7 +85,6 @@ const appRoutes: Routes = [
     MatRippleModule,
     MatSelectModule,
     MatSidenavModule,
-    MatSnackBarModule,
     MatTooltipModule,
     MatButtonModule, MatIconModule,
     MatCheckboxModule, MatInputModule,
