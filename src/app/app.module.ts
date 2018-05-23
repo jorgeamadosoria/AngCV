@@ -8,15 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BidiModule } from '@angular/cdk/bidi';
 import { ObserversModule } from '@angular/cdk/observers';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { PlatformModule } from '@angular/cdk/platform';
-import { PortalModule } from '@angular/cdk/portal';
 import { MatChipInputEvent } from '@angular/material';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  MatAutocompleteModule,
   MatButtonModule,
-  MatButtonToggleModule,
   MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
@@ -26,13 +21,11 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
   MatNativeDateModule,
   MatRadioModule,
   MatRippleModule,
   MatSelectModule,
   MatSidenavModule,
-  MatStepperModule,
   MatTooltipModule
 } from '@angular/material';
 import { PreviewComponent } from './preview/preview.component';
