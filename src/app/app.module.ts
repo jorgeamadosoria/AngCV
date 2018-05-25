@@ -4,16 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BidiModule} from '@angular/cdk/bidi';
-import {ObserversModule} from '@angular/cdk/observers';
-import {OverlayModule} from '@angular/cdk/overlay';
-import {PlatformModule} from '@angular/cdk/platform';
-import {PortalModule} from '@angular/cdk/portal';
-import {MatChipInputEvent} from '@angular/material';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
-import {CdkStepperModule} from '@angular/cdk/stepper';
-import {CdkTableModule} from '@angular/cdk/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PlatformModule } from '@angular/cdk/platform';
+import { PortalModule } from '@angular/cdk/portal';
+import { MatChipInputEvent } from '@angular/material';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { RouterModule, Routes } from '@angular/router';
+import { CdkTableModule } from '@angular/cdk/table';
 import {
   MatAutocompleteModule,
   MatButtonModule,
