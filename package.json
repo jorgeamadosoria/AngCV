@@ -14,7 +14,7 @@
     "lint": "ng lint && eslint .",
     "e2e": "ng e2e",
     "posttest": "npm run lint && nsp check",
-    "heroku-postbuild": "cd ANGULAR_APP_FOLDER && npm install && ng build"
+    "heroku-postbuild": "npm install && ng build"
   },
   "private": true,
   "dependencies": {
