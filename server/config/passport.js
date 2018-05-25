@@ -3,6 +3,21 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // load up the user model
 var User = require('../data/user');
 
+var clientID = '1038669607477-72jchidr8fm378pf02qncnek749737e8.apps.googleusercontent.com';
+if(process.env.GOOGLE_AUTH_CLIENTID){
+    clientID = process.env.GOOGLE_AUTH_CLIENTID;
+}
+
+var clientSecret = 'CMOruiGo4RqEfyLH8wKqNxtq';
+if(process.env.GOOGLE_AUTH_CLIENTSECRET){
+    clientSecret = process.env.GOOGLE_AUTH_CLIENTSECRET;
+}
+
+var callbackURL = 'http://localhost:3000/auth/google/callback';
+if(process.env.GOOGLE_AUTH_CALLBACK){
+    callbackURL = process.env.GOOGLE_AUTH_CALLBACK;
+}
+
 /**
  * @fileOverview Google OAuth configuration
  *
@@ -16,9 +31,9 @@ module.exports = function(passport) {
     var configAuth = {
 
         'googleAuth': {
-            'clientID': '1038669607477-72jchidr8fm378pf02qncnek749737e8.apps.googleusercontent.com',
-            'clientSecret': 'CMOruiGo4RqEfyLH8wKqNxtq',
-            'callbackURL': 'http://localhost:3000/auth/google/callback'
+            'clientID': clientID,
+            'clientSecret': clientSecret,
+            'callbackURL': callbackURL
         }
 
     };
