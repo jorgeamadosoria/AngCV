@@ -47,10 +47,13 @@
             &nbsp;&nbsp;&nbsp;{{ pCv.personal.email }}
           </div>
         </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="1" rowHeight="3em">
         <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
           <div class="text-left">
             <span class="mat-icon-button mat-primary {{socialIcon(i)}}" *ngIf="social.network">
-            </span>&nbsp;&nbsp;&nbsp;{{social.url | slice:0:40 }}
+            </span>&nbsp;&nbsp;&nbsp;
+            <a href="{{ social.url }}">{{ social.url }}</a>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
