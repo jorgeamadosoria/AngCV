@@ -28,7 +28,7 @@ export class ExportComponent implements OnInit {
     constructor(private http: HttpClient, private route: ActivatedRoute) {
         this.route.params.subscribe(
             params => {
-                this.http.get('http://localhost:3000/api/export/' + params.id)
+                this.http.get('api/export/' + params.id)
                     .subscribe(res => {
                         this.fullCv = new CV(res);
                     }, err => console.log(err));
