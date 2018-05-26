@@ -4,17 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BidiModule } from '@angular/cdk/bidi';
-import { ObserversModule } from '@angular/cdk/observers';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PlatformModule } from '@angular/cdk/platform';
-import { PortalModule } from '@angular/cdk/portal';
-import { MatChipInputEvent } from '@angular/material';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
-import { CdkStepperModule } from '@angular/cdk/stepper';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BidiModule} from '@angular/cdk/bidi';
+import {ObserversModule} from '@angular/cdk/observers';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {PlatformModule} from '@angular/cdk/platform';
+import {PortalModule} from '@angular/cdk/portal';
+import {MatChipInputEvent} from '@angular/material';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
 import { RouterModule, Routes } from '@angular/router';
-import { CdkTableModule } from '@angular/cdk/table';
+import {CdkTableModule} from '@angular/cdk/table';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -47,13 +47,28 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { PreviewComponent } from './preview/preview.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+const appRoutes: Routes = [
+  { path: 'index', component: AppComponent },
+  { path: 'login',      component: LoginComponent },
+  { path: 'dashboard',      component: DashboardComponent },
+  { path: '', redirectTo: '/index', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PreviewComponent
+    PreviewComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
     HttpModule,
     HttpClientModule,
     BrowserModule,
