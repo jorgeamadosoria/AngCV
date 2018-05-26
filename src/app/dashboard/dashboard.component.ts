@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
 
     constructor(private dialog: MatDialog, private authGuard: AuthGuard, private http: HttpClient) {
         this.user = authGuard.user;
-        this.http.get('http://localhost:3000/api')
+        this.http.get('api')
             .subscribe(res => {
                 console.log('res ' + JSON.stringify(res));
                 this.cv = new CV(res);
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
       }
 
     persistCV(cv: CV): void {
-        this.http.post('http://localhost:3000/api', cv, {
+        this.http.post('api', cv, {
             headers: new HttpHeaders().set('Content-Type', 'application/json'),
         }).subscribe(res => console.log(res), err => console.log(err));
     }
