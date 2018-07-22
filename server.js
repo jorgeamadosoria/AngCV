@@ -55,7 +55,7 @@ api.get('/auth/google/callback',
         failureRedirect: '/login'
     }));
 
-app.use(express.static(path.join(__dirname, 'server/views')))
+app.use(express.static(path.join(__dirname, 'server/views')));
     // Set our api routes
 app.use('/', api);
 

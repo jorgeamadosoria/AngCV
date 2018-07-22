@@ -43,6 +43,10 @@ export class CV {
   }
 
   applyFilter(filter: Filter) {
+   // console.log(JSON.stringify(this.skills[0].tag));
+   // console.log(JSON.stringify(filter.tags));
+   // console.log(JSON.stringify(this.skills[0].tag.split(',')));
+   // console.log(JSON.stringify(_.intersection(filter.tags, this.skills[0].tag.split(','))));
     const lambda = obj => obj.tag && _.intersection(filter.tags, obj.tag.split(',')).length === 0;
     this.accolades = _.reject(this.accolades, lambda);
     this.events = _.reject(this.events, lambda);
@@ -67,7 +71,7 @@ export class CV {
 
   createFilter() {
     let tags: string[] = [];
-    const lambda = obj => tags = obj.tag ? tags.concat(obj.tag.split(',')) : [];
+    const lambda = obj => tags = obj.tag ? tags.concat(obj.tag.split(',')) : tags.concat([]);
     this.accolades.map(lambda);
     this.events.map(lambda);
     this.publications.map(lambda);

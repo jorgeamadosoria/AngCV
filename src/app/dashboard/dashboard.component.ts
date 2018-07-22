@@ -42,12 +42,15 @@ export class DashboardComponent implements OnInit {
         this.user = authGuard.user;
         this.http.get('api')
             .subscribe(res => {
-                console.log('res ' + JSON.stringify(res));
+            //    console.log('res ' + JSON.stringify(res));
                 this.cv = new CV(res);
                 this.fullCv = new CV(res);
+                
                 this.createForm(this.fullCv);
+                console.log('Cv pre filter ' + JSON.stringify(this.cv));
                 this.appliedFilter = this.cv.createFilter();
                 this.cv.applyFilter(this.appliedFilter);
+                console.log('Cv post filter ' + JSON.stringify(this.cv));
                 this.initFilterForm(this.appliedFilter);
             }, err => console.log(err));
 
