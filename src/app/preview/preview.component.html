@@ -1,228 +1,224 @@
 <div class="example-sidenav-content">
-  <div id="preview">
-    <br>
-    <mat-card>
-      <mat-grid-list class="personal-card" cols="3">
-        <mat-grid-tile class="personal-content-image" rowspan="2">
-          <img class="card-media" mat-image-avatar src="{{ pCv.personal.picture }}">
-        </mat-grid-tile>
-        <mat-grid-tile class="personal-header" colspan="2">
-          <mat-list>
-            <mat-list-item>
-              <h2 mat-line>{{ pCv.personal.fullname }}
-              </h2>
-              <p mat-line>{{ pCv.personal.label }}</p>
-            </mat-list-item>
-          </mat-list>
-        </mat-grid-tile>
-        <mat-grid-tile class="personal-content" colspan="2">
-          <p>{{pCv.personal.summary | slice:0:450}} </p>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Contact Info</mat-card-title>
-      <mat-grid-list cols="3" rowHeight="3em">
-        <mat-grid-tile>
-          <div class="text-left">
-            <span class="mat-icon-button mat-primary">
+    <div id="preview">
+        <br>
+        <mat-card>
+            <mat-grid-list class="personal-card" cols="3">
+                <mat-grid-tile class="personal-content-image" rowspan="2">
+                    <img class="card-media" mat-image-avatar src="{{ pCv.personal.picture }}">
+                </mat-grid-tile>
+                <mat-grid-tile class="personal-header" colspan="2">
+                    <mat-list>
+                        <mat-list-item>
+                            <h2 mat-line>{{ pCv.personal.fullname }}
+                            </h2>
+                            <p mat-line>{{ pCv.personal.label }}</p>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-grid-tile>
+                <mat-grid-tile class="personal-content" colspan="2">
+                    <p>{{pCv.personal.summary | slice:0:450}} </p>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Contact Info</mat-card-title>
+            <mat-grid-list cols="3" rowHeight="3em">
+                <mat-grid-tile>
+                    <div class="text-left">
+                        <span class="mat-icon-button mat-primary">
               <mat-icon color="primary">room</mat-icon>
             </span>&nbsp;&nbsp;&nbsp;{{ pCv.personal.location.city }}, {{ pCv.personal.location.region }}, {{ pCv.personal.location.country}}
-          </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div class="text-left">
-            <span class="mat-icon-button mat-primary">
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="text-left">
+                        <span class="mat-icon-button mat-primary">
               <mat-icon color="primary">smartphone</mat-icon>
-            </span>
-            &nbsp;&nbsp;&nbsp;{{pCv.personal.phone}}
-          </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div class="text-left">
-            <span class="mat-icon-button mat-primary">
+            </span> &nbsp;&nbsp;&nbsp;{{pCv.personal.phone}}
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="text-left">
+                        <span class="mat-icon-button mat-primary">
               <mat-icon color="primary">email</mat-icon>
-            </span>
-            &nbsp;&nbsp;&nbsp;{{ pCv.personal.email }}
-          </div>
-        </mat-grid-tile>
-      </mat-grid-list>
-      <mat-grid-list cols="1" rowHeight="3em">
-        <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
-          <div class="text-left">
-            <span class="mat-icon-button mat-primary {{socialIcon(i)}}" *ngIf="social.network">
+            </span> &nbsp;&nbsp;&nbsp;{{ pCv.personal.email }}
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <mat-grid-list cols="1" rowHeight="3em">
+                <mat-grid-tile class="mat-primary" *ngFor="let social of pCv.personal.social;let i=index">
+                    <div class="text-left">
+                        <span class="mat-icon-button mat-primary {{socialIcon(i)}}" *ngIf="social.network">
             </span>&nbsp;&nbsp;&nbsp;
-            <a href="{{ social.url }}">{{ social.url }}</a>
-          </div>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>
-        Languages
-      </mat-card-title>
-      <div class="skill-container" *ngFor="let language of pCv.languages" color="primary">
-        <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{language.language}}</button>
-        <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{language.level}}</button> &nbsp;
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Skills & Expertise</mat-card-title>
-      <div class="skill-container" *ngFor="let skill of pCv.skills" color="primary">
-        <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}}</button>
-        <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{skill.level}}</button> &nbsp;
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>References</mat-card-title>
-      <mat-list>
-        <mat-list-item *ngFor="let reference of pCv.references">
-          <mat-icon color="primary" mat-list-icon>account_box</mat-icon>
-          <h4 mat-line>{{reference.name}} - {{reference.position}}
-          </h4>
-          <p mat-line>mail: {{reference.mail}}, tel.: {{reference.phone}}</p>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Work Experience</mat-card-title>
-      <div class="timeline-container">
-        <div class="timeline-item" title="{{work.startDate | date: 'dd/MM/yyyy'}} -> {{work.endDate | date: 'dd/MM/yyyy'}}" *ngFor="let work of pCv.work">
+                        <a href="{{ social.url }}">{{ social.url }}</a>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>
+                Languages
+            </mat-card-title>
+            <div class="skill-container" *ngFor="let language of pCv.languages" color="primary">
+                <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{language.language}}</button>
+                <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{language.level}}</button> &nbsp;
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Skills & Expertise</mat-card-title>
+            <div class="skill-container" *ngFor="let skill of pCv.skills" color="primary">
+                <button disableRipple class="skill-button-left" color="primary" mat-raised-button>{{skill.name}}</button>
+                <button disableRipple class="skill-button-right" color="accent" mat-raised-button>{{skill.level}}</button> &nbsp;
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>References</mat-card-title>
+            <mat-list>
+                <mat-list-item *ngFor="let reference of pCv.references">
+                    <mat-icon color="primary" mat-list-icon>account_box</mat-icon>
+                    <h4 mat-line>{{reference.name}} - {{reference.position}}
+                    </h4>
+                    <p mat-line>mail: {{reference.mail}}, tel.: {{reference.phone}}</p>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Work Experience</mat-card-title>
+            <div class="timeline-container">
+                <div class="timeline-item" title="{{work.startDate | date: 'MM/yyyy'}} -> {{work.endDate | date: 'MM/yyyy'}}" *ngFor="let work of pCv.work">
 
-          <mat-grid-list cols="4">
-            <mat-grid-tile class="timeline-header" colspan="4">
-              <h4>{{work.position}} @ {{work.company}}
-                <span *ngIf="work.website">(
+                    <mat-grid-list cols="4">
+                        <mat-grid-tile class="timeline-header" colspan="4">
+                            <h4>{{work.position}} @ {{work.company}}
+                                <span *ngIf="work.website">(
                   <a href="{{work.website}}">{{work.website}}</a>)</span>
-              </h4>
-            </mat-grid-tile>
-            <mat-grid-tile class="timeline-content">
-              <div>
-                <img class="logo" src="{{work.logo}}">
-              </div>
-            </mat-grid-tile>
-            <mat-grid-tile class="timeline-content" colspan="3">
-              <p>{{work.summary | slice:0:450}} </p>
-            </mat-grid-tile>
-          </mat-grid-list>
+                            </h4>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="timeline-content">
+                            <div>
+                                <img class="logo" src="{{work.logo}}">
+                            </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="timeline-content" colspan="3">
+                            <p>{{work.summary | slice:0:450}} </p>
+                        </mat-grid-tile>
+                    </mat-grid-list>
 
-          <mat-divider></mat-divider>
-        </div>
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Education</mat-card-title>
-      <div class="timeline-container">
-        <div class="timeline-item" title="{{education.startDate | date: 'dd/MM/yyyy'}} -> {{education.endDate | date: 'dd/MM/yyyy'}}"
-          *ngFor="let education of pCv.education">
-          <mat-grid-list cols="4">
-            <mat-grid-tile class="timeline-header" colspan="4">
-              <h4>{{education.career}} from {{education.institution}}
-                <span *ngIf="education.website">(
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Education</mat-card-title>
+            <div class="timeline-container">
+                <div class="timeline-item" title="{{education.startDate | date: 'MM/yyyy'}} -> {{education.endDate | date: 'MM/yyyy'}}" *ngFor="let education of pCv.education">
+                    <mat-grid-list cols="4">
+                        <mat-grid-tile class="timeline-header" colspan="4">
+                            <h4>{{education.career}} from {{education.institution}}
+                                <span *ngIf="education.website">(
                   <a href="{{education.website}}">{{education.website}}</a>)</span>
-              </h4>
-            </mat-grid-tile>
-            <mat-grid-tile class="timeline-content">
-              <div>
-                <img class="logo" src="{{education.logo}}">
-              </div>
-            </mat-grid-tile>
-            <mat-grid-tile class="timeline-content" colspan="3">
-              <p>{{education.summary | slice:0:450}} </p>
-            </mat-grid-tile>
-          </mat-grid-list>
-          <mat-divider></mat-divider>
-        </div>
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Volunteering</mat-card-title>
-      <div class="timeline-container">
-        <div class="timeline-item" title="{{volunteer.startDate | date: 'dd/MM/yyyy'}} -> {{volunteer.endDate | date: 'dd/MM/yyyy'}}"
-          *ngFor="let volunteer of pCv.volunteer">
-          <mat-grid-list cols="4">
-            <mat-grid-tile class="timeline-header" colspan="4">
-              <h4>{{volunteer.position}} @ {{volunteer.organization}}
-                <span *ngIf="volunteer.website">(
+                            </h4>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="timeline-content">
+                            <div>
+                                <img class="logo" src="{{education.logo}}">
+                            </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="timeline-content" colspan="3">
+                            <p>{{education.summary | slice:0:450}} </p>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Volunteering</mat-card-title>
+            <div class="timeline-container">
+                <div class="timeline-item" title="{{volunteer.startDate | date: 'MM/yyyy'}} -> {{volunteer.endDate | date: 'MM/yyyy'}}" *ngFor="let volunteer of pCv.volunteer">
+                    <mat-grid-list cols="4">
+                        <mat-grid-tile class="timeline-header" colspan="4">
+                            <h4>{{volunteer.position}} @ {{volunteer.organization}}
+                                <span *ngIf="volunteer.website">(
                   <a href="{{volunteer.website}}">{{volunteer.website}}</a>)</span>
-              </h4>
-            </mat-grid-tile>
-            <mat-grid-tile class="timeline-content">
-              <div>
-                <img class="logo" src="{{volunteer.logo}}">
-              </div>
-            </mat-grid-tile>
-            <mat-grid-tile class="timeline-content" colspan="3">
-              <p>{{volunteer.summary | slice:0:450}} </p>
-            </mat-grid-tile>
-          </mat-grid-list>
-          <mat-divider></mat-divider>
-        </div>
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Publications</mat-card-title>
-      <div class="timeline-container">
-        <div class="timeline-item" title="{{publications.date | date: 'dd/MM/yyyy'}}" *ngFor="let publications of pCv.publications">
-          <h4 mat-line> {{publications.name}}
-          </h4>
-          <p mat-line>from: {{publications.publisher}}
-          </p>
-          <p class="summary"> {{publications.summary | slice:0:450}}</p>
-          <p mat-line>
-            Ref:
-            <a href="{{publications.website}}">
+                            </h4>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="timeline-content">
+                            <div>
+                                <img class="logo" src="{{volunteer.logo}}">
+                            </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile class="timeline-content" colspan="3">
+                            <p>{{volunteer.summary | slice:0:450}} </p>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Publications</mat-card-title>
+            <div class="timeline-container">
+                <div class="timeline-item" title="{{publications.date | date: 'MM/yyyy'}}" *ngFor="let publications of pCv.publications">
+                    <h4 mat-line> {{publications.name}}
+                    </h4>
+                    <p mat-line>from: {{publications.publisher}}
+                    </p>
+                    <p class="summary"> {{publications.summary | slice:0:450}}</p>
+                    <p mat-line>
+                        Ref:
+                        <a href="{{publications.website}}">
               {{publications.website}}</a>
-          </p>
-          <mat-divider></mat-divider>
-        </div>
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Accolades</mat-card-title>
-      <div class="timeline-container">
-        <div class="timeline-item" title="{{accolade.date | date: 'dd-MM-yyyy'}}" *ngFor="let accolade of pCv.accolades">
-          <h4 mat-line> {{accolade.name}}
-          </h4>
-          <p mat-line>from: {{accolade.from}}
-          </p>
-          <p class="summary"> {{accolade.summary | slice:0:450}}</p>
-          <p mat-line>
-            Ref:
-            <a href="{{accolade.link}}">
+                    </p>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Accolades</mat-card-title>
+            <div class="timeline-container">
+                <div class="timeline-item" title="{{accolade.date | date: 'dd-MM-yyyy'}}" *ngFor="let accolade of pCv.accolades">
+                    <h4 mat-line> {{accolade.name}}
+                    </h4>
+                    <p mat-line>from: {{accolade.from}}
+                    </p>
+                    <p class="summary"> {{accolade.summary | slice:0:450}}</p>
+                    <p mat-line>
+                        Ref:
+                        <a href="{{accolade.link}}">
               {{accolade.link}}</a>
-          </p>
-        </div>
-      </div>
-    </mat-card>
-    <br>
-    <mat-card>
-      <mat-card-title>Events</mat-card-title>
-      <div class="timeline-container">
-        <div class="timeline-item" title="{{event.startDate | date: 'dd/MM/yyyy'}} -> {{event.endDate | date: 'dd/MM/yyyy'}}" *ngFor="let event of pCv.events">
-          <h4 mat-line> {{event.name}}
-          </h4>
-          <p mat-line>from: {{event.publisher}}
-          </p>
-          <p class="summary"> {{event.summary | slice:0:450}}</p>
-          <p mat-line>
-            Ref:
-            <a href="{{event.website}}">
+                    </p>
+                </div>
+            </div>
+        </mat-card>
+        <br>
+        <mat-card>
+            <mat-card-title>Events</mat-card-title>
+            <div class="timeline-container">
+                <div class="timeline-item" title="{{event.startDate | date: 'MM/yyyy'}} -> {{event.endDate | date: 'MM/yyyy'}}" *ngFor="let event of pCv.events">
+                    <h4 mat-line> {{event.name}}
+                    </h4>
+                    <p mat-line>from: {{event.publisher}}
+                    </p>
+                    <p class="summary"> {{event.summary | slice:0:450}}</p>
+                    <p mat-line>
+                        Ref:
+                        <a href="{{event.website}}">
               {{event.website}}</a>
-          </p>
-          <mat-divider></mat-divider>
-        </div>
-      </div>
-    </mat-card>
-  </div>
+                    </p>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>
