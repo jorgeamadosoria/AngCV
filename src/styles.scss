@@ -185,9 +185,22 @@ mat-grid-tile.timeline-content {
   align-items: center;
   justify-content: center;
 }
+@media screen and (max-width: 768px) {
+  div#preview {
+    width: 100%;
+  }
+}
 
-div#preview {
-  width: 100%;
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  div#preview {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  div#preview {
+    width: 60%;
+  }
 }
 
 .example-left-sidenav {
