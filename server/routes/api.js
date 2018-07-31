@@ -10,7 +10,6 @@ var path = require('path');
 var router = express.Router();
 
 router.get('/auth/check', (req, res) => {
-    console.log("User auth/check called " + JSON.stringify(req.user));
     res.send(req.user);
 });
 

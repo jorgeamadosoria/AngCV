@@ -16,7 +16,11 @@
           </mat-list>
         </mat-grid-tile>
         <mat-grid-tile class="personal-content" colspan="2">
-          <p>{{pCv.personal.summary | slice:0:450}} </p>
+          <mat-list>
+            <mat-list-item>
+              <p>{{pCv.personal.summary | slice:0:450}} </p>
+            </mat-list-item>
+          </mat-list>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card>
@@ -93,7 +97,7 @@
     <mat-card *ngIf="pCv.work?.length > 0">
       <mat-card-title>Work Experience</mat-card-title>
       <div class="timeline-container">
-        <div class="timeline-item" title="{{work.startDate | date: 'MM/yyyy'}} -> {{work.endDate | date: 'MM/yyyy'}}" *ngFor="let work of pCv.work" >
+        <div class="timeline-item" title="{{work.startDate | date: 'MM/yyyy'}} -> {{work.endDate | date: 'MM/yyyy'}}" *ngFor="let work of pCv.work">
 
           <mat-grid-list cols="4">
             <mat-grid-tile class="timeline-header" colspan="4">
