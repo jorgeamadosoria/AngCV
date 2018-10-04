@@ -27,6 +27,7 @@ router.get('/api', utils.loggedRole(), (req, res) => {
 
 router.get('/api/export/:id', (req, res, next) => {
     service.findById(req.params.id).then(obj => {
+        res.set('Access-Control-Allow-Origin', '*');
         res.send(JSON.stringify(obj));
     });
 });
