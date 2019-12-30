@@ -7,11 +7,8 @@ if(process.env.MONGODB_DB_URL){
 }
 
 var promise = mongoose.connect(mongodb_connection_string, {
-    useMongoClient: true,
-  });
-
-promise.then(function (db) {
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-});
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+  }).catch(err => console.log(err.reason));
 
 module.exports = mongoose;
